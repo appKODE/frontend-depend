@@ -1,0 +1,25 @@
+{
+  "name": "@kode-frontend/prettier-config",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": {
+    "name": "KODE LLC",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "main": "./config.json",
+  "peerDependencies": {
+    "prettier": "^3"
+  },
+  "engines": {
+    "node": ">= 16.16.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
