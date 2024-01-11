@@ -1,0 +1,32 @@
+{
+  "name": "@kode-frontend/commitlint-config",
+  "version": "0.0.0",
+  "description": "Shareable commitlint config enforcing conventional commits",
+  "keywords": [
+    "commitlint",
+    "commits",
+    "conventional-commits"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "KODE",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "homepage": "",
+  "dependencies": {
+    "conventional-changelog-conventionalcommits": "^7.0.2"
+  },
+  "engines": {
+    "node": ">= 16.16.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.js"
+  ]
+}
