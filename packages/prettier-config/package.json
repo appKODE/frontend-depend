@@ -2,8 +2,14 @@
   "name": "@kode-frontend/prettier-config",
   "version": "0.0.0",
   "main": "./config.json",
-  "description": "",
-  "keywords": [],
+  "description": "Shareable Prettier config enforcing Prettier style and formatting",
+  "keywords": [
+    "style",
+    "formatting",
+    "config",
+    "prettier",
+    "prettier-config"
+  ],
   "license": "MIT",
   "author": {
     "name": "KODE",
@@ -25,9 +31,6 @@
   },
   "files": [
     ".prettierignore",
-    "config.json",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md"
+    "config.json"
   ]
 }

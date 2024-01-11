@@ -2,8 +2,11 @@
   "name": "@kode-frontend/eslint-config",
   "version": "0.0.0",
   "main": "./dist/react.js",
-  "description": "",
-  "keywords": [],
+  "description": "Shareable ESLint config enforcing best practices",
+  "keywords": [
+    "eslint",
+    "eslint-config"
+  ],
   "license": "MIT",
   "author": {
     "name": "KODE",
@@ -33,6 +36,10 @@
     "@types/node": "^20.11.0",
     "tsup": "^8.0.1"
   },
+  "files": [
+    "dist",
+    "package.json"
+  ],
   "exports": {
     "./react": {
       "types": "./dist/react.d.ts",
@@ -45,9 +52,5 @@
       "default": "./dist/react-native.js"
     },
     "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "package.json"
-  ]
+  }
 }

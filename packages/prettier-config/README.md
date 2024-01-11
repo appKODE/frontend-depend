@@ -6,13 +6,13 @@ Add `@kode-frontend/prettier-config` dependency to your project.
 
 ```shell
 # Using npm
-npm install @kode-frontend/prettier-config --save-dev
+npm i --save-dev @kode-frontend/prettier-config
 
 # Using yarn
 yarn add -D @kode-frontend/prettier-config
 
 # Using pnpm
-pnpm install -D @kode-frontend/prettier-config
+pnpm add -D @kode-frontend/prettier-config
 ```
 
 ## 🎮 Usage
