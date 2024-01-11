@@ -20,7 +20,13 @@
       }
     },
     {
-      "files": [".eslintrc", ".gqlconfig", ".prettierrc", ".stylelintrc"],
+      "files": [
+        ".eslintrc",
+        ".gqlconfig",
+        ".prettierrc",
+        ".prettierignore",
+        ".stylelintrc"
+      ],
       "options": {
         "parser": "json"
       }
