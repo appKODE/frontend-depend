@@ -4,10 +4,10 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\""
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
+    "@repo/eslint-config-internal": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "prettier": "^3.1.1",
     "turbo": "latest"
