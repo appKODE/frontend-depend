@@ -1,12 +1,14 @@
 {
   "name": "@kode-frontend/frontend-rules",
   "scripts": {
+    "postinstall": "lefthook install",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\""
   },
   "devDependencies": {
+    "@evilmartians/lefthook": "^1.5.6",
     "@repo/eslint-config-internal": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "prettier": "^3.1.1",
