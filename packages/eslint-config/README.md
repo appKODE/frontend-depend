@@ -1,3 +1,5 @@
+Описание [на русском](#)
+
 # @kode-frontend/eslint-config
 
 ## 📥 Install

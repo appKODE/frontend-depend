@@ -1,3 +1,5 @@
+Описание [на русском](#)
+
 # KODE Frontend ecosystem
 
 This is an awesome collection on frontend configs at [KODE](https://kode.ru).
@@ -36,7 +38,7 @@ Cool things used in this monorepo:
 
 To develop all packages, clone this repo and run the following command:
 
-```
+```bash
 cd frontend-rules
 pnpm dev
 ```
@@ -45,7 +47,7 @@ pnpm dev
 
 To build all packages, run the following command:
 
-```
+```bash
 cd frontend-rules
 pnpm build
 ```

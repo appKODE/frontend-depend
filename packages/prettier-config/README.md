@@ -1,3 +1,5 @@
+Описание [на русском](#)
+
 # @kode-frontend/prettier-config
 
 ## 📥 Install
