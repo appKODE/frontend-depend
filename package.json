@@ -4,8 +4,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish"
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\""
   },
   "devDependencies": {
     "@repo/eslint-config-internal": "workspace:*",

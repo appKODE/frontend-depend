@@ -80,6 +80,8 @@ It will copy the `.prettierignore` from `@kode-frontend/prettier-config` to your
 Some commonly used scripts in `package.json`.
 
 ```json
+// package.json
+
 {
   "scripts": {
     "prettier:fix": "prettier ** --write",
