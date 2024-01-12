@@ -1,36 +1,36 @@
 {
   "name": "@kode-frontend/prettier-config",
-  "version": "0.0.0",
-  "main": "./config.json",
   "description": "Shareable Prettier config enforcing Prettier style and formatting",
-  "keywords": [
-    "style",
-    "formatting",
-    "config",
-    "prettier",
-    "prettier-config"
-  ],
-  "license": "MIT",
+  "version": "0.0.0",
   "author": {
     "name": "KODE",
     "email": "frontend-team@kode.ru",
     "url": "https://kode.ru"
   },
-  "repository": {
-    "type": "git"
-  },
-  "homepage": "",
-  "peerDependencies": {
-    "prettier": "^3"
-  },
   "engines": {
     "node": ">= 16.16.0"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "files": [
     ".prettierignore",
     "config.json"
-  ]
+  ],
+  "homepage": "",
+  "keywords": [
+    "config",
+    "formatting",
+    "prettier",
+    "prettier-config",
+    "style"
+  ],
+  "license": "MIT",
+  "main": "./config.json",
+  "peerDependencies": {
+    "prettier": "^3.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git"
+  }
 }

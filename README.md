@@ -9,7 +9,13 @@ This monorepo includes the following packages:
 ### 📦 Packages
 
 - `@kode-frontend/prettier-config`: a [Prettier](https://prettier.io/) configuration
+
+- `@kode-frontend/eslint-config`: a [ESLint](https://eslint.org/) configuration
+
+- `@kode-frontend/commitlint-config`: a collection of rules for [Commitlint](https://commitlint.js.org/)
+
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
 ## 👨‍💻 Develop
@@ -30,8 +36,16 @@ cd frontend-rules
 pnpm build
 ```
 
-## 📚 Useful Links
+## 🤿 Dive-in
 
-Learn more about:
+Cool things used in this monorepo:
 
-- Prettier config [description](#):
+- 🏎 [Turborepo](https://turbo.build/) — High-performance build system for monorepos
+
+- 🐞 [Lefthook](https://github.com/evilmartians/lefthook) — Git hooks manager
+
+- 📋 [Changesets](https://github.com/changesets/changesets) — Managing versioning, publishing and changelogs
+
+- 🔄 [Syncpack](https://github.com/JamieMason/syncpack) — Ensures consistent dependencies and package.json style within packages in monorepo
+
+- 🛠 [GitHub Actions](https://github.com/changesets/action) — Running workflows in continuous integration

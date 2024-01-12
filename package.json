@@ -1,25 +1,34 @@
 {
   "name": "@kode-frontend/frontend-rules",
-  "scripts": {
-    "postinstall": "lefthook install",
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish"
+  "dependencies": {
+    "@changesets/cli": "^2.27.1"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.5.6",
     "@repo/eslint-config-internal": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
+    "syncpack": "^12.3.0",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {
-    "@changesets/cli": "^2.27.1"
+  "packageManager": "pnpm@8.9.0",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
+    "lint": "turbo lint",
+    "lint:fix:packages": "npm-run-all --parallel lint:fix:packages:*",
+    "lint:fix:packages:format": "syncpack format",
+    "lint:fix:packages:mismatches": "syncpack fix-mismatches",
+    "lint:packages": "npm-run-all --parallel --print-label lint:packages:*",
+    "lint:packages:format": "syncpack lint",
+    "lint:packages:mismatches": "syncpack list-mismatches",
+    "lint:packages:semver": "syncpack lint-semver-ranges",
+    "postinstall": "lefthook install",
+    "publish-packages": "turbo run build lint && changeset version && changeset publish"
   }
 }
