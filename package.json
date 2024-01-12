@@ -32,10 +32,9 @@
     "lint:packages:format": "syncpack lint",
     "lint:packages:mismatches": "syncpack list-mismatches",
     "lint:packages:semver": "syncpack lint-semver-ranges",
-    "postinstall": "lefthook install",
+    "prepare": "lefthook install",
     "add-changeset": "changeset add",
     "version-packages": "changeset version",
-    "prepare": "husky install",
     "prerelease": "yarn run build",
     "release": "changeset publish"
   }
