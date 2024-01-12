@@ -1,4 +1,8 @@
 {
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "name": "@kode-frontend/frontend-rules",
   "dependencies": {
     "@changesets/cli": "^2.27.1"
@@ -29,6 +33,10 @@
     "lint:packages:mismatches": "syncpack list-mismatches",
     "lint:packages:semver": "syncpack lint-semver-ranges",
     "postinstall": "lefthook install",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish"
+    "add-changeset": "changeset add",
+    "version-packages": "changeset version",
+    "prepare": "husky install",
+    "prerelease": "yarn run build",
+    "release": "changeset publish"
   }
 }
