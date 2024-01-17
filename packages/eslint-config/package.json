@@ -8,20 +8,17 @@
     "url": "https://kode.ru"
   },
   "dependencies": {
-    "@babel/core": "^7.20.0",
-    "@babel/eslint-parser": "^7.20.0",
-    "@react-native/eslint-plugin": "0.73.1",
+    "@babel/core": "^7.14.0",
+    "@babel/eslint-parser": "^7.18.2",
+    "@react-native-community/eslint-plugin": "^1.1.0",
     "@rushstack/eslint-patch": "^1.6.1",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-ft-flow": "^2.0.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-perfectionist": "^2.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.0.0"
@@ -38,6 +35,9 @@
     "./typescript": "./src/shared/typescript.js",
     "./package.json": "./package.json"
   },
+  "files": [
+    "src"
+  ],
   "homepage": "",
   "keywords": [
     "eslint",
@@ -45,9 +45,13 @@
   ],
   "license": "MIT",
   "main": "./src/config/web.js",
+  "optionalPeerDependencies": {
+    "react": "^17 || ^18"
+  },
   "peerDependencies": {
     "eslint": "^8",
-    "typescript": "^5.3.3"
+    "prettier": ">=2",
+    "typescript": ">=5"
   },
   "publishConfig": {
     "access": "public"

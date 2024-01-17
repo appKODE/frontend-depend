@@ -6,13 +6,13 @@
 
 ```shell
 # Используя npm
-npm install --save-dev @kode-frontend/eslint-config
+npm install --save-dev eslint prettier @kode-frontend/eslint-config
 
 # Используя yarn
-yarn add -D @kode-frontend/eslint-config
+yarn add -D eslint prettier @kode-frontend/eslint-config
 
 # Используя pnpm
-pnpm install -D @kode-frontend/eslint-config
+pnpm install -D eslint prettier @kode-frontend/eslint-config
 ```
 
 ## 🎮 Использование
