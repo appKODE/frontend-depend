@@ -54,7 +54,7 @@ module.exports = {
     'no-duplicate-case': 'error',
 
     // disallow empty statements
-    'no-empty': 'error',
+    'no-empty': ['error', { allowEmptyCatch: true }],
 
     // disallow the use of empty character classes in regular expressions
     'no-empty-character-class': 'error',
@@ -120,7 +120,7 @@ module.exports = {
 
     // disallow use of Object.prototypes builtins directly
     // https://eslint.org/docs/rules/no-prototype-builtins
-    'no-prototype-builtins': 'error',
+    'no-prototype-builtins': 'off',
 
     // disallow multiple spaces in a regular expression literal
     'no-regex-spaces': 'error',

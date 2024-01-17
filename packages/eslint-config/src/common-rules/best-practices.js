@@ -3,8 +3,9 @@
 
 module.exports = {
   rules: {
-    // Legacy
-    // The following rules are included for compatibility with JSHint and JSLint. While the names of the rules may not match up with the JSHint/JSLint counterpart, the functionality is the same.
+    /**
+     * Legacy (compatibility with JSHint and JSLint)
+     */
 
     'max-depth': 0, // specify the maximum depth that blocks can be nested (off by default)
     'max-len': 0, // specify the maximum length of a line in your program (off by default)

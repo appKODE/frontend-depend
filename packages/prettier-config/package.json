@@ -7,6 +7,9 @@
     "email": "frontend-team@kode.ru",
     "url": "https://kode.ru"
   },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  },
   "engines": {
     "node": ">= 16.16.0"
   },
@@ -32,5 +35,8 @@
   },
   "repository": {
     "type": "git"
+  },
+  "scripts": {
+    "clean": "rimraf ./node_modules ./.turbo"
   }
 }

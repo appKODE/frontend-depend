@@ -1,11 +1,4 @@
-// Node.js
-// These rules are specific to JavaScript running on Node.js.
-
 module.exports = {
-  env: {
-    node: true,
-  },
-
   rules: {
     'handle-callback-err': 1, // enforces error handling in callbacks (off by default) (on by default in the node environment)
     'no-mixed-requires': 1, // disallow mixing regular variable and require declarations (off by default) (on by default in the node environment)

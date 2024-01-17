@@ -21,7 +21,7 @@ module.exports = {
         ],
         'custom-groups': {
           value: {
-            react: ['react', 'react-dom/*', 'react-native'],
+            react: ['react', 'react-dom/*', 'react-native', 'react-native/*'],
             fsd: [
               '@app/**',
               '@entities/**',
@@ -31,7 +31,7 @@ module.exports = {
             ],
           },
           type: {
-            react: ['react', 'react-dom/*', 'react-native'],
+            react: ['react', 'react-dom/*', 'react-native', 'react-native/*'],
           },
         },
         'newlines-between': 'always',

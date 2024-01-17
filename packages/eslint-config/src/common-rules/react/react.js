@@ -1,12 +1,11 @@
-// React Plugin
-// The following rules are made available via `eslint-plugin-react`.
+/** @see https://www.npmjs.com/package/eslint-plugin-react */
 
 module.exports = {
   plugins: ['react'],
 
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+  settings: {
+    react: {
+      version: 'detect',
     },
   },
 

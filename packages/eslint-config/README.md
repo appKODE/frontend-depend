@@ -94,3 +94,11 @@ Some commonly used scripts in `package.json`.
   }
 }
 ```
+
+## 🐛 Possible problems
+
+### React-Native
+
+If you get an error about "EEXIST: file already exists, mkdir \* info ..."
+
+Just uninstall `@react-native/eslint-config`.

@@ -20,5 +20,13 @@ pre-push:
       glob: '*.{html,json,md,yml,[tj]s,[tj]sx}'
       run: pnpm prettier --check {staged_files}
       stage_fixed: true
+    packages:mismatches:
+      glob: 'packages/**/package.json'
+      run: pnpm lint:fix:packages:mismatches {staged_files}
+      stage_fixed: true
+    packages:format:
+      glob: 'packages/**/packages.json'
+      run: pnpm lint:fix:packages:format {staged_files}
+      stage_fixed: true
     audit:
       run: pnpm audit

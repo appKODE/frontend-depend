@@ -1,12 +1,11 @@
-// React-Hooks Plugin
-// The following rules are made available via `eslint-plugin-react-hooks`
+/** @see https://www.npmjs.com/package/eslint-plugin-react-hooks */
 
 module.exports = {
   plugins: ['react-hooks'],
 
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+  settings: {
+    react: {
+      version: 'detect',
     },
   },
 
