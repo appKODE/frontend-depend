@@ -12,9 +12,9 @@
     "@babel/eslint-parser": "^7.20.0",
     "@react-native/eslint-plugin": "0.73.1",
     "@rushstack/eslint-patch": "^1.6.1",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "eslint-config-prettier": "^8.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-ft-flow": "^2.0.1",
@@ -47,7 +47,7 @@
   "main": "./src/config/web.js",
   "peerDependencies": {
     "eslint": "^8",
-    "typescript": ">= 4.0.0"
+    "typescript": "^5.3.3"
   },
   "publishConfig": {
     "access": "public"
