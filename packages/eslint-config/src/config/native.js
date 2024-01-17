@@ -1,6 +1,11 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
+  extends: [
+    require.resolve('../shared/base'),
+    require.resolve('../specific-rules/react-native'),
+  ],
+
   env: {
     es6: true,
   },
@@ -8,6 +13,46 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
   },
+
+  overrides: [
+    {
+      /**
+       * @see https://www.npmjs.com/package/eslint-plugin-ft-flow
+       */
+      files: ['*.js'],
+      parser: '@babel/eslint-parser',
+      plugins: ['ft-flow'],
+      rules: {
+        'ft-flow/define-flow-type': 1,
+        'ft-flow/use-flow-type': 1,
+      },
+    },
+    {
+      files: ['*.jsx'],
+      parser: '@babel/eslint-parser',
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint/eslint-plugin'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          {
+            argsIgnorePattern: '^_',
+            destructuredArrayIgnorePattern: '^_',
+            varsIgnorePattern: '^_',
+          },
+        ],
+        'no-unused-vars': 'off',
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': 1,
+        'no-undef': 'off',
+        'func-call-spacing': 'off',
+        '@typescript-eslint/func-call-spacing': 1,
+      },
+    },
+  ],
 
   /** Map from global var to bool specifying if it can be redefined */
   globals: {
@@ -55,9 +100,4 @@ module.exports = {
     window: false,
     XMLHttpRequest: false,
   },
-
-  extends: [
-    require.resolve('../shared/base'),
-    require.resolve('../specific-rules/react-native'),
-  ],
 }
