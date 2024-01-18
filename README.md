@@ -2,13 +2,13 @@
 
 # KODE Frontend ecosystem
 
-This is an awesome collection on frontend configs at [KODE](https://kode.ru).
+This is a collection of configuration files for frontend applications from [KODE](https://appkode.dev/).
 
-## What's inside?
+### What's inside?
 
 This monorepo includes the following packages:
 
-### 📦 Packages
+## 📦 Packages
 
 - `@kode-frontend/prettier-config`: a [Prettier](https://prettier.io/) configuration
 
@@ -56,7 +56,7 @@ pnpm build
 
 - `pnpm release` - Publishes changes to package registry and creates git tags.
 
-The monorepo uses Changesets to manage versions, create changelogs, and publish to the package registry. You'll need to create an NPM_TOKEN and GITHUB_TOKEN and add it to your GitHub repository settings to enable access to the package registry.
+The monorepo uses Changesets to manage versions, create changelogs, and publish to the package registry.
 
 ### Generating the Changelog
 
