@@ -1,16 +1,5 @@
 module.exports = {
   rules: {
-    // enforces no braces where they can be omitted
-    // https://eslint.org/docs/rules/arrow-body-style
-    // TODO: enable requireReturnForObjectLiteral?
-    'arrow-body-style': [
-      'error',
-      'as-needed',
-      {
-        requireReturnForObjectLiteral: false,
-      },
-    ],
-
     // require parens in arrow function arguments
     // https://eslint.org/docs/rules/arrow-parens
     'arrow-parens': [0, 'always'],
@@ -32,12 +21,7 @@ module.exports = {
 
     // disallow arrow functions where they could be confused with comparisons
     // https://eslint.org/docs/rules/no-confusing-arrow
-    'no-confusing-arrow': [
-      'error',
-      {
-        allowParens: true,
-      },
-    ],
+    'no-confusing-arrow': 0,
 
     // disallow modifying variables that are declared using const
     'no-const-assign': 'error',

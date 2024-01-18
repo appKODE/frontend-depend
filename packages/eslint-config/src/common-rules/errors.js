@@ -24,7 +24,7 @@ module.exports = {
     'no-cond-assign': ['error', 'always'],
 
     // disallow use of console
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
 
     // Disallows expressions where the operation doesn't affect the value
     // https://eslint.org/docs/rules/no-constant-binary-expression
