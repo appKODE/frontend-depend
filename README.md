@@ -93,8 +93,8 @@ To create a snapshot release we can use the manually dispatched 'Semantic Releas
 
 2. Manually dispatch the 'Snapshot Release' workflow and target it to run against the feature branch.
 
-3.The workflow will run `changeset version` with the `--snapshot` argument to update changelog and package files using the version number `0.0.0-testing-snapshot-releases-TIMESTAMP`.
+3. The workflow will run `changeset version` with the `--snapshot` argument to update changelog and package files using the version number `0.0.0-testing-snapshot-releases-TIMESTAMP`.
 
-4.The `prerelease` command will build the project which ensures build files will be present for the upcoming publish.
+4. The `prerelease` command will build the project which ensures build files will be present for the upcoming publish.
 
 5. The `changeset publish` command runs with the `--tag` argument set to the feature branch name and the `--no-git-tag` argument. Changesets will publish the version to the registry without creating / pushing a source control tag.
