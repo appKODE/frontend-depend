@@ -53,6 +53,25 @@ Contains:
 }
 ```
 
+## 📖 Sort configurations
+
+You can optionally add sort configuration to the web and native configs.
+
+```json
+// .eslintrc.cjs
+
+{
+  "extends": [
+    "@kode-frontend/eslint-config/{web/native}",
+    "@kode-frontend/eslint-config/sort"
+  ]
+}
+```
+
+It will sort the enums, interfaces, jsx props, maps, object types, objects, union types, and more. You can find more details in [this documentation]().
+
+It can be useful to have a diff that is easier to read, or to have consistent code.
+
 ## 📝 Configuration
 
 You can _override rules_ from the shared configuration, by setting your own values within the rules property:

@@ -16,10 +16,6 @@ This monorepo includes the following packages:
 
 - `@kode-frontend/commitlint-config`: a collection of rules for [Commitlint](https://commitlint.js.org/)
 
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
 ## 🤿 Dive-in
 
 Cool things used in this monorepo:
@@ -54,9 +50,11 @@ pnpm build
 
 ## 🚀 Versioning & Publishing Packages
 
-- pnpm add-changeset - Generate a changeset file
-- pnpm version-packages - Update versions, changelogs and dependencies of packages.
-- pnpm release - Publishes changes to package registry and creates git tags.
+- `pnpm add-changeset` - Generate a changeset file
+
+- `pnpm version-packages` - Update versions, changelogs and dependencies of packages.
+
+- `pnpm release` - Publishes changes to package registry and creates git tags.
 
 The monorepo uses Changesets to manage versions, create changelogs, and publish to the package registry. You'll need to create an NPM_TOKEN and GITHUB_TOKEN and add it to your GitHub repository settings to enable access to the package registry.
 

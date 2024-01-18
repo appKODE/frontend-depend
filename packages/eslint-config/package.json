@@ -32,6 +32,7 @@
   "exports": {
     "./web": "./src/config/web.js",
     "./native": "./src/config/native.js",
+    "./sort": "./src/config/sort.js",
     "./typescript": "./src/shared/typescript.js",
     "./package.json": "./package.json"
   },
