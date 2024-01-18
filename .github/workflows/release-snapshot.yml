@@ -3,6 +3,10 @@ name: Snapshot Release
 on:
   workflow_dispatch:
 
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
 jobs:
   snapshot:
     name: Snapshot Release
