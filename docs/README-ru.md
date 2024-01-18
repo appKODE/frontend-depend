@@ -8,11 +8,11 @@
 
 ## 📦 Пакеты
 
-- `@kode-frontend/prettier-config`: конфигурация [Prettier](https://prettier.io/)
+- `@kode-frontend/prettier-config`: [Prettier](https://prettier.io/) конфигурация. [NPM]()
 
-- `@kode-frontend/eslint-config`: конфигурация [ESLint](https://eslint.org/)
+- `@kode-frontend/eslint-config`: [ESLint](https://eslint.org/) конфигурация. [NPM]()
 
-- `@kode-frontend/commitlint-config`: конфигурация [Commitlint](https://commitlint.js.org/)
+- `@kode-frontend/commitlint-config`: [Commitlint](https://commitlint.js.org/) конфигурация. [NPM]()
 
 ## 🤿 Погружение в детали
 

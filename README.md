@@ -10,11 +10,11 @@ This monorepo includes the following packages:
 
 ## 📦 Packages
 
-- `@kode-frontend/prettier-config`: a [Prettier](https://prettier.io/) configuration
+- `@kode-frontend/prettier-config`: a [Prettier](https://prettier.io/) configuration. [NPM]()
 
-- `@kode-frontend/eslint-config`: a [ESLint](https://eslint.org/) configuration
+- `@kode-frontend/eslint-config`: a [ESLint](https://eslint.org/) configuration. [NPM]()
 
-- `@kode-frontend/commitlint-config`: a collection of rules for [Commitlint](https://commitlint.js.org/)
+- `@kode-frontend/commitlint-config`: a [Commitlint](https://commitlint.js.org/) configuration. [NPM]()
 
 ## 🤿 Dive-in
 
