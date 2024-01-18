@@ -2,7 +2,12 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "access": "restricted",
   "baseBranch": "main",
-  "changelog": "@changesets/cli/changelog",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "appKODE/repo"
+    }
+  ],
   "commit": false,
   "fixed": [],
   "ignore": [],

@@ -81,20 +81,4 @@ These changeset files should be part of your PR and committed into the trunk bra
 
 When you merge your PR into the trunk branch, the GitHub Action will create a PR with all of the package versions updated and changelogs updated. If more PRs get merged with more changesets then the PR opened by the GitHub Action will be updated.
 
-Merging this PR will, along with updating all of the files it changed, make the GitHub Action trigger it's release cycle where it attempts to publish each package not marked as `private` within the workspaces package file.
-
-### Snapshot Releases
-
-Whenever you want to test a package in a consuming application before publishing a proper version for the wider public, we can create a snapshot release. These are special versions that take the form of `0.0.0-BRANCH_NAME-TIMESTAMP` e.g. `0.0.0-testing-snapshot-releases-20230226224821`. The branch name is also used as a dist-tag which points at the snapshot version e.g. `"@kode-frontend/prettier-config": "testing-snapshot-releases"`. The separate dist-tag ensures we don't touch the `latest` dist-tag which is the tag used to determine what version of a package gets installed whenever someone installs it via `pnpm install PACKAGE_NAME`.
-
-To create a snapshot release we can use the manually dispatched 'Semantic Release' workflow. The sequence of operations is as follows:
-
-1. Create a feature branch (e.g. `testing-snapshot-releases`) which contains changes to packages along with changeset files.
-
-2. Manually dispatch the 'Snapshot Release' workflow and target it to run against the feature branch.
-
-3. The workflow will run `changeset version` with the `--snapshot` argument to update changelog and package files using the version number `0.0.0-testing-snapshot-releases-TIMESTAMP`.
-
-4. The `prerelease` command will build the project which ensures build files will be present for the upcoming publish.
-
-5. The `changeset publish` command runs with the `--tag` argument set to the feature branch name and the `--no-git-tag` argument. Changesets will publish the version to the registry without creating / pushing a source control tag.
+Merging this PR will, along with updating all of the files it changed, make the GitHub Action trigger it's release cycle where it attempts to publish each package not marked as `private`
