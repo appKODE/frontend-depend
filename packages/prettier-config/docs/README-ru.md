@@ -1,18 +1,20 @@
 # @kode-frontend/prettier-config
 
+[![Version][version-badge]][package]
+
 ## 📥 Установка
 
 Добавьте зависимость `@kode-frontend/prettier-config` в ваш проект.
 
 ```shell
 # Используя npm
-npm i --save-dev @kode-frontend/prettier-config
+npm i --save-dev prettier @kode-frontend/prettier-config
 
 # Используя yarn
-yarn add -D @kode-frontend/prettier-config
+yarn add -D prettier @kode-frontend/prettier-config
 
 # Используя pnpm
-pnpm add -D @kode-frontend/prettier-config
+pnpm add -D prettier @kode-frontend/prettier-config
 ```
 
 ## 🎮 Использование
@@ -89,3 +91,6 @@ copy "node_modules\@kode-frontend\prettier-config\.prettierignore" ".prettierign
   }
 }
 ```
+
+[version-badge]: https://img.shields.io/npm/v/@kode-frontend/prettier-config.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@kode-frontend/prettier-config

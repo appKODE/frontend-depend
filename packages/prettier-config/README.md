@@ -2,19 +2,21 @@
 
 # @kode-frontend/prettier-config
 
+[![Version][version-badge]][package]
+
 ## 📥 Install
 
 Add `@kode-frontend/prettier-config` dependency to your project.
 
 ```shell
 # Using npm
-npm i --save-dev @kode-frontend/prettier-config
+npm i --save-dev prettier @kode-frontend/prettier-config
 
 # Using yarn
-yarn add -D @kode-frontend/prettier-config
+yarn add -D prettier @kode-frontend/prettier-config
 
 # Using pnpm
-pnpm add -D @kode-frontend/prettier-config
+pnpm add -D prettier @kode-frontend/prettier-config
 ```
 
 ## 🎮 Usage
@@ -91,3 +93,6 @@ Some commonly used scripts in `package.json`.
   }
 }
 ```
+
+[version-badge]: https://img.shields.io/npm/v/@kode-frontend/prettier-config.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@kode-frontend/prettier-config

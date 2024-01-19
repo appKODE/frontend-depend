@@ -1,5 +1,7 @@
 # @kode-frontend/commitlint-config
 
+[![Version][version-badge]][package]
+
 ## 📥 Install
 
 Add `@kode-frontend/commitlint-config` dependency to your project.
@@ -40,3 +42,6 @@ module.exports = {
   extends: ['@kode-frontend'], // => @kode-frontend/commitlint-config
 }
 ```
+
+[version-badge]: https://img.shields.io/npm/v/@kode-frontend/commitlint-config.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@kode-frontend/commitlint-config

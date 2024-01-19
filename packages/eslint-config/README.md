@@ -2,6 +2,8 @@
 
 # @kode-frontend/eslint-config
 
+[![Version][version-badge]][package]
+
 ## 📥 Install
 
 Add `@kode-frontend/eslint-config` dependency to your project.
@@ -120,4 +122,7 @@ Some commonly used scripts in `package.json`.
 
 If you get an error about "EEXIST: file already exists, mkdir \* info ..."
 
-Just uninstall `@react-native/eslint-config`.
+Just uninstall `@kode-frontend/eslint-config`.
+
+[version-badge]: https://img.shields.io/npm/v/@kode-frontend/eslint-config.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@kode-frontend/eslint-config

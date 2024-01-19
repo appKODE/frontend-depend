@@ -1,5 +1,7 @@
 # @kode-frontend/eslint-config
 
+[![Version][version-badge]][package]
+
 ## 📥 Установка
 
 Добавьте зависимость `@kode-frontend/eslint-config` в ваш проект.
@@ -111,3 +113,6 @@ pnpm install -D eslint@^8 prettier @kode-frontend/eslint-config
   }
 }
 ```
+
+[version-badge]: https://img.shields.io/npm/v/@kode-frontend/eslint-config.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@kode-frontend/eslint-config

@@ -7,6 +7,7 @@
     "email": "frontend-team@kode.ru",
     "url": "https://kode.ru"
   },
+  "bugs": "https://github.com/appKODE/frontend-depend/issues",
   "dependencies": {
     "conventional-changelog-conventionalcommits": "^7.0.2"
   },
@@ -16,7 +17,7 @@
   "files": [
     "index.js"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/commitlint-config#readme",
   "keywords": [
     "commitlint",
     "commits",
@@ -28,6 +29,8 @@
     "provenance": true
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/appKODE/frontend-depend.git",
+    "directory": "packages/commitlint-config"
   }
 }
