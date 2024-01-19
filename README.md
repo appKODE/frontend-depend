@@ -1,4 +1,4 @@
-Описание [на русском](#)
+Описание [на русском](https://github.com/appKODE/frontend-depend/blob/main/docs/README-ru.md)
 
 # KODE Frontend ecosystem
 
@@ -10,11 +10,11 @@ This monorepo includes the following packages:
 
 ## 📦 Packages
 
-- `@kode-frontend/prettier-config`: a [Prettier](https://prettier.io/) configuration. [NPM]()
+- `@kode-frontend/prettier-config`: a [Prettier](https://prettier.io/) configuration. [[Documentation](https://github.com/appKODE/frontend-depend/blob/main/packages/prettier-config)]
 
-- `@kode-frontend/eslint-config`: a [ESLint](https://eslint.org/) configuration. [NPM]()
+- `@kode-frontend/eslint-config`: a [ESLint](https://eslint.org/) configuration. [[Documentation](https://github.com/appKODE/frontend-depend/blob/main/packages/eslint-config)]
 
-- `@kode-frontend/commitlint-config`: a [Commitlint](https://commitlint.js.org/) configuration. [NPM]()
+- `@kode-frontend/commitlint-config`: a [Commitlint](https://commitlint.js.org/) configuration. [[Documentation](https://github.com/appKODE/frontend-depend/blob/main/packages/commitlint-config)]
 
 ## 🤿 Dive-in
 

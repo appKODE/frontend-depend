@@ -1,4 +1,4 @@
-Описание [на русском](#)
+Описание [на русском](https://github.com/appKODE/frontend-depend/blob/main/packages/prettier-config/docs/README-ru.md)
 
 # @kode-frontend/prettier-config
 
