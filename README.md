@@ -35,7 +35,7 @@ Cool things used in this monorepo:
 To develop all packages, clone this repo and run the following command:
 
 ```bash
-cd frontend-rules
+cd frontend-depend
 pnpm dev
 ```
 
@@ -44,7 +44,7 @@ pnpm dev
 To build all packages, run the following command:
 
 ```bash
-cd frontend-rules
+cd frontend-depend
 pnpm build
 ```
 

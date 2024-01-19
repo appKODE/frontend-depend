@@ -33,7 +33,7 @@
 Для разработки всех пакетов клонируй этот репозиторий и выполни следующую команду:
 
 ```bash
-cd frontend-rules
+cd frontend-depend
 pnpm dev
 ```
 
@@ -42,7 +42,7 @@ pnpm dev
 Для сборки всех пакетов выполни следующую команду:
 
 ```bash
-cd frontend-rules
+cd frontend-depend
 pnpm build
 ```
 
