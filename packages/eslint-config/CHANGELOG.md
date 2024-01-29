@@ -1,5 +1,11 @@
 # @kode-frontend/eslint-config
 
+## 0.0.3
+
+### Patch Changes
+
+- [#3](https://github.com/appKODE/frontend-depend/pull/3) [`244c617`](https://github.com/appKODE/frontend-depend/commit/244c6173afde27a1030bc2b69d3d7bbc462335d4) Thanks [@xxtereshko](https://github.com/xxtereshko)! - fix: Fixed import resolution for sort config
+
 ## 0.0.2
 
 ### Patch Changes
