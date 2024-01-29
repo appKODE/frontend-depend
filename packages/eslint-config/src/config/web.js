@@ -8,9 +8,13 @@ module.exports = {
     es2020: true,
   },
 
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
+    tsconfigRootDir: __dirname,
   },
 
   globals: {},
+
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
 }
