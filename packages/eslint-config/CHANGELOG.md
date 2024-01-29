@@ -1,5 +1,11 @@
 # @kode-frontend/eslint-config
 
+## 0.0.4
+
+### Patch Changes
+
+- [#5](https://github.com/appKODE/frontend-depend/pull/5) [`5627edf`](https://github.com/appKODE/frontend-depend/commit/5627edfba1e8316116b315be4409d3910e806cf0) Thanks [@xxtereshko](https://github.com/xxtereshko)! - fix(eslint-config): fixed eslint parser for web config
+
 ## 0.0.3
 
 ### Patch Changes
