@@ -9,14 +9,14 @@
   },
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
   "dependencies": {
-    "conventional-changelog-conventionalcommits": "^7.0.2"
+    "conventional-changelog-conventionalcommits": "^7"
   },
   "engines": {
     "node": ">= 16.16.0"
   },
-  "files": [
-    "index.js"
-  ],
+  "exports": {
+    ".": "./config.js"
+  },
   "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/commitlint-config#readme",
   "keywords": [
     "commitlint",
@@ -24,6 +24,9 @@
     "conventional-commits"
   ],
   "license": "MIT",
+  "peerDependencies": {
+    "@commitlint/cli": "^18"
+  },
   "publishConfig": {
     "access": "public",
     "provenance": true
