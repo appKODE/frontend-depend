@@ -1,5 +1,11 @@
 # @kode-frontend/commitlint-config
 
+## 0.0.3
+
+### Patch Changes
+
+- [#7](https://github.com/appKODE/frontend-depend/pull/7) [`07312cd`](https://github.com/appKODE/frontend-depend/commit/07312cdddd27a448e208f48f16d595b1d5c0f957) Thanks [@xxtereshko](https://github.com/xxtereshko)! - fix(commitlint-config): fixed package exports
+
 ## 0.0.2
 
 ### Patch Changes
