@@ -49,7 +49,6 @@
   "main": "./src/config/web.js",
   "peerDependencies": {
     "eslint": "^8.0.0",
-    "prettier": "*",
     "typescript": "*"
   },
   "publishConfig": {
