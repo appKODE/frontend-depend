@@ -10,13 +10,13 @@ Add `@kode-frontend/eslint-config` dependency to your project.
 
 ```shell
 # Using npm
-npm install --save-dev eslint@^8 prettier @kode-frontend/eslint-config
+npm install --save-dev eslint@^8 @kode-frontend/eslint-config
 
 # Using yarn
-yarn add -D eslint@^8 prettier @kode-frontend/eslint-config
+yarn add -D eslint@^8 @kode-frontend/eslint-config
 
 # Using pnpm
-pnpm install -D eslint@^8 prettier @kode-frontend/eslint-config
+pnpm install -D eslint@^8 @kode-frontend/eslint-config
 ```
 
 ## 🎮 Usage

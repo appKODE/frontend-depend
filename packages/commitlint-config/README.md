@@ -8,13 +8,13 @@ Add `@kode-frontend/commitlint-config` dependency to your project.
 
 ```shell
 # Using npm
-npm i --save-dev @kode-frontend/commitlint-config
+npm i --save-dev @commitlint/cli @kode-frontend/commitlint-config
 
 # Using yarn
-yarn add -D @kode-frontend/commitlint-config
+yarn add -D @commitlint/cli @kode-frontend/commitlint-config
 
 # Using pnpm
-pnpm add -D @kode-frontend/commitlint-config
+pnpm add -D @commitlint/cli @kode-frontend/commitlint-config
 ```
 
 ## 🎮 Usage
