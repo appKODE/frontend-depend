@@ -1,5 +1,13 @@
 # @kode-frontend/eslint-config
 
+## 0.0.5
+
+### Patch Changes
+
+- [#11](https://github.com/appKODE/frontend-depend/pull/11) [`83a66e2`](https://github.com/appKODE/frontend-depend/commit/83a66e2e8fea394fa619af5086040f7aa1826522) Thanks [@xxtereshko](https://github.com/xxtereshko)! - fix: object-shorthand теперь `warn`, вместо `error`
+
+- [#9](https://github.com/appKODE/frontend-depend/pull/9) [`5400c5d`](https://github.com/appKODE/frontend-depend/commit/5400c5dd22638ca269020988e7005331a016af10) Thanks [@xxtereshko](https://github.com/xxtereshko)! - fix: Исправлены неиспользуемые группы в настройках сортировки типов и интерфейсов
+
 ## 0.0.4
 
 ### Patch Changes
