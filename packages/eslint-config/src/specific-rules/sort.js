@@ -2,14 +2,8 @@ module.exports = {
   plugins: ['perfectionist'],
 
   rules: {
+    'react/jsx-boolean-value': 'warn',
     'perfectionist/sort-array-includes': [
-      'warn',
-      {
-        type: 'natural',
-        order: 'asc',
-      },
-    ],
-    'perfectionist/sort-enums': [
       'warn',
       {
         type: 'natural',
@@ -21,7 +15,20 @@ module.exports = {
       {
         type: 'natural',
         order: 'asc',
-        groups: ['id', 'unknown', 'shorthand', 'predicate', 'callback'],
+        groups: ['id', 'unknown', 'predicate', 'callback'],
+        'custom-groups': {
+          id: 'id',
+          predicate: 'is[A-Z]*',
+          callback: 'on[A-Z]*',
+        },
+      },
+    ],
+    'perfectionist/sort-object-types': [
+      'warn',
+      {
+        type: 'natural',
+        order: 'asc',
+        groups: ['id', 'unknown', 'predicate', 'callback'],
         'custom-groups': {
           id: 'id',
           predicate: 'is[A-Z]*',
@@ -50,6 +57,13 @@ module.exports = {
         order: 'asc',
       },
     ],
+    'perfectionist/sort-enums': [
+      'warn',
+      {
+        type: 'natural',
+        order: 'asc',
+      },
+    ],
     'perfectionist/sort-named-exports': [
       'warn',
       {
@@ -64,25 +78,12 @@ module.exports = {
         order: 'asc',
       },
     ],
-    'perfectionist/sort-object-types': [
-      'warn',
-      {
-        type: 'natural',
-        order: 'asc',
-        groups: ['id', 'unknown', 'shorthand', 'predicate', 'callback'],
-        'custom-groups': {
-          id: 'id',
-          predicate: 'is[A-Z]*',
-          callback: 'on[A-Z]*',
-        },
-      },
-    ],
     'perfectionist/sort-objects': [
       'warn',
       {
         type: 'natural',
         order: 'asc',
-        groups: ['id', 'unknown', 'shorthand', 'predicate', 'callback'],
+        groups: ['id', 'unknown', 'predicate', 'callback'],
         'custom-groups': {
           id: 'id',
           predicate: 'is[A-Z]*',
