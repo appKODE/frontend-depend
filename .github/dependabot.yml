@@ -1,7 +1,7 @@
 version: 2
 
 updates:
-  - package-ecosystem: 'pnpm'
+  - package-ecosystem: 'npm'
     target-branch: 'main'
     directory: '/eslint-config'
     schedule:
@@ -12,7 +12,7 @@ updates:
       - 'pnpm dependencies'
       - 'eslint-config'
 
-  - package-ecosystem: 'pnpm'
+  - package-ecosystem: 'npm'
     directory: '/prettier-config'
     target-branch: 'main'
     schedule:
