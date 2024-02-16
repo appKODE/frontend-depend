@@ -8,13 +8,13 @@
 
 ```shell
 # Используя npm
-npm install --save-dev eslint@^8 prettier @kode-frontend/eslint-config
+npm install --save-dev eslint@^8 @kode-frontend/eslint-config
 
 # Используя yarn
-yarn add -D eslint@^8 prettier @kode-frontend/eslint-config
+yarn add -D eslint@^8 @kode-frontend/eslint-config
 
 # Используя pnpm
-pnpm install -D eslint@^8 prettier @kode-frontend/eslint-config
+pnpm install -D eslint@^8 @kode-frontend/eslint-config
 ```
 
 ## 🎮 Использование
