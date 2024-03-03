@@ -18,21 +18,21 @@
     "node": ">= 16.16.0"
   },
   "exports": {
-    "./web": "./src/session-interceptor.ts",
-    "./package.json": "./package.json"
+    ".": "./dist/session-interceptor.js"
   },
+  "types": "./dist/session-interceptor.d.ts",
   "files": [
-    "src"
+    "dist"
   ],
   "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/session-interceptor#readme",
   "keywords": [
-    "eslint",
-    "session-interceptor",
-    "kode"
+    "kode",
+    "session-interceptor"
   ],
   "license": "MIT",
   "main": "./src/session-interceptor.ts",
   "peerDependencies": {
+    "axios": "^1",
     "typescript": "*"
   },
   "publishConfig": {
@@ -45,6 +45,7 @@
     "directory": "packages/session-interceptor"
   },
   "scripts": {
+    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/session-interceptor.ts",
     "clean": "rimraf ./node_modules ./.turbo"
   }
 }
