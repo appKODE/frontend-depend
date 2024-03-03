@@ -1,0 +1,51 @@
+{
+  "name": "@kode-frontend/session-interceptor",
+  "description": "Session interceptor for handling jwt token update flow",
+  "version": "0.0.1",
+  "author": {
+    "name": "KODE",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "bugs": "https://github.com/appKODE/frontend-depend/issues",
+  "dependencies": {
+    "axios": "^1.6.7"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": ">= 16.16.0"
+  },
+  "exports": {
+    ".": "./dist/session-interceptor.js"
+  },
+  "types": "./dist/session-interceptor.d.ts",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/session-interceptor#readme",
+  "keywords": [
+    "kode",
+    "session-interceptor"
+  ],
+  "license": "MIT",
+  "main": "./src/session-interceptor.ts",
+  "peerDependencies": {
+    "axios": "^1",
+    "typescript": "*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appKODE/frontend-depend.git",
+    "directory": "packages/session-interceptor"
+  },
+  "scripts": {
+    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/session-interceptor.ts",
+    "clean": "rimraf ./node_modules ./.turbo"
+  }
+}
