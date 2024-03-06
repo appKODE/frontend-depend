@@ -1,7 +1,7 @@
 {
   "name": "@kode-frontend/session-interceptor",
   "description": "Session interceptor for handling jwt token update flow",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "KODE",
     "email": "frontend-team@kode.ru",
