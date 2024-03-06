@@ -30,7 +30,7 @@
     "session-interceptor"
   ],
   "license": "MIT",
-  "main": "./src/session-interceptor.ts",
+  "main": "./src/index.ts",
   "peerDependencies": {
     "axios": "^1",
     "typescript": "*"

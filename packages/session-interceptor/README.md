@@ -120,3 +120,6 @@ startSessionInterceptor({
 - [x] Add headers interceptor
 - [x] Add doc
 - [x] Share Subscripbers.isAllowToRefetch beteween tabs
+
+[version-badge]: https://img.shields.io/npm/v/@kode-frontend/session-interceptor.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@kode-frontend/session-interceptor
