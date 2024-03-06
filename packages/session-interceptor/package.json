@@ -18,9 +18,9 @@
     "node": ">= 16.16.0"
   },
   "exports": {
-    ".": "./dist/session-interceptor.js"
+    ".": "./dist/index.js"
   },
-  "types": "./dist/session-interceptor.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -45,7 +45,7 @@
     "directory": "packages/session-interceptor"
   },
   "scripts": {
-    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/session-interceptor.ts",
+    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
     "clean": "rimraf ./node_modules ./.turbo"
   }
 }
