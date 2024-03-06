@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.4
+
+### Patch Changes
+
+- [#19](https://github.com/appKODE/frontend-depend/pull/19) [`5487160`](https://github.com/appKODE/frontend-depend/commit/5487160c5f12489054aecdcd68fca1d7da3df2d0) Thanks [@kode-frontend](https://github.com/kode-frontend)! - fix(session-interceptor): fix package exports
+
 ## 0.0.3
 
 ### Patch Changes
