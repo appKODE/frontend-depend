@@ -12,3 +12,8 @@ export type BusinessError = {
   code: string
   message: string
 }
+
+export type THeader = {
+  key: string
+  value: string
+}

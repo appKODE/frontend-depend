@@ -19,23 +19,60 @@ pnpm add @kode-frontend/session-interceptor
 
 ## 🎮 Usage
 
-`SessionProvider` example
+### Session interceptor
+
+Provides implementation of a mechanism for retrying failed requests due to `accessToken` invalid reasons.
+Ensures that failed requests will be called again after successful `tokensGetter` resolve.
+
+- Does not substitute new tokens into a repeated request
+- Does not fulfill requests to update tokens
+
+### Headers interceptor
+
+Ensures that the required headers are inserted into requests.
+
+The header getter `getHeaders` will be called on every request.
+This is `the best place` to pass the actual authorization token.
+
+### Example
 
 ```typescript
-type Props = { axiosInstance: AxiosInstance; children: ReactNode }
+import {
+  startSessionInterceptor,
+  startHeadersInterceptor,
+} from '@kode-frontend/session-interceptor'
 
-export const SessionProvider = ({ axiosInstance, children }: Props) => {
-  const refreshMutation = useUpdateAccessToken()
+type Props = { axiosInstances: AxiosInstance[]; children: ReactNode }
 
-  // get new token pair
-  const tokensGetter = useCallback(async (): Promise<Tokens> => {
-    const { data } = await refreshMutation.mutateAsync($refreshToken.getState())
+export const SessionProvider = ({ axiosInstances, children }: Props) => {
+  const tokensGetter = async (): Promise<Tokens> => {
+    // ... some logic to get new tokens
+    const { data } = await refreshMutation.mutateAsync(
+      $refreshTokenStore.getState(),
+    )
 
     return data
-  }, [refreshMutation])
+  }
+
+  const onInvalidRefreshResponse = () => {
+    // ... some logic, for example logout user.
+  }
+
+  const getHeaders = () => {
+    const currentAccessToken = $accessTokenStore.getState()
+    return [{ key: 'Authorization', value: `Bearer ${currentAccessToken}` }]
+  }
 
   useEffect(() => {
+    startHeadersInterceptor({
+      getHeaders,
+    })(axiosInstances)
+
     startSessionInterceptor({
+      storage: {
+        storageGetter: localStorage.getItem,
+        storageSetter: localStorage.setItem,
+      },
       invalidAccessTokenErrors: [
         {
           code: 'AccessTokenInvalid',
@@ -53,9 +90,33 @@ export const SessionProvider = ({ axiosInstance, children }: Props) => {
         setCredentials(tokens) // your logic to update apps tokens
       },
       onInvalidRefreshResponse,
-    })(axiosInstance)
-  }, [axiosInstance, tokensGetter])
+    })(axiosInstances)
+  }, [axiosInstances, tokensGetter, onInvalidRefreshResponse, getHeaders])
 
   return children
 }
 ```
+
+### Custom token validation
+
+```typescript
+startSessionInterceptor({
+  // ...
+  invalidAccessTokenErrors: [],
+  invalidRefreshTokenErrors: [],
+  checkAccessTokenInvalid: resp => {
+    return resp.data.isAccessExpired === true
+  },
+  checkRefreshTokenInvalid: resp => {
+    return resp.data.isRefreshInvalid === true
+  },
+})
+```
+
+# TODO
+
+- [x] Multiple axios instances support
+- [ ] Tests
+- [x] Add headers interceptor
+- [x] Add doc
+- [x] Share Subscripbers.isAllowToRefetch beteween tabs

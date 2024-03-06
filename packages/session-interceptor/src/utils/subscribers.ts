@@ -1,9 +1,20 @@
+import { TStorage, TStorageGetter, TStorageSetter } from './types'
+
 type TSubscriber = () => void
 
+const STORAGE_KEY = 'SESSION_IS_ALLOW_TO_REFETCH'
 export class Subscribers {
-  $subscribers: TSubscriber[] = []
+  constructor({ storageGetter, storageSetter }: TStorage) {
+    this.storageGetter = storageGetter
+    this.storageSetter = storageSetter
+  }
 
-  isAllowToRefetch: boolean = true
+  storageGetter: TStorageGetter = () => {
+    return ''
+  }
+  storageSetter: TStorageSetter = () => null
+
+  $subscribers: TSubscriber[] = []
 
   subscribe(callback: () => void) {
     this.$subscribers.push(callback)
@@ -19,14 +30,18 @@ export class Subscribers {
 
   startInvokes() {
     setInterval(() => {
-      if (this.isAllowToRefetch && this.$subscribers.length > 0) {
+      if (this.getAllowToRefetch() && this.$subscribers.length > 0) {
         this.#invokeAll()
         this.#clear()
       }
     }, 1000)
   }
 
+  getAllowToRefetch() {
+    return this.storageGetter(STORAGE_KEY) === 'true' ? true : false
+  }
+
   setAllowToRefetch(payload: boolean) {
-    this.isAllowToRefetch = payload
+    this.storageSetter(STORAGE_KEY, payload ? 'true' : 'false')
   }
 }
