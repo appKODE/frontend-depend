@@ -1,5 +1,20 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.3
+
+### Patch Changes
+
+- [#16](https://github.com/appKODE/frontend-depend/pull/16) [`3748675`](https://github.com/appKODE/frontend-depend/commit/3748675d829087b1ecee52bba60aed1a51cedbbb) Thanks [@kode-frontend](https://github.com/kode-frontend)! - feat(doc, headers-interceptor, subscribers): implement todos tasks
+  adde todo:
+
+  - [x] Multiple axios instances support
+  - [ ] Tests
+  - [x] Add headers interceptor
+  - [x] Add doc
+  - [x] Share Subscripbers.isAllowToRefetch beteween tabs
+
+- [#18](https://github.com/appKODE/frontend-depend/pull/18) [`e4a2c7b`](https://github.com/appKODE/frontend-depend/commit/e4a2c7bbe60dd30b5c28c0c4983a6dbe2bfdc8c8) Thanks [@kode-frontend](https://github.com/kode-frontend)! - fix(package.json): fix main path, update readme.md - fix package badges
+
 ## 0.0.2
 
 ### Patch Changes
