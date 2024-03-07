@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.5
+
+### Patch Changes
+
+- [#21](https://github.com/appKODE/frontend-depend/pull/21) [`a7cd42e`](https://github.com/appKODE/frontend-depend/commit/a7cd42e069e605f7350c886715fcd204c5205370) Thanks [@kode-frontend](https://github.com/kode-frontend)! - fix(session-interceptor): set allowToRefetch default value
+
 ## 0.0.4
 
 ### Patch Changes
