@@ -7,6 +7,8 @@ export class Subscribers {
   constructor({ storageGetter, storageSetter }: TStorage) {
     this.storageGetter = storageGetter
     this.storageSetter = storageSetter
+
+    this.setAllowToRefetch(true)
   }
 
   storageGetter: TStorageGetter = () => {
