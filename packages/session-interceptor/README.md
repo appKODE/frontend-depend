@@ -70,8 +70,8 @@ export const SessionProvider = ({ axiosInstances, children }: Props) => {
 
     startSessionInterceptor({
       storage: {
-        storageGetter: localStorage.getItem,
-        storageSetter: localStorage.setItem,
+        storageGetter: key => localStorage.getItem(key),
+        storageSetter: (key, value) => localStorage.setItem(key, value),
       },
       invalidAccessTokenErrors: [
         {
