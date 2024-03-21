@@ -50,13 +50,13 @@ module.exports = {
         },
       },
     ],
-    // 'perfectionist/sort-maps': [
-    //   'warn',
-    //   {
-    //     type: 'natural',
-    //     order: 'asc',
-    //   },
-    // ],
+    'perfectionist/sort-maps': [
+      'warn',
+      {
+        type: 'natural',
+        order: 'asc',
+      },
+    ],
     'perfectionist/sort-enums': [
       'warn',
       {
