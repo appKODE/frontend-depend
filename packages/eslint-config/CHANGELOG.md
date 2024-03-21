@@ -1,5 +1,11 @@
 # @kode-frontend/eslint-config
 
+## 0.0.7
+
+### Patch Changes
+
+- [#26](https://github.com/appKODE/frontend-depend/pull/26) [`b8f52d1`](https://github.com/appKODE/frontend-depend/commit/b8f52d17fe746bc10046d60a9c24e18b8241a3d6) Thanks [@xxtereshko](https://github.com/xxtereshko)! - Restored sort-enums rule
+
 ## 0.0.6
 
 ### Patch Changes
