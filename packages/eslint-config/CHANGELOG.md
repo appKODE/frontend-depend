@@ -1,5 +1,11 @@
 # @kode-frontend/eslint-config
 
+## 0.0.6
+
+### Patch Changes
+
+- [#24](https://github.com/appKODE/frontend-depend/pull/24) [`e5b766b`](https://github.com/appKODE/frontend-depend/commit/e5b766bbf01076ae2e5af31a241552a2bc4ff815) Thanks [@xxtereshko](https://github.com/xxtereshko)! - Removed sorting config
+
 ## 0.0.5
 
 ### Patch Changes
