@@ -98,12 +98,11 @@ export const startSessionInterceptor = <T extends Tokens>({
                 onGotNewTokens(tokensResponse)
               }
             }
-
-            subscribers.setAllowToRefetch(true)
           } catch {
-            subscribers.setAllowToRefetch(true)
             return
-          }
+          } finally {
+            subscribers.setAllowToRefetch(true)
+          }   
         }
 
         return new Promise(resolve => {
