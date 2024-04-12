@@ -10,6 +10,7 @@ type SessionInterceptorArg<T> = {
   tokensGetter: () => Promise<T>
   onGotNewTokens?: (tokens: T) => void
   onInvalidRefreshResponse: () => void
+  onRefreshError?: () => void
   onUnhandledError?: (e: AxiosError) => void
   /** If specified then `invalidAccessTokenErrors` will be ignored */
   checkAccessTokenInvalid?: (response: AxiosResponse<any, any>) => boolean
@@ -24,6 +25,7 @@ export const startSessionInterceptor = <T extends Tokens>({
   tokensGetter,
   onGotNewTokens,
   onInvalidRefreshResponse,
+  onRefreshError,
   onUnhandledError,
   checkRefreshTokenInvalid,
   checkAccessTokenInvalid,
@@ -90,15 +92,20 @@ export const startSessionInterceptor = <T extends Tokens>({
         if (subscribers.getAllowToRefetch()) {
           subscribers.setAllowToRefetch(false)
 
-          const tokensResponse = await tokensGetter()
-
-          if (tokensResponse?.accessToken) {
-            if (onGotNewTokens) {
-              onGotNewTokens(tokensResponse)
+          try {
+            const tokensResponse = await tokensGetter()
+  
+            if (tokensResponse?.accessToken) {
+              if (onGotNewTokens) {
+                onGotNewTokens(tokensResponse)
+              }
             }
-          }
-
-          subscribers.setAllowToRefetch(true)
+          } catch {
+            onRefreshError?.()
+            return
+          } finally {
+            subscribers.setAllowToRefetch(true)
+          }   
         }
 
         return new Promise(resolve => {
