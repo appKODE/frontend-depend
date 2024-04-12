@@ -101,9 +101,7 @@ export const startSessionInterceptor = <T extends Tokens>({
               }
             }
           } catch {
-            if (onRefreshError) {
-              onRefreshError()
-            }
+            onRefreshError?.()
             return
           } finally {
             subscribers.setAllowToRefetch(true)
