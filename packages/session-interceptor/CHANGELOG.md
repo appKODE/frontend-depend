@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.6
+
+### Patch Changes
+
+- [#29](https://github.com/appKODE/frontend-depend/pull/29) [`fa5dffa`](https://github.com/appKODE/frontend-depend/commit/fa5dffa5feed9b55dd441929bce6f3af229d3d09) Thanks [@DenisAmberCode](https://github.com/DenisAmberCode)! - Fixed refresh token error
+
 ## 0.0.5
 
 ### Patch Changes
