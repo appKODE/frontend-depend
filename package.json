@@ -38,6 +38,7 @@
     "ts:check": "turbo ts:check"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "internal/*"
   ]
 }

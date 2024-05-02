@@ -44,7 +44,7 @@
     "directory": "packages/session-interceptor"
   },
   "scripts": {
-    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
+    "build": "tsup",
     "clean": "rimraf ./node_modules ./.turbo",
     "ts:check": "tsc --noEmit"
   },

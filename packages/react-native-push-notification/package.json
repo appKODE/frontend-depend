@@ -14,8 +14,6 @@
     "effector": "^22.8.7",
     "effector-react": "^22.5.4",
     "effector-storage": "^5.0.1",
-    "react": "^18.2.0",
-    "react-native": "^0.72.10",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -42,7 +40,9 @@
   "license": "MIT",
   "main": "./src/index.ts",
   "peerDependencies": {
-    "typescript": "*"
+    "typescript": "*",
+    "react": "^18.2.0",
+    "react-native": "^0.72.10"
   },
   "publishConfig": {
     "access": "public",
@@ -54,7 +54,7 @@
     "directory": "packages/react-native-push-notification"
   },
   "scripts": {
-    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
+    "build": "tsup",
     "clean": "rimraf ./node_modules ./.turbo",
     "ts:check": "tsc --noEmit"
   },
