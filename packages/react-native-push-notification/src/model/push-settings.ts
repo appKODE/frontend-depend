@@ -3,10 +3,11 @@ import { persist } from 'effector-storage/rn/async'
 import { Platform } from 'react-native'
 
 import { TPushSettings } from './types'
+import { isPermisionsGrantedByDefault } from './constanst'
 
 const initialState: TPushSettings = {
   fcmToken: null,
-  isNotificationEnabled: Platform.OS === 'android',
+  isNotificationEnabled: isPermisionsGrantedByDefault,
   needFirstRequestPermission: true,
 }
 

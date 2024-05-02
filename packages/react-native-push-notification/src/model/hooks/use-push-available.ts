@@ -5,6 +5,7 @@ import { AppState, AppStateStatus, Platform } from 'react-native'
 import { useUnregisterDevice } from './use-unregister-device'
 import { pushService } from '../../push-notification-service'
 import * as pushSettings from '../push-settings'
+import { isPermisionsGrantedByDefault } from '../constanst'
 
 type TParams = {
   onFailEnabledPush: () => void
@@ -48,9 +49,8 @@ export const usePushAvailable = ({ onFailEnabledPush }: TParams) => {
 
       async function checkPermission() {
         const hasPermission = await pushService.hasPermission()
-        const isIOSPlatform = Platform.OS === 'ios'
 
-        if (!hasPermission && isIOSPlatform) {
+        if (!hasPermission && !isPermisionsGrantedByDefault) {
           return await pushService.requestPermission()
         }
         return hasPermission
