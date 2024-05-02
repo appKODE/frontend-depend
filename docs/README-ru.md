@@ -14,6 +14,10 @@
 
 - `@kode-frontend/commitlint-config`: [Commitlint](https://commitlint.js.org/) конфигурация. [[Документация](https://github.com/appKODE/frontend-depend/blob/main/packages/commitlint-config)]
 
+- `@kode-frontend/session-interceptor`: Интерсептор сессии для обработки flow обновления jwt-токенов
+
+- `@kode-frontend/react-native-push-notification`: Сервис Push-уведомлений для React Native приложений
+
 ## 🤿 Погружение в детали
 
 Интересные вещи, использованные в этом монорепозитории:
