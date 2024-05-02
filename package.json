@@ -7,8 +7,8 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.5.6",
-    "@repo/eslint-config-internal": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/config-eslint": "workspace:*",
+    "@repo/config-typescript": "workspace:*",
     "npm-run-all": "^4.1.5",
     "prettier": "*",
     "syncpack": "^12.3.0",
@@ -24,6 +24,7 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "dev": "turbo dev",
+    "ts:check": "turbo ts:check",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
     "lint": "turbo lint",
     "lint:fix:packages": "npm-run-all --parallel lint:fix:packages:*",

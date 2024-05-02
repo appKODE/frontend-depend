@@ -46,6 +46,7 @@
   },
   "scripts": {
     "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
-    "clean": "rimraf ./node_modules ./.turbo"
+    "clean": "rimraf ./node_modules ./.turbo",
+    "ts:check": "tsc --noEmit"
   }
 }
