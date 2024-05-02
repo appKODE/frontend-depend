@@ -24,7 +24,6 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "dev": "turbo dev",
-    "ts:check": "turbo ts:check",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
     "lint": "turbo lint",
     "lint:fix:packages": "npm-run-all --parallel lint:fix:packages:*",
@@ -35,7 +34,8 @@
     "lint:packages:mismatches": "syncpack list-mismatches",
     "lint:packages:semver": "syncpack lint-semver-ranges",
     "prepare": "lefthook install",
-    "release": "turbo run build && changeset publish"
+    "release": "turbo run build && changeset publish",
+    "ts:check": "turbo ts:check"
   },
   "workspaces": [
     "packages/*"
