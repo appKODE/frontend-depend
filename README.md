@@ -16,6 +16,10 @@ This monorepo includes the following packages:
 
 - `@kode-frontend/commitlint-config`: a [Commitlint](https://commitlint.js.org/) configuration. [[Documentation](https://github.com/appKODE/frontend-depend/blob/main/packages/commitlint-config)]
 
+- `@kode-frontend/session-interceptor`: Session interceptor for handling jwt token update flow
+
+- `@kode-frontend/react-native-push-notification`: Push notification service for React Native apps
+
 ## 🤿 Dive-in
 
 Cool things used in this monorepo:
