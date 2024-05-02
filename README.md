@@ -52,37 +52,30 @@ cd frontend-depend
 pnpm build
 ```
 
-## 🚀 Versioning & Publishing Packages
+## 📦 Making a Pull request
 
-- `pnpm add-changeset` - Generate a changeset file
+The [Changesets](https://github.com/changesets/changesets) tool is used to version and publish packages. If a PR affects the functionality of one of the packages, it must include a changeset.
 
-- `pnpm version-packages` - Update versions, changelogs and dependencies of packages.
+The changesets file can be generated in two ways:
 
-- `pnpm release` - Publishes changes to package registry and creates git tags.
+1. using the CLI command `pnpm changeset add`. After entering the command, you will be prompted to select the package in which the change was made, the release type (major, minor, patch) and enter a description of the change.
+2. using [changeset bot](https://github.com/changesets/action). In this case, the page with the pull request will display a message with a 'No Changeset' banner and below a link to create a changeset - Click here if you're a maintainer who wants to add a changeset to this PR. Clicking on it generates and opens an md-file for editing. In it you should enter a clear description of the changes made in Russian, as well as add or remove package names (only if the bot has incorrectly identified them).
 
-The monorepo uses Changesets to manage versions, create changelogs, and publish to the package registry.
+The change description can consist of any number of lines in md format. Here are a few peculiarities to pay attention to:
 
-### Generating the Changelog
+1. only the first line of the description is formatted (a hyphen "-" is added if there was none), the second and subsequent lines will go into CHANGELOG as you write them (the md markup will be preserved)
+2. When adding a new component, you should specify '0.0.0' package version in package.json, specify major ('major') release type in the change set, and be sure to add the phrase 'new package $' in the description. An example is shown below.
 
-To generate your changelog, run `pnpm add-changeset` locally:
+```md
+---
+'@kode-frontend/session-interceptor': major
+---
 
-1. **Which packages would you like to include?** – This shows which packages and changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the changeset.
+Added new package @kode-frontend/session-interceptor
+```
 
-2. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
+## 🚀 Releases
 
-3. If doing the first major version, confirm you want to release.
+After merging your PR into the main branch, GitHub Action will create a PR with all updated package versions and updated changelogs. If more PRs with additional changelogs are merged, the PR opened by GitHub Action will be updated.
 
-4. Write a summary for the changes.
-
-5. Confirm the changeset looks as expected.
-
-6. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
-   These changeset files should be part of your PR and committed into the trunk branch, ready for future release.
-
-These changeset files should be part of your PR and committed into the trunk branch, ready for future release.
-
-### Releasing
-
-When you merge your PR into the trunk branch, the GitHub Action will create a PR with all of the package versions updated and changelogs updated. If more PRs get merged with more changesets then the PR opened by the GitHub Action will be updated.
-
-Merging this PR will, along with updating all of the files it changed, make the GitHub Action trigger it's release cycle where it attempts to publish each package not marked as `private`
+Merging this PR, in addition to updating all changelogs, will trigger a GitHub Action release cycle in which it will publish every package not marked as `private`.
