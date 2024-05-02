@@ -1,0 +1,57 @@
+{
+  "name": "@kode-frontend/react-native-push-notification",
+  "description": "Push notification service for React Native apps",
+  "version": "0.0.1",
+  "author": {
+    "name": "KODE",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "bugs": "https://github.com/appKODE/frontend-depend/issues",
+  "dependencies": {
+    "@notifee/react-native": "^7.8.2",
+    "@react-native-firebase/messaging": "^17.5.0",
+    "effector": "^22.8.7",
+    "effector-react": "^22.5.4",
+    "effector-storage": "^5.0.1",
+    "react": "^18.2.0",
+    "react-native": "^0.72.10",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": ">= 16.16.0"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/react-native-push-notification#readme",
+  "keywords": [
+    "kode",
+    "react-native-push-notification"
+  ],
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appKODE/frontend-depend.git",
+    "directory": "packages/react-native-push-notification"
+  },
+  "scripts": {
+    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
+    "clean": "rimraf ./node_modules ./.turbo"
+  }
+}
