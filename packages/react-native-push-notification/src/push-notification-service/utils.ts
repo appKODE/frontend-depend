@@ -12,6 +12,7 @@ import messaging, {
 import { Image, Linking, Platform } from 'react-native'
 
 import { TFirebaseRemoteMessage, TPushNotificationBody } from './types'
+import { isPermisionsGrantedByDefault } from '../model/constanst'
 
 let initialRemotePushWasGetting = false
 let initialLocalPushWasGetting = false
@@ -39,6 +40,18 @@ export async function requestPermission() {
   const status = await notifee.requestPermission()
 
   return isPermitted(status.authorizationStatus)
+}
+
+/**
+ * Checks and request permissions to receive push notifications
+ */
+export async function checkPermission() {
+  const enabledNotifications = await hasPermission()
+
+  if (!enabledNotifications && !isPermisionsGrantedByDefault) {
+    return await requestPermission()
+  }
+  return enabledNotifications
 }
 
 /**
@@ -142,14 +155,10 @@ export function getInitialLocalPush(): Promise<InitialNotification | null> {
  */
 export const getToken = async () => {
   try {
-    const enabledNotifications = await hasPermission()
+    const enabledNotifications = await checkPermission()
 
     if (!enabledNotifications) {
-      const isPermittedFlag = requestPermission()
-
-      if (!isPermittedFlag) {
-        return null
-      }
+      return null
     }
   } catch (e) {
     return null
