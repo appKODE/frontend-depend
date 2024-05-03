@@ -14,6 +14,9 @@
     },
     "clean": {
       "dependsOn": ["^clean"]
+    },
+    "ts:check": {
+      "dependsOn": ["^ts:check"]
     }
   }
 }

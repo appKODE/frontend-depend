@@ -1,5 +1,5 @@
 {
-  "name": "@repo/eslint-config-internal",
+  "name": "@repo/config-eslint",
   "version": "0.0.0",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.18.1",

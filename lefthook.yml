@@ -1,9 +1,5 @@
 pre-commit:
   commands:
-    eslint-fix:
-      glob: '*.{ts,tsx}'
-      run: pnpm eslint {staged_files} --fix
-      stage_fixed: true
     prettier-format:
       glob: '*.{html,json,md,yml,[tj]s,[tj]sx}'
       run: pnpm prettier --write {staged_files}
