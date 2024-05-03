@@ -30,8 +30,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       prettier:
-        specifier: '*'
-        version: 3.2.5
+        specifier: ^3
+        version: 3.1.1
       syncpack:
         specifier: ^12.3.0
         version: 12.3.2
@@ -286,11 +286,15 @@ packages:
       '@babel/types': 7.24.5
 
   /@babel/helper-builder-binary-assignment-operator-visitor@7.22.15:
-    resolution:
-      {
-        integrity: sha512-QkBXwGgaoC2GtGZRoma6kv7Szfv06khvhFav67ZExau2RaXzy8MpHSMO2PNoP2XtmQphJQRHFfg77Bq731Yizw==,
-      }
-    engines: { node: '>=6.9.0' }
+    resolution: {integrity: sha512-QkBXwGgaoC2GtGZRoma6kv7Szfv06khvhFav67ZExau2RaXzy8MpHSMO2PNoP2XtmQphJQRHFfg77Bq731Yizw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/types': 7.24.5
+    dev: false
+
+  /@babel/helper-compilation-targets@7.22.15:
+    resolution: {integrity: sha512-y6EEzULok0Qvz8yyLkCvVX+02ic+By2UdOhylwUOvOn9dvYc9mKICJuuU1n1XBI02YWsNsnrY1kc6DVbjcXbtw==}
+    engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.24.5
 
