@@ -1,5 +1,13 @@
 # @kode-frontend/react-native-push-notification
 
+## 0.0.4
+
+### Patch Changes
+
+- [#42](https://github.com/appKODE/frontend-depend/pull/42) [`1019a1c`](https://github.com/appKODE/frontend-depend/commit/1019a1c1f4431ea39e29ef64811ceb95afd0c036) Thanks [@DenisAmberCode](https://github.com/DenisAmberCode)! - Fixed build packages
+
+- [#43](https://github.com/appKODE/frontend-depend/pull/43) [`0248955`](https://github.com/appKODE/frontend-depend/commit/024895515a1e8d007d0462e806cb3e6354da3de7) Thanks [@DenisAmberCode](https://github.com/DenisAmberCode)! - Fixed build
+
 ## 0.0.3
 
 ### Patch Changes
