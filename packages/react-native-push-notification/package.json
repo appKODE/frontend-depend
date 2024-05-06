@@ -10,7 +10,6 @@
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
   "dependencies": {
     "@notifee/react-native": "^7.8.2",
-    "@react-native-firebase/messaging": "^17.5.0",
     "effector": "^22.8.7",
     "effector-react": "^22.5.4",
     "effector-storage": "^5.0.1",
@@ -42,7 +41,8 @@
   "peerDependencies": {
     "typescript": "*",
     "react": "^18.2.0",
-    "react-native": "^0.72.10"
+    "react-native": "^0.72.10",
+    "@react-native-firebase/messaging": "^17.5.0"
   },
   "publishConfig": {
     "access": "public",
