@@ -160,9 +160,6 @@ importers:
       react-native:
         specifier: ^0.72.10
         version: 0.72.14(@babel/core@7.24.5)(@babel/preset-env@7.24.5)(react@18.3.1)
-      typescript:
-        specifier: '*'
-        version: 5.4.5
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -182,6 +179,9 @@ importers:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
+      typescript:
+        specifier: '*'
+        version: 5.4.5
 
   packages/session-interceptor:
     dependencies:
