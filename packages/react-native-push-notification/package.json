@@ -9,7 +9,6 @@
   },
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
   "dependencies": {
-    "@notifee/react-native": "^7.8.2",
     "effector": "^22.8.7",
     "effector-react": "^22.5.4",
     "effector-storage": "^5.0.1",
@@ -20,7 +19,8 @@
     "@types/react": "^18.0.24",
     "@types/react-native": "^0.72.6",
     "@types/uuid": "^9.0.8",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "typescript": "*"
   },
   "engines": {
     "node": ">= 16.16.0"
@@ -40,10 +40,10 @@
   "license": "MIT",
   "main": "./src/index.ts",
   "peerDependencies": {
-    "typescript": "*",
     "react": "^18.2.0",
     "react-native": "^0.72.10",
-    "@react-native-firebase/messaging": "^17.5.0"
+    "@react-native-firebase/messaging": "^17.5.0",
+    "@notifee/react-native": "^7.8.2"
   },
   "publishConfig": {
     "access": "public",
