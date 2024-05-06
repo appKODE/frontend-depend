@@ -6,7 +6,6 @@ export default defineConfig((options: Options) => ({
   entry: ['./src/index.ts'],
   format: ['esm', 'cjs'],
   dts: true,
-  clean: true,
-  external: ['react'],
+  external: ['react', 'react-native', '@react-native-firebase/messaging'],
   ...options,
 }))
