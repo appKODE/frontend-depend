@@ -1,5 +1,5 @@
 ---
-"@kode-frontend/session-interceptor": patch
+'@kode-frontend/session-interceptor': patch
 ---
 
-fix(session-interceptor): Изменент тип Tokens в пользу Record<string, string>
+Change Tokens type to Record<string, string>
