@@ -1,6 +1,5 @@
 import { createEvent, createStore } from 'effector'
 import { persist } from 'effector-storage/rn/async'
-import { Platform } from 'react-native'
 
 import { TPushSettings } from './types'
 import { isPermisionsGrantedByDefault } from './constanst'

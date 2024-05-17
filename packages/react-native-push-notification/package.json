@@ -1,7 +1,7 @@
 {
   "name": "@kode-frontend/react-native-push-notification",
   "description": "Push notification service for React Native apps",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "author": {
     "name": "KODE",
     "email": "frontend-team@kode.ru",
@@ -9,17 +9,18 @@
   },
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
   "dependencies": {
-    "@notifee/react-native": "^7.8.2",
-    "@react-native-firebase/messaging": "^17.5.0",
     "effector": "^22.8.7",
     "effector-react": "^22.5.4",
     "effector-storage": "^5.0.1",
-    "react": "^18.2.0",
-    "react-native": "^0.72.10",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "rimraf": "^5.0.5"
+    "@repo/config-typescript": "workspace:*",
+    "@types/react": "^18.0.24",
+    "@types/react-native": "^0.72.6",
+    "@types/uuid": "^9.0.8",
+    "rimraf": "^5.0.5",
+    "typescript": "*"
   },
   "engines": {
     "node": ">= 16.16.0"
@@ -27,9 +28,9 @@
   "exports": {
     ".": "./dist/index.js"
   },
-  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/react-native-push-notification#readme",
   "keywords": [
@@ -39,7 +40,10 @@
   "license": "MIT",
   "main": "./src/index.ts",
   "peerDependencies": {
-    "typescript": "*"
+    "react": "^18.2.0",
+    "react-native": "^0.72.10",
+    "@react-native-firebase/messaging": "^17.5.0",
+    "@notifee/react-native": "^7.8.2"
   },
   "publishConfig": {
     "access": "public",
@@ -51,7 +55,9 @@
     "directory": "packages/react-native-push-notification"
   },
   "scripts": {
-    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
-    "clean": "rimraf ./node_modules ./.turbo"
-  }
+    "build": "tsup",
+    "clean": "rimraf ./node_modules ./.turbo",
+    "ts:check": "tsc --noEmit"
+  },
+  "types": "./dist/index.d.ts"
 }

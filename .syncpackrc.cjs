@@ -8,7 +8,7 @@ module.exports = {
       label:
         'Internal config packages should be pinned to "*" (meaning any version is acceptable)',
       packages: ['**'],
-      dependencies: ['eslint-config-internal'],
+      dependencies: ['config-eslint'],
       dependencyTypes: ['dev'],
       pinVersion: '*',
     },

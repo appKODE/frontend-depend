@@ -19,8 +19,8 @@ let initialLocalPushWasGetting = false
 
 const isPermitted = (authorizationStatus: AuthorizationStatus) => {
   return (
-    authorizationStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authorizationStatus === messaging.AuthorizationStatus.PROVISIONAL
+    authorizationStatus === AuthorizationStatus.AUTHORIZED ||
+    authorizationStatus === AuthorizationStatus.PROVISIONAL
   )
 }
 

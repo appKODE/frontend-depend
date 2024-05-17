@@ -1,7 +1,7 @@
 {
   "name": "@kode-frontend/session-interceptor",
   "description": "Session interceptor for handling jwt token update flow",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": {
     "name": "KODE",
     "email": "frontend-team@kode.ru",
@@ -20,7 +20,6 @@
   "exports": {
     ".": "./dist/index.js"
   },
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -45,7 +44,9 @@
     "directory": "packages/session-interceptor"
   },
   "scripts": {
-    "build": "tsup --dts --format cjs,esm --minify --sourcemap false ./src/index.ts",
-    "clean": "rimraf ./node_modules ./.turbo"
-  }
+    "build": "tsup",
+    "clean": "rimraf ./node_modules ./.turbo",
+    "ts:check": "tsc --noEmit"
+  },
+  "types": "./dist/index.d.ts"
 }
