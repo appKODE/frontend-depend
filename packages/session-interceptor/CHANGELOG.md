@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.8
+
+### Patch Changes
+
+- [#33](https://github.com/appKODE/frontend-depend/pull/33) [`ced7820`](https://github.com/appKODE/frontend-depend/commit/ced78202999d809b68f102d97c55dd4eec06263e) Thanks [@id141365154](https://github.com/id141365154)! - Change Tokens type to Record<string, string>
+
 ## 0.0.7
 
 ### Patch Changes
