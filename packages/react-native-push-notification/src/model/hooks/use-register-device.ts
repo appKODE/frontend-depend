@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { useCallback, useEffect } from 'react'
-import { AppState, AppStateStatus } from 'react-native'
+import { AppState, AppStateStatus, Platform } from 'react-native'
 
 import { pushService } from '../../push-notification-service'
 import { $pushSettings, updateFcmToken } from '../push-settings'
@@ -58,12 +58,18 @@ export const useRegisterDevice = ({
   useEffect(() => {
     register()
 
-    const callback = (state: AppStateStatus) => {
-      if (state === 'active') {
-        register()
+    const focusEvent = Platform.OS === 'android' ? 'focus' : 'change';
+
+    const onChangeAppState = () => {
+      if (AppState.currentState === 'active') {
+        register();
       }
-    }
-    const subscription = AppState.addEventListener('change', callback)
+    };
+
+    const subscription = AppState.addEventListener(
+      focusEvent,
+      onChangeAppState,
+    );
     return () => {
       subscription.remove()
     }
