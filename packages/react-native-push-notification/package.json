@@ -1,7 +1,7 @@
 {
   "name": "@kode-frontend/react-native-push-notification",
   "description": "Push notification service for React Native apps",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "KODE",
     "email": "frontend-team@kode.ru",
