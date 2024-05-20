@@ -143,8 +143,8 @@ importers:
         specifier: ^7.8.2
         version: 7.8.2(react-native@0.72.14)
       '@react-native-firebase/messaging':
-        specifier: ^17.5.0
-        version: 17.5.0(@react-native-firebase/app@17.5.0)
+        specifier: ^19.3.0
+        version: 19.3.0(@react-native-firebase/app@19.3.0)
       effector:
         specifier: ^22.8.7
         version: 22.8.8
@@ -2530,8 +2530,8 @@ packages:
     resolution: {integrity: sha512-+zDZ20NUnSWghj7Ku5aFphMzuM9JulqCW+aPXT6IfIXFbb8tzYTTOSeRFOtuekJ99ibW2fUCSsjuKNlwDIbHFg==}
     dev: false
 
-  /@react-native-firebase/app@17.5.0(react-native@0.72.14)(react@18.3.1):
-    resolution: {integrity: sha512-8DWjguVmVYmuPWI7mhXlmLB6GxKnPjUjZ4Wnnyj3Wh5uqHzgUREHEA1aH92PT84LJLZL8F6dJZk+fIyo9UyXnA==}
+  /@react-native-firebase/app@19.3.0(react-native@0.72.14)(react@18.3.1):
+    resolution: {integrity: sha512-Y4Jlu7s7JasCcOktAN9LC+7SvMeAG04008OxtbhDK9rpatVznJqRSkMefIIwN2yBs94MWo9b61e+7v5IRMbQdw==}
     peerDependencies:
       expo: '>=47.0.0'
       react: '*'
@@ -2546,12 +2546,16 @@ packages:
       superstruct: 0.6.2
     dev: false
 
-  /@react-native-firebase/messaging@17.5.0(@react-native-firebase/app@17.5.0):
-    resolution: {integrity: sha512-9jB7jEt4ySdALio2qwquAkXI106GTdPEuGY+vUFuNT6Wwwc5VQhyiJ5yforaF0BEsppFgK151PLYQQdIhahgzA==}
+  /@react-native-firebase/messaging@19.3.0(@react-native-firebase/app@19.3.0):
+    resolution: {integrity: sha512-5nxX2jzRVMG/LwHQygQhl0X/j23FYY8Hn6T8xV3VnYk/O6PXbiQZVpbN5dM7F21aVf4wCFXJnn3jkHIbMP/MYw==}
     peerDependencies:
-      '@react-native-firebase/app': 17.5.0
+      '@react-native-firebase/app': 19.3.0
+      expo: '>=47.0.0'
+    peerDependenciesMeta:
+      expo:
+        optional: true
     dependencies:
-      '@react-native-firebase/app': 17.5.0(react-native@0.72.14)(react@18.3.1)
+      '@react-native-firebase/app': 19.3.0(react-native@0.72.14)(react@18.3.1)
     dev: false
 
   /@react-native/assets-registry@0.72.0:

@@ -42,7 +42,7 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-native": "^0.72.10",
-    "@react-native-firebase/messaging": "^17.5.0",
+    "@react-native-firebase/messaging": "^19.3.0",
     "@notifee/react-native": "^7.8.2"
   },
   "publishConfig": {
