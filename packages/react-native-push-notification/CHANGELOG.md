@@ -1,5 +1,11 @@
 # @kode-frontend/react-native-push-notification
 
+## 0.0.5
+
+### Patch Changes
+
+- [#46](https://github.com/appKODE/frontend-depend/pull/46) [`bb5ff86`](https://github.com/appKODE/frontend-depend/commit/bb5ff8646f978d072c74ea9fbe98b90407101925) Thanks [@trysted](https://github.com/trysted)! - Fixed android AppListener event
+
 ## 0.0.4
 
 ### Patch Changes
