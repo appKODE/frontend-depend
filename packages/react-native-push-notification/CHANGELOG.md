@@ -1,5 +1,11 @@
 # @kode-frontend/react-native-push-notification
 
+## 1.0.0
+
+### Major Changes
+
+- [#48](https://github.com/appKODE/frontend-depend/pull/48) [`e377879`](https://github.com/appKODE/frontend-depend/commit/e3778797df3dc328eef0b14d4e01dea5fd2cb7ea) Thanks [@DenisAmberCode](https://github.com/DenisAmberCode)! - Bump firebase messaging version
+
 ## 0.0.5
 
 ### Patch Changes
