@@ -11,9 +11,6 @@
   "dependencies": {
     "axios": "^1.6.8"
   },
-  "devDependencies": {
-    "rimraf": "^5.0.5"
-  },
   "engines": {
     "node": ">= 16.16.0"
   },
@@ -31,7 +28,7 @@
   "license": "MIT",
   "main": "./src/index.ts",
   "peerDependencies": {
-    "axios": "^1",
+    "axios": "^1.6.8",
     "typescript": "*"
   },
   "publishConfig": {
