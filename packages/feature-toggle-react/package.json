@@ -1,0 +1,45 @@
+{
+  "name": "@kode-frontend/feature-toggle-react",
+  "version": "0.3.1",
+  "author": {
+    "name": "KODE",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "bugs": "https://github.com/appKODE/frontend-depend/issues",
+  "devDependencies": {
+    "typescript": "*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/feature-toggle-react#readme",
+  "keywords": [
+    "feature-toggle-react",
+    "kode"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": ">=18",
+    "react": "^18.2.0",
+    "react-dom": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appKODE/frontend-depend.git",
+    "directory": "packages/feature-toggle-react"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf ./node_modules ./.turbo ./dist",
+    "ts:check": "tsc --noEmit"
+  },
+  "types": "dist/index.d.ts"
+}

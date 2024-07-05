@@ -94,7 +94,7 @@ export const startSessionInterceptor = <T extends Tokens>({
 
           try {
             const tokensResponse = await tokensGetter()
-  
+
             if (tokensResponse?.accessToken) {
               if (onGotNewTokens) {
                 onGotNewTokens(tokensResponse)
@@ -105,7 +105,7 @@ export const startSessionInterceptor = <T extends Tokens>({
             return
           } finally {
             subscribers.setAllowToRefetch(true)
-          }   
+          }
         }
 
         return new Promise(resolve => {

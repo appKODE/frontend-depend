@@ -58,18 +58,15 @@ export const useRegisterDevice = ({
   useEffect(() => {
     register()
 
-    const focusEvent = Platform.OS === 'android' ? 'focus' : 'change';
+    const focusEvent = Platform.OS === 'android' ? 'focus' : 'change'
 
     const onChangeAppState = () => {
       if (AppState.currentState === 'active') {
-        register();
+        register()
       }
-    };
+    }
 
-    const subscription = AppState.addEventListener(
-      focusEvent,
-      onChangeAppState,
-    );
+    const subscription = AppState.addEventListener(focusEvent, onChangeAppState)
     return () => {
       subscription.remove()
     }
