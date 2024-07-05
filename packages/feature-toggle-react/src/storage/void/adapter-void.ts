@@ -1,4 +1,4 @@
-import type { StorageAdapter } from './types'
+import type { StorageAdapter } from '../types'
 
 export interface AdapterVoidConfig {
   keyArea?: any

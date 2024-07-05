@@ -7,11 +7,11 @@ export type { StorageAdapter, StorageConfig } from './types'
 /**
  * LocalStorage adapter.
  */
-export { adapterLocalStorage } from './adapter-local-storage'
-export type { LocalStorageConfig } from './adapter-local-storage'
+export { adapterLocalStorage } from './local-storage'
+export type { AdapterLocalStorageConfig } from './local-storage'
 
 /**
  * Void adapter.
  */
-export { adapterVoid } from './adapter-void'
-export type { AdapterVoidConfig } from './adapter-void'
+export { adapterVoid } from './void'
+export type { AdapterVoidConfig } from './void'

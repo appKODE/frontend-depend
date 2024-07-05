@@ -1,7 +1,7 @@
-import type { StorageAdapter } from './types'
+import type { StorageAdapter } from '../types'
 
-import { adapterVoid } from './adapter-void'
-import { storageAdapter } from './storage-adapter'
+import { storageAdapter } from '../storage-adapter'
+import { adapterVoid } from '../void/adapter-void'
 
 /**
  * Checks if localStorage is supported
@@ -16,7 +16,7 @@ function supports() {
   }
 }
 
-export interface LocalStorageConfig {
+export interface AdapterLocalStorageConfig {
   sync?: boolean | 'force'
   serialize?: (value: any) => string
   deserialize?: (value: string) => any
@@ -28,7 +28,7 @@ export interface LocalStorageConfig {
  * Creates a localStorage adapter.
  */
 export function adapterLocalStorage(
-  config?: LocalStorageConfig,
+  config?: AdapterLocalStorageConfig,
 ): StorageAdapter {
   return supports()
     ? storageAdapter({
