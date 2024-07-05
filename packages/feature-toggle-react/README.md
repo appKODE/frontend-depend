@@ -83,29 +83,3 @@ export const Page = () => {
   return <>{isFlag3Available && 'page content'}</>;
 };
 ```
-
-## Development
-
-```
-$ yarn
-$ yarn start
-
-$ cd ./example
-
-# yarn
-# yarn start
-
-```
-
-## Release
-
-```
-
-$ yarn build
-$ GITLAB_TOKEN=your-gitlab-token yarn release
-
-```
-
-## TODO
-
-[ ] Add UI adapter
