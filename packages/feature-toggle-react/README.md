@@ -31,55 +31,55 @@ Add some files:
 
 ### useFeatureToggle
 
-```typescript
-import { useFeatureToggle } from '@kode-frontend/feature-toggle-react';
+```jsx
+import { useFeatureToggle } from '@kode-frontend/feature-toggle-react'
 
 export const Page = () => {
-  const FT = useFeatureToggle();
+  const FT = useFeatureToggle()
 
-  const isSomeFeatureAvailable = FT.hasFeatureFlag('someFlagName');
+  const isSomeFeatureAvailable = FT.hasFeatureFlag('someFlagName')
 
-  return <>{isSomeFeatureAvailable && <SomeFeature />}</>;
-};
+  return <>{isSomeFeatureAvailable && <SomeFeature />}</>
+}
 ```
 
 ### FeatureToggle Component
 
-```typescript
-import { FeatureToggle } from '@kode-frontend/feature-toggle-react';
+```jsx
+import { FeatureToggle } from '@kode-frontend/feature-toggle-react'
 
 export const Page = () => {
   return (
     <>
       <FeatureToggle
-        name="flag2"
+        name='flag2'
         active={<h2>Active feature content</h2>}
         inactive={<h3>Inactive feature content</h3>}
       />
       <FeatureToggle
-        name="flag1"
+        name='flag1'
         active={<h2>Active feature2 content</h2>}
         inactive={<h2>Inactive feature2 content</h2>}
       />
     </>
-  );
-};
+  )
+}
 ```
 
 ### Is fetching remote config
 
-```typescript
-import { useFeatureToggle } from '@kode-frontend/feature-toggle-react';
+```jsx
+import { useFeatureToggle } from '@kode-frontend/feature-toggle-react'
 
 export const Page = () => {
-  const { hasFeatureFlag, isFetching } = useFeatureToggle();
+  const { hasFeatureFlag, isFetching } = useFeatureToggle()
 
-  const isFlag3Available = hasFeatureFlag('someFlagName');
+  const isFlag3Available = hasFeatureFlag('someFlagName')
 
   if (isFetching) {
-    return <>Loading...</>;
+    return <>Loading...</>
   }
 
-  return <>{isFlag3Available && 'page content'}</>;
-};
+  return <>{isFlag3Available && 'page content'}</>
+}
 ```
