@@ -3,6 +3,9 @@ import type { StorageAdapter } from './types'
 import { adapterVoid } from './adapter-void'
 import { storageAdapter } from './storage-adapter'
 
+/**
+ * Checks if localStorage is supported
+ */
 function supports() {
   try {
     return typeof localStorage !== 'undefined'
@@ -21,7 +24,9 @@ export interface LocalStorageConfig {
   def?: any
 }
 
-adapterLocalStorage.factory = true as const
+/**
+ * Creates a localStorage adapter.
+ */
 export function adapterLocalStorage(
   config?: LocalStorageConfig,
 ): StorageAdapter {
@@ -33,3 +38,4 @@ export function adapterLocalStorage(
       })
     : adapterVoid({ keyArea: 'local' })
 }
+adapterLocalStorage.factory = true as const

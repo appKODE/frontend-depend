@@ -5,7 +5,7 @@ export interface AdapterVoidConfig {
 }
 
 /**
- * Void adapter. Does nothing. Useful for testing.
+ * Creates a void adapter. Does nothing. Useful for testing.
  */
 export function adapterVoid({
   keyArea = '',

@@ -5,7 +5,7 @@ export { storageAdapter } from './storage-adapter'
 export type { StorageAdapter, StorageConfig } from './types'
 
 /**
- * Local storage adapter.
+ * LocalStorage adapter.
  */
 export { adapterLocalStorage } from './adapter-local-storage'
 export type { LocalStorageConfig } from './adapter-local-storage'
