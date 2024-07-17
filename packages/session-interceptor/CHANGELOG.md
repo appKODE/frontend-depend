@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.9
+
+### Patch Changes
+
+- [#52](https://github.com/appKODE/frontend-depend/pull/52) [`fc1c931`](https://github.com/appKODE/frontend-depend/commit/fc1c9318d5391f23c45f6c642591cece154aff19) Thanks [@id141365154](https://github.com/id141365154)! - Add eject interceptors
+
 ## 0.0.8
 
 ### Patch Changes
