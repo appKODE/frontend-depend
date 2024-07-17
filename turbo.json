@@ -1,9 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+  "tasks": {
+    "ts:check": {
+      "dependsOn": ["^ts:check"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -12,11 +11,12 @@
       "cache": false,
       "persistent": true
     },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
     "clean": {
       "dependsOn": ["^clean"]
-    },
-    "ts:check": {
-      "dependsOn": ["^ts:check"]
     }
   }
 }
