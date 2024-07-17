@@ -7,6 +7,7 @@ import { TStorage } from './utils/types'
 type SessionInterceptorArg<T> = {
   invalidAccessTokenErrors: ErrorData[]
   invalidRefreshTokenErrors: ErrorData[]
+  storage: TStorage
   tokensGetter: () => Promise<T>
   onGotNewTokens?: (tokens: T) => void
   onInvalidRefreshResponse: () => void
@@ -16,12 +17,12 @@ type SessionInterceptorArg<T> = {
   checkAccessTokenInvalid?: (response: AxiosResponse<any, any>) => boolean
   /** If specified then `invalidRefreshTokenErrors` will be ignored */
   checkRefreshTokenInvalid?: (response: AxiosResponse<any, any>) => boolean
-  storage: TStorage
 }
 
 export const startSessionInterceptor = <T extends Tokens>({
   invalidAccessTokenErrors,
   invalidRefreshTokenErrors,
+  storage,
   tokensGetter,
   onGotNewTokens,
   onInvalidRefreshResponse,
@@ -29,7 +30,6 @@ export const startSessionInterceptor = <T extends Tokens>({
   onUnhandledError,
   checkRefreshTokenInvalid,
   checkAccessTokenInvalid,
-  storage,
 }: SessionInterceptorArg<T>) => {
   const subscribers = new Subscribers(storage)
 
@@ -119,9 +119,24 @@ export const startSessionInterceptor = <T extends Tokens>({
         })
       }
 
-    return instances.map(instance =>
-      instance.interceptors.response.use(onSuccess, getOnFailure(instance)),
-    )
+    const ejectors = instances.map(instance => {
+      const interceptor = instance.interceptors.response.use(
+        onSuccess,
+        getOnFailure(instance),
+      )
+
+      return () => {
+        instance.interceptors.response.eject(interceptor)
+      }
+    })
+
+    const ejectAll = () => {
+      ejectors.forEach(eject => {
+        eject()
+      })
+    }
+
+    return { ejectAll }
   }
 
   return getInterceptor

@@ -64,11 +64,11 @@ export const SessionProvider = ({ axiosInstances, children }: Props) => {
   }
 
   useEffect(() => {
-    startHeadersInterceptor({
+    const headersInterceptor = startHeadersInterceptor({
       getHeaders,
     })(axiosInstances)
 
-    startSessionInterceptor({
+    const sessionInterceptor = startSessionInterceptor({
       storage: {
         storageGetter: key => localStorage.getItem(key),
         storageSetter: (key, value) => localStorage.setItem(key, value),
@@ -91,6 +91,11 @@ export const SessionProvider = ({ axiosInstances, children }: Props) => {
       },
       onInvalidRefreshResponse,
     })(axiosInstances)
+
+    return () => {
+      headersInterceptor.ejectAll()
+      sessionInterceptor.ejectAll()
+    }
   }, [axiosInstances, tokensGetter, onInvalidRefreshResponse, getHeaders])
 
   return children

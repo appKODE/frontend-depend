@@ -1,4 +1,5 @@
 import { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
+
 import { THeader } from './types'
 
 type THeadersGetterArg = {
@@ -26,9 +27,22 @@ export const startHeadersInterceptor = ({
         return config
       }
 
-    return instances.map(instance =>
-      instance.interceptors.request.use(getOnRequest(instance)),
-    )
+    const ejectors = instances.map(instance => {
+      const interceptor = instance.interceptors.request.use(
+        getOnRequest(instance),
+      )
+
+      return () => {
+        instance.interceptors.response.eject(interceptor)
+      }
+    })
+    const ejectAll = () => {
+      ejectors.forEach(eject => {
+        eject()
+      })
+    }
+
+    return { ejectAll }
   }
 
   return getInterceptor
