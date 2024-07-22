@@ -2,7 +2,7 @@ import { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
 
 import { THeader } from './types'
 
-type THeadersGetterArg = {
+export type THeadersGetterArg = {
   instance: AxiosInstance
   config: InternalAxiosRequestConfig
 }

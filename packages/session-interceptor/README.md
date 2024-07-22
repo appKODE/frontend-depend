@@ -40,65 +40,64 @@ This is `the best place` to pass the actual authorization token.
 import {
   startSessionInterceptor,
   startHeadersInterceptor,
+  THeadersGetterArg,
 } from '@kode-frontend/session-interceptor'
 
-type Props = { axiosInstances: AxiosInstance[]; children: ReactNode }
+const tokensGetter = async (): Promise<Tokens> => {
+  const currentAccessToken = $accessToken.getState()
 
-export const SessionProvider = ({ axiosInstances, children }: Props) => {
-  const tokensGetter = async (): Promise<Tokens> => {
-    // ... some logic to get new tokens
-    const { data } = await refreshMutation.mutateAsync(
-      $refreshTokenStore.getState(),
-    )
+  if (currentAccessToken) {
+    const newTokens = await authApi.postApiV1AuthRefresh({ body: {} })
 
-    return data
-  }
-
-  const onInvalidRefreshResponse = () => {
-    // ... some logic, for example logout user.
-  }
-
-  const getHeaders = () => {
-    const currentAccessToken = $accessTokenStore.getState()
-    return [{ key: 'Authorization', value: `Bearer ${currentAccessToken}` }]
-  }
-
-  useEffect(() => {
-    const headersInterceptor = startHeadersInterceptor({
-      getHeaders,
-    })(axiosInstances)
-
-    const sessionInterceptor = startSessionInterceptor({
-      storage: {
-        storageGetter: key => localStorage.getItem(key),
-        storageSetter: (key, value) => localStorage.setItem(key, value),
-      },
-      invalidAccessTokenErrors: [
-        {
-          code: 'AccessTokenInvalid',
-          status: 401,
-        },
-      ],
-      invalidRefreshTokenErrors: [
-        {
-          code: 'RefreshTokenInvalid',
-          status: 401,
-        },
-      ],
-      tokensGetter,
-      onGotNewTokens: tokens => {
-        setCredentials(tokens) // your logic to update apps tokens
-      },
-      onInvalidRefreshResponse,
-    })(axiosInstances)
-
-    return () => {
-      headersInterceptor.ejectAll()
-      sessionInterceptor.ejectAll()
+    return {
+      accessToken: newTokens.data.accessToken,
     }
-  }, [axiosInstances, tokensGetter, onInvalidRefreshResponse, getHeaders])
+  }
+  throw new Error('not isLoggedIn')
+}
 
-  return children
+const getHeaders = ({ config }: THeadersGetterArg) => {
+  if (config.url.includes('/v1/auth/refresh')) {
+    return []
+  }
+
+  const currentAccessToken = $accessTokenStore.getState()
+  return [{ key: 'Authorization', value: `Bearer ${currentAccessToken}` }]
+}
+
+const onInvalidRefreshResponse = () => {
+  // ... some logic, for example logout user.
+}
+
+// Should be invoked once in your app
+export const startInterceptors = (axiosInstances: AxiosInstance) => {
+  const headersInterceptor = startHeadersInterceptor({
+    getHeaders,
+  })(axiosInstances)
+
+  const sessionInterceptor = startSessionInterceptor({
+    storage: {
+      storageGetter: key => localStorage.getItem(key),
+      storageSetter: (key, value) => localStorage.setItem(key, value),
+    },
+    invalidAccessTokenErrors: [
+      {
+        code: 'AccessTokenInvalid',
+        status: 401,
+      },
+    ],
+    invalidRefreshTokenErrors: [
+      {
+        code: 'RefreshTokenInvalid',
+        status: 401,
+      },
+    ],
+    tokensGetter,
+    onGotNewTokens: tokens => {
+      setCredentials(tokens) // your logic to update apps tokens
+    },
+    onInvalidRefreshResponse,
+  })(axiosInstances)
 }
 ```
 
