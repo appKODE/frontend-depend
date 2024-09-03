@@ -18,7 +18,8 @@
     ".": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/session-interceptor#readme",
   "keywords": [
