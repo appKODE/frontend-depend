@@ -70,7 +70,7 @@ const onInvalidRefreshResponse = () => {
 }
 
 // Should be invoked once in your app
-export const startInterceptors = (axiosInstances: AxiosInstance) => {
+export const startInterceptors = (axiosInstances: AxiosInstance[]) => {
   const headersInterceptor = startHeadersInterceptor({
     getHeaders,
   })(axiosInstances)
