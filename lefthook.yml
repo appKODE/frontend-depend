@@ -24,5 +24,3 @@ pre-push:
       glob: 'packages/**/packages.json'
       run: pnpm lint:fix:packages:format {staged_files}
       stage_fixed: true
-    audit:
-      run: pnpm audit
