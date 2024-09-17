@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { useCallback, useEffect } from 'react'
-import { AppState, AppStateStatus, Platform } from 'react-native'
+import { AppState, Platform } from 'react-native'
 
 import { pushService } from '../../push-notification-service'
 import { $pushSettings, updateFcmToken } from '../push-settings'
