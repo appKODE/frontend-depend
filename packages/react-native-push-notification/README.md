@@ -54,14 +54,14 @@ export const AppConnector = () => {
 export const ProtectedNavigatorConnector = () => {
   const { mutateAsync } = usePostNotificationsToken();
 
-  const updatePushToken = (
-    token: string,
-    { onSuccess }: { onSuccess: Void },
-  ) => {
-    mutateAsync(token, {
-      onSuccess,
-    });
-  };
+  const updatePushToken = useCallback(
+    (token: string, { onSuccess }: { onSuccess: Void }) => {
+      mutateAsync(token, {
+        onSuccess,
+      });
+    },
+    [mutateAsync],
+  );
 
   useRegisterDevice({
     isNotificationsAvailable: true,
@@ -69,9 +69,7 @@ export const ProtectedNavigatorConnector = () => {
   });
 
   return (
-    <DevicesConfigProvider>
-      <ProtectedNavigator />
-    </DevicesConfigProvider>
+    <ProtectedNavigator />
   );
 };
 ```
