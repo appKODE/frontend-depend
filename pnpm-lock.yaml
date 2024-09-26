@@ -208,6 +208,15 @@ importers:
         specifier: '*'
         version: 5.5.3
 
+  packages/timeout-interceptor:
+    dependencies:
+      axios:
+        specifier: ^1.7.7
+        version: 1.7.7
+      typescript:
+        specifier: '*'
+        version: 5.5.3
+
 packages:
 
   '@ampproject/remapping@2.3.0':

@@ -18,6 +18,8 @@ This monorepo includes the following packages:
 
 - `@kode-frontend/session-interceptor`: Session interceptor for handling jwt token update flow [[Documentation](https://github.com/appKODE/frontend-depend/tree/main/packages/session-interceptor)]
 
+- `@kode-frontend/timeout-interceptor`: Timeout interceptor for handling jwt token update flow [[Documentation](https://github.com/appKODE/frontend-depend/tree/main/packages/timeout-interceptor)]
+
 - `@kode-frontend/react-native-push-notification`: Push notification service for React Native apps [[Documentation](https://github.com/appKODE/frontend-depend/tree/main/packages/react-native-push-notification)]
 
 ## 🤿 Dive-in
