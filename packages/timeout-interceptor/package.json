@@ -8,9 +8,7 @@
     "url": "https://kode.ru"
   },
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
-  "dependencies": {
-    "axios": "^1.7.7"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">= 16.16.0"
   },
