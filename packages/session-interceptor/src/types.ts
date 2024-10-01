@@ -1,3 +1,5 @@
+import { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
+
 export type Tokens = Record<string, string>
 
 export type ErrorData = {
@@ -13,4 +15,9 @@ export type BusinessError = {
 export type THeader = {
   key: string
   value: string
+}
+
+export type THeadersGetterArg = {
+  instance: AxiosInstance
+  config: InternalAxiosRequestConfig
 }
