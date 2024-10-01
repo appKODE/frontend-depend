@@ -2,4 +2,4 @@
 "@kode-frontend/session-interceptor": patch
 ---
 
-added export THeadersGetterArg type for headers-interceptor
+fix(session-interceptor): added export THeadersGetterArg type for headers-interceptor
