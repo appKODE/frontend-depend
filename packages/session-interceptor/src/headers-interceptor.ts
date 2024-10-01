@@ -1,11 +1,6 @@
 import { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
 
-import { THeader } from './types'
-
-export type THeadersGetterArg = {
-  instance: AxiosInstance
-  config: InternalAxiosRequestConfig
-}
+import { THeader, THeadersGetterArg } from './types'
 
 type TStartHeadersInterceptorArg = {
   getHeaders: (arg: THeadersGetterArg) => THeader[]
