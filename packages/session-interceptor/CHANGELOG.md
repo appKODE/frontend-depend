@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.11
+
+### Patch Changes
+
+- [#60](https://github.com/appKODE/frontend-depend/pull/60) [`cdda6b5`](https://github.com/appKODE/frontend-depend/commit/cdda6b5d01c48ca73aa1fac6c50240547746a2b4) Thanks [@DenisAmberCode](https://github.com/DenisAmberCode)! - fix(session-interceptor): added export THeadersGetterArg type for headers-interceptor
+
 ## 0.0.10
 
 ### Patch Changes
