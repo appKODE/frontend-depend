@@ -1,0 +1,48 @@
+{
+  "name": "@kode-frontend/timeout-interceptor",
+  "description": "timeout interceptor for handling jwt token update flow",
+  "version": "0.0.0",
+  "author": {
+    "name": "KODE",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "bugs": "https://github.com/appKODE/frontend-depend/issues",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 16.16.0"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/timeout-interceptor#readme",
+  "keywords": [
+    "kode",
+    "timeout-interceptor"
+  ],
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "peerDependencies": {
+    "axios": "^1.7.7",
+    "typescript": "*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appKODE/frontend-depend.git",
+    "directory": "packages/timeout-interceptor"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf ./node_modules ./.turbo",
+    "ts:check": "tsc --noEmit"
+  },
+  "types": "./dist/index.d.ts"
+}
