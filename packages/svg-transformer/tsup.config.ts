@@ -6,7 +6,10 @@ export default defineConfig({
   splitting: false,
   sourcemap: false,
   format: ['cjs'],
-  target: 'esnext',
+  target: 'node16',
   platform: 'node',
   minify: 'terser',
+  banner: {
+    js: '#!/usr/bin/env node',
+  },
 })
