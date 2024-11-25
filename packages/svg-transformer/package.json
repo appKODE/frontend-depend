@@ -1,0 +1,63 @@
+{
+  "name": "@kode-frontend/svg-transformer",
+  "description": "CLI to optimize and convert SVGs to React/React Native components",
+  "version": "0.0.0",
+  "author": {
+    "name": "KODE",
+    "email": "frontend-team@kode.ru",
+    "url": "https://kode.ru"
+  },
+  "bin": {
+    "@kode-frontend/svg-transformer": "./dist/index.js"
+  },
+  "bugs": "https://github.com/appKODE/frontend-depend/issues",
+  "dependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-prettier": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "case": "^1.6.3",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "default": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/appKODE/frontend-depend/tree/main/packages/svg-transformer#readme",
+  "keywords": [
+    "kode",
+    "svg-transformer"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appKODE/frontend-depend.git",
+    "directory": "packages/svg-transformer"
+  },
+  "scripts": {
+    "build": "tsup",
+    "debug": "node --dist/index.js",
+    "dev": "tsup --watch"
+  },
+  "type": "commonjs"
+}

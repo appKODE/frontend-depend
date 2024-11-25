@@ -19,6 +19,13 @@
     "node": ">=18"
   },
   "packageManager": "pnpm@9.5.0",
+  "pnpm": {
+    "overrides": {
+      "ws@>=7.0.0 <7.5.10": ">=7.5.10",
+      "ws@>=6.0.0 <6.2.3": ">=6.2.3",
+      "braces@<3.0.3": ">=3.0.3"
+    }
+  },
   "private": true,
   "scripts": {
     "add-changeset": "changeset add",
@@ -41,12 +48,5 @@
   "workspaces": [
     "packages/*",
     "internal/*"
-  ],
-  "pnpm": {
-    "overrides": {
-      "ws@>=7.0.0 <7.5.10": ">=7.5.10",
-      "ws@>=6.0.0 <6.2.3": ">=6.2.3",
-      "braces@<3.0.3": ">=3.0.3"
-    }
-  }
+  ]
 }
