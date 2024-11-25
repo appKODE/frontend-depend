@@ -24,8 +24,8 @@ npx @kode-frontend/svg-transformer -i ./icons -o ./output -p react
 # Using pnpm exec
 pnpm exec @kode-frontend/svg-transformer -i ./icons -o ./output -p react
 
-# From node_modules
-node ./node_modules/.bin/svg-transformer -i ./icons -o ./output -p react
+# Using yarn dlx
+yarn dlx @kode-frontend/svg-transformer -i ./icons -o ./output -p react
 ```
 
 ### 🌍 Global Installation
@@ -46,7 +46,7 @@ yarn global add @kode-frontend/svg-transformer
 Run it globally:
 
 ```bash
-svg-transformer -i ./icons -o ./output -p react
+@kode-frontend/svg-transformer -i ./icons -o ./output -p react
 ```
 
 ### 📦 Local Installation
@@ -68,13 +68,13 @@ Run the CLI via npm scripts or a direct command:
 
 ```bash
 # npm script
-npm run svg-transformer -- -i ./icons -o ./output -p react
+npm run @kode-frontend/svg-transformer -- -i ./icons -o ./output -p react
 
 # yarn
-yarn svg-transformer -i ./icons -o ./output -p react
+yarn @kode-frontend/svg-transformer -i ./icons -o ./output -p react
 
 # pnpm
-pnpm svg-transformer -i ./icons -o ./output -p react
+pnpm @kode-frontend/svg-transformer -i ./icons -o ./output -p react
 ```
 
 ### ⚙️ Options
