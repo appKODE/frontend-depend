@@ -53,7 +53,7 @@ async function main() {
   const program = new Command()
 
   program
-    .name('svg-transformer')
+    .name('@kode-frontend/svg-transformer')
     // .version("0.0.1") TODO: add version
     .description('CLI to convert SVGs to React/React Native components')
     .option(
