@@ -1,5 +1,11 @@
 ### [0.6.2](https://https//github.com/appKODE/pathfinder-web/compare/v0.6.1...v0.6.2) (2023-08-21)
 
+## 0.6.3
+
+### Patch Changes
+
+- [#67](https://github.com/appKODE/frontend-depend/pull/67) [`662b014`](https://github.com/appKODE/frontend-depend/commit/662b014778a708ddb26e8374c08cbf9bbea7a27d) Thanks [@HomeBake](https://github.com/HomeBake)! - fix(tsup): change tsdx to tsup
+
 ### Bug Fixes
 
 - **mapper:** check if application/json undeffined ([b7b6212](https://https//github.com/appKODE/pathfinder-web/commit/b7b621242141a8759e287c2fd9092bbb0d14b988))
