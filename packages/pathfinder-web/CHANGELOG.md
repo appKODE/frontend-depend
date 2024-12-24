@@ -1,5 +1,11 @@
 ### [0.6.2](https://https//github.com/appKODE/pathfinder-web/compare/v0.6.1...v0.6.2) (2023-08-21)
 
+## 0.6.4
+
+### Patch Changes
+
+- [#69](https://github.com/appKODE/frontend-depend/pull/69) [`5ee5862`](https://github.com/appKODE/frontend-depend/commit/5ee58628d5f2bc49fa2d9734567231cc9c0834e6) Thanks [@HomeBake](https://github.com/HomeBake)! - fix(xmlHttp): open XMLHttpRequest object if baseUrl not found
+
 ## 0.6.3
 
 ### Patch Changes
