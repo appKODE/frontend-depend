@@ -121,6 +121,7 @@ export function useRequestInterception(
       const specs = pathfinder.getSpecs()
 
       if (!specs) {
+        open.apply(this, arguments as any)
         return
       }
       const origin = typeof url === 'string' ? new URL(url).origin : url.origin
@@ -128,6 +129,7 @@ export function useRequestInterception(
       const spec = specs.find(spec => spec.id === specId)
 
       if (!spec) {
+        open.apply(this, arguments as any)
         return
       }
       const basePath = findBaseApi(specs, origin)
