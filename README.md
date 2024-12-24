@@ -22,6 +22,8 @@ This monorepo includes the following packages:
 
 - `@kode-frontend/react-native-push-notification`: Push notification service for React Native apps [[Documentation](https://github.com/appKODE/frontend-depend/tree/main/packages/react-native-push-notification)]
 
+- `@kode-frontend/pathfinder-web`: tool that allows to substitute the base URL for requests, helping with global error handling, testing, mocking, and more [[Documentation](https://github.com/appKODE/frontend-depend/tree/main/packages/pathfinder-web)]
+
 ## 🤿 Dive-in
 
 Cool things used in this monorepo:

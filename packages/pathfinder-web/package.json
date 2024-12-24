@@ -42,7 +42,11 @@
     "react": ">=16",
     "react-dom": ">=16"
   },
-  "main": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "size-limit": [
     {
       "path": "dist/mytslib.cjs.production.min.js",
