@@ -17,8 +17,8 @@ import { filterPath, getData } from './helpers'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.main.light.normal};
-  border-radius: 4px;
-  padding: 6px 12px;
+  border-radius: 16px;
+  padding: 0 12px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -134,6 +134,7 @@ export const Panel = ({
   const specConfig = configs.find(spec => spec.specId === currSpec)
   const tabs = configs.map(config => ({
     children: config.specId,
+    isSelected: config.specId === specConfig?.specId,
     count: filteredPaths.find(paths => paths.specId === config.specId)?.paths
       .length,
     onClick: () => setCurrSpec(config.specId),
@@ -141,7 +142,7 @@ export const Panel = ({
 
   return (
     <Wrapper>
-      <Header onClose={onClose}>Pathfinder</Header>
+      <Header onClose={onClose}>PathFinder</Header>
       <SearchInput
         value={searchValue}
         methods={initMethods}

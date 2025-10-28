@@ -2,20 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { UrlMethod } from '../../../../../../types'
-import { ThinCloseIcon } from '../../../../icons'
+import { BoldCloseIcon } from '../../../../icons'
 import { MethodSelect } from '../../atoms'
 
 const Wrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
-  height: 50px;
-  background-color: ${({ theme }) => theme.colors.decorative.light.normal};
-  border-radius: 3px;
-  padding: 10px;
+  height: 48px;
+  background-color: ${({}) => '#F5F5F7'};
+  border-radius: 8px;
+  padding: 0 12px;
   margin: 8px;
   align-items: center;
-  z-index: 100;
 `
 
 const StyledInput = styled.input`
@@ -38,11 +37,11 @@ const CloseIconWrap = styled.div`
 `
 
 const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.main.dark.normal};
+  background-color: #8e8e90;
   width: 1px;
   height: 100%;
-  margin: 0 10px;
-  opacity: 0.5;
+  margin: 0 8px;
+  opacity: 1;
 `
 
 type Props = {
@@ -65,14 +64,14 @@ export const SearchInput = ({
       <MethodSelect methods={methods} onSelectMethod={onSelectMethod} />
       <Divider />
       <StyledInput
-        onChange={(e: any) => onHandleChange(e.target.value)}
+        onChange={e => onHandleChange(e.target.value)}
         value={value || ''}
-        placeholder='Search path...'
+        placeholder='Search'
         autoComplete='off'
       />
       {value && (
         <CloseIconWrap onClick={onClearHandler}>
-          <ThinCloseIcon />
+          <BoldCloseIcon />
         </CloseIconWrap>
       )}
     </Wrapper>

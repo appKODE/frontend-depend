@@ -19,8 +19,8 @@ const Title = styled.h1`
 const ActionWrapper = styled.div`
   flex: 0 0 auto;
   align-self: flex-start;
-  margin-top: -3px;
-  margin-right: -6px;
+  margin-top: 0;
+  margin-right: 0;
 `
 
 type Props = {
@@ -37,8 +37,8 @@ export const Header = memo(({ children, onClose }: Props) => {
       <ActionWrapper>
         <Button onClick={onClose} transparent title='Close'>
           <CloseIcon
-            width={16}
-            height={16}
+            width={32}
+            height={32}
             fill={theme.colors.main.dark.normal}
           />
         </Button>

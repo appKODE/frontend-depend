@@ -1,43 +1,51 @@
 import React, { ReactNode } from 'react'
-import styled from 'styled-components'
-import { Badge } from '../badge'
+import styled, { css } from 'styled-components'
+import { InlineBadge } from '../inline-badge/inline-badge'
 
 type Props = {
   children: ReactNode
   count?: number
+  isSelected?: boolean
   onClick?: () => void
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ isSelected?: boolean }>`
   position: relative;
   border-radius: 0;
   border: 0;
-  border-right: 1px solid;
   &:first-child {
-    border-left: 1px solid;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
-  padding: 10px;
+  padding: 16px;
   min-width: 40px;
-  min-height: 40px;
-  height: 100%;
-  background-color: ${({ theme }) => theme.colors.main.light.normal};
+  opacity: 0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      opacity: 1;
+      background-color: ${() => '#E5E5E9'};
+    `}
+
   &:hover {
-    background-color: ${({ theme }) => theme.colors.main.primary.normal};
-  }
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.main.primary.normal};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors.main.primary.translucent};
+    background-color: ${() => '#E5E5E9'};
   }
   cursor: pointer;
 `
 
-export const Tab = ({ children, count, onClick }: Props) => {
+export const Tab = ({ children, count, onClick, isSelected }: Props) => {
   return (
-    <StyledButton onClick={onClick}>
-      {count && <Badge count={count} />}
+    <StyledButton isSelected={isSelected} onClick={onClick}>
       {children}
+      {count && (
+        <div>
+          <InlineBadge count={count} />
+        </div>
+      )}
     </StyledButton>
   )
 }

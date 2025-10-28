@@ -12,21 +12,18 @@ import {
 } from '../endpoints-list/types'
 import { TConfig } from '../panel/types'
 
-const DefaultControls = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-
-  td {
-    padding: 8px;
-  }
+const DefaultControls = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `
 
 const Text = styled.span`
   display: block;
-  min-width: 300px;
   font-size: 14px;
   letter-spacing: 1.5px;
-  text-transform: uppercase;
 `
 
 const RightControls = styled(Row)`
@@ -51,6 +48,10 @@ type Props = {
   onChangeEndpointHeaders: THeadersChangeHandler
 }
 
+const RadioWrapper = styled.div`
+  max-width: 100px;
+`
+
 export const SpecPanel = ({
   specId,
   environments,
@@ -71,48 +72,40 @@ export const SpecPanel = ({
     <>
       {environments && environments.length > 0 && (
         <DefaultControls>
-          <tbody>
-            <tr>
-              <td>
-                <Text>Use the requests environment for all requests:</Text>
-              </td>
-              <td>
-                <RightControls>
-                  <KeyValueField
-                    id={specId}
-                    title='Headers'
-                    placeholder='Enter each header on a new line. &#10;For example:&#10;Authorization: Bearer 123&#10;Prefer: code=200, dynamic=true'
-                    onApply={value => onChangeDefaultHeaders(value, specId)}
-                    initialValue={defaultHeaders}
-                  />
-                  <Box w={16} />
-                  <RadioGroup
-                    id={specId}
-                    value={defaultEnv}
-                    color={'red'}
-                    onChange={(_, value) => {
-                      onChangeDefaultEnv(value || null, specId)
-                      setDefaultValue(value)
-                    }}
-                    items={[
-                      ...environments,
-                      {
-                        label: 'Default',
-                        value: '',
-                      },
-                    ]}
-                  />
-                  <Box w={16} />
-                  <Button
-                    active
-                    title='reset to default'
-                    onClick={resetOptions}>
-                    reset to default
-                  </Button>
-                </RightControls>
-              </td>
-            </tr>
-          </tbody>
+          <Text>Requests</Text>
+          <RightControls>
+            <KeyValueField
+              id={specId}
+              title='Global headers'
+              placeholder='Enter each header on a new line. &#10;For example:&#10;Authorization: Bearer 123&#10;Prefer: code=200, dynamic=true'
+              onApply={value => onChangeDefaultHeaders(value, specId)}
+              initialValue={defaultHeaders}
+            />
+            <Box w={16} />
+            <RadioWrapper>
+              <RadioGroup
+                id={specId}
+                value={defaultEnv}
+                color={'red'}
+                onChange={(_, value) => {
+                  onChangeDefaultEnv(value || null, specId)
+                  setDefaultValue(value)
+                }}
+                items={[
+                  ...environments,
+                  {
+                    label: 'Default',
+                    value: '',
+                  },
+                ]}
+              />
+            </RadioWrapper>
+
+            <Box w={16} />
+            <Button active title='reset to default' onClick={resetOptions}>
+              reset to default
+            </Button>
+          </RightControls>
         </DefaultControls>
       )}
       {urlHeaders &&
