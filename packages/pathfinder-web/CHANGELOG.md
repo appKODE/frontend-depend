@@ -1,5 +1,11 @@
 ### [0.6.2](https://https//github.com/appKODE/pathfinder-web/compare/v0.6.1...v0.6.2) (2023-08-21)
 
+## 0.6.5
+
+### Patch Changes
+
+- [#71](https://github.com/appKODE/frontend-depend/pull/71) [`ccce79f`](https://github.com/appKODE/frontend-depend/commit/ccce79f59b812eee7e3c8576bcfa0fad39744180) Thanks [@HomeBake](https://github.com/HomeBake)! - refactor(ui): Update ui
+
 ## 0.6.4
 
 ### Patch Changes
