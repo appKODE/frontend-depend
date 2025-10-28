@@ -10,6 +10,10 @@ type Props = {
 
 const Wrapper = styled.div`
   display: flex;
+  margin: 8px;
+  background-color: #f5f5f7;
+  border-radius: 8px;
+  flex-wrap: wrap;
 `
 
 export const Tabs = ({ tabs, onLoadSpec }: Props) => {
@@ -18,9 +22,7 @@ export const Tabs = ({ tabs, onLoadSpec }: Props) => {
       {tabs.map((tab, index) => (
         <Tab {...tab} key={index} />
       ))}
-      <Tab>
-        <UploadSpec onLoad={onLoadSpec} />
-      </Tab>
+      <UploadSpec onLoad={onLoadSpec} />
     </Wrapper>
   )
 }

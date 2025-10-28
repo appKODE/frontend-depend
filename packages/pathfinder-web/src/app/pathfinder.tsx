@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { css, ThemeProvider } from 'styled-components'
 
 import { theme } from '../shared/theme'
 import { PanelButton } from '../shared/ui/atoms'
@@ -32,6 +32,13 @@ import { createPathFinder } from '../lib'
 import { TUrlHeaders } from '../shared/ui/organisms/endpoints-list/types'
 import { getEndpointsHeaders } from '../shared/lib/helpers'
 
+type ButtonPosition = {
+  left?: string
+  right?: string
+  top?: string
+  bottom?: string
+}
+
 type PathfinderProviderProps = {
   children: JSX.Element
   storage: DataStorage
@@ -39,15 +46,27 @@ type PathfinderProviderProps = {
   defaultSpecs?: Schema[]
   dataKey: string
   active?: boolean
+  buttonPosition?: ButtonPosition
 }
 
-const ActionWrapper = styled.div`
+const ActionWrapper = styled.div<ButtonPosition & { hidden?: boolean }>`
   position: fixed;
-  right: 9px;
-  bottom: 9px;
+  right: ${({ right }) => right || '9px'};
+  bottom: ${({ bottom }) => bottom || '9px'};
+  ${({ left }) =>
+    left
+      ? css`
+          left: ${left};
+        `
+      : undefined}
+  ${({ top }) =>
+    top
+      ? css`
+          top: ${top};
+        `
+      : undefined}
   z-index: 9999999;
-  width: 64px;
-  height: 64px;
+  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
 `
 
 const Container = styled.div`
@@ -62,9 +81,8 @@ const Container = styled.div`
 const Content = styled.div`
   position: relative;
   z-index: 25;
-  margin: 16px;
+  margin: 24px;
   height: 90%;
-  color: ${({ theme }) => theme.colors.main.dark.normal};
 
   * {
     box-sizing: border-box;
@@ -77,8 +95,8 @@ const Overlay = styled.div`
   left: 0;
   top: 0;
   z-index: 20;
-  width: 100%;
-  height: 100%;
+  width: 100dvw;
+  height: 100dvh;
   background-color: ${({ theme }) => theme.colors.decorative.dark.translucent};
   backdrop-filter: blur(3px);
 `
@@ -102,6 +120,7 @@ export const Pathfinder = ({
   storage,
   dataKey,
   defaultSpecs,
+  buttonPosition,
   active,
 }: PathfinderProviderProps) => {
   const module = useMemo(() => {
@@ -120,7 +139,7 @@ export const Pathfinder = ({
     StrRecord<TUrlHeaders | {}>
   >(endpointsHeadersDefault)
 
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(true)
   const [isActive, setActive] = useState(active)
 
   useEffect(() => {
@@ -211,7 +230,7 @@ export const Pathfinder = ({
   return (
     <ThemeProvider theme={theme}>
       <div>{children}</div>
-      <ActionWrapper>
+      <ActionWrapper {...buttonPosition} hidden={isOpen}>
         <PanelButton onClick={handleToggle} />
       </ActionWrapper>
       <Container hidden={!isOpen}>

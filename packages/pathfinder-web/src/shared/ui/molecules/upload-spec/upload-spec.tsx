@@ -1,30 +1,25 @@
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
+import { AddSpecIcon } from '../../icons/add-spec-icon'
 
 type Props = {
   onLoad: (data: any) => void
 }
 
-const Text = styled.span`
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  text-transform: uppercase;
-  white-space: nowrap;
-`
-
 const Wrapper = styled.label`
   position: relative;
-  display: inline-block;
-  margin: 8px;
-  padding: 12px 14px;
-  padding-left: 18px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  justify-content: center;
   transition: 0.3s ease;
   user-select: none;
   cursor: pointer;
+  opacity: 0.7;
+  :hover {
+    opacity: 1;
+    background-color: ${() => '#E5E5E9'};
+  }
 `
 
 const HiddenInput = styled.input`
@@ -66,7 +61,7 @@ export const UploadSpec = ({ onLoad }: Props) => {
 
   return (
     <Wrapper htmlFor='upload-spec'>
-      <Text>+</Text>
+      <AddSpecIcon color='black' />
       <HiddenInput
         id='upload-spec'
         type='file'

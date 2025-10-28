@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { ArrowDownIcon } from '../../../../icons'
 import { Method } from '../../../../atoms'
@@ -7,7 +7,9 @@ import { UrlMethod } from '../../../../../../types'
 
 const Wrapper = styled.div`
   position: relative;
-  width: 150px;
+  max-width: 100px;
+  width: 100%;
+  padding: 8px 0;
 `
 
 const MethodButton = styled.button`
@@ -34,16 +36,24 @@ const StyledText = styled.p`
 
 const IconWrap = styled.div<{ isDropped: boolean }>`
   margin-left: 8px;
+  ${({ isDropped }) =>
+    isDropped &&
+    css`
+      transform: rotate(180deg);
+    `}
+  transition: transform 0.3s ease;
 `
 
 const DropDown = styled.div`
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.decorative.light.normal};
-  top: 38px;
-  border-radius: 0 0 3px 3px;
-  left: -10px;
+  background-color: #f5f5f7;
+  top: 43px;
+  border-radius: 0 0 6px 6px;
+  left: -12px;
   min-height: 50px;
-  width: 170px;
+  width: 124px;
+  z-index: 10;
+  box-shadow: 0 5px 20px 0 rgba(12, 32, 62, 0.15);
 `
 
 const DropDownItem = styled.div`
@@ -82,7 +92,7 @@ export const MethodSelect = ({ methods, onSelectMethod }: Props) => {
         onClick={() => {
           setIsDropped(prevState => !prevState)
         }}>
-        <StyledText>{selectedMethod ?? 'All methods'}</StyledText>
+        <StyledText>{selectedMethod ?? 'All'}</StyledText>
         <IconWrap isDropped={isDropped}>
           <ArrowDownIcon />
         </IconWrap>
@@ -95,10 +105,10 @@ export const MethodSelect = ({ methods, onSelectMethod }: Props) => {
               setSelectedMethod(null)
               setIsDropped(false)
             }}>
-            All methods
+            All
           </DropDownItem>
           {methods &&
-            [...methods].map((method, index) => (
+            methods.map((method, index) => (
               <DropDownItem onClick={() => onHandleSelect(method)} key={index}>
                 <Method method={method} />
               </DropDownItem>

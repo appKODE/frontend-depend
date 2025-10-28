@@ -1,15 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { GearsIcon } from '../../icons'
-
 const Button = styled.button`
   appearance: none;
   width: 32px;
   height: 32px;
-  border: 1px solid ${({ theme }) => theme.colors.main.dark.normal};
-  background-color: ${({ theme }) => theme.colors.decorative.light.normal};
-  border-radius: 100%;
+  background-color: transparent;
+  border-radius: 8px;
+  border-color: #fff5f5;
   transition: 0.2s linear;
   cursor: pointer;
 
@@ -19,11 +17,7 @@ const Button = styled.button`
 
   &:focus,
   &:hover {
-    background-color: ${({ theme }) => theme.colors.main.dark.normal};
-
-    svg path {
-      fill: ${({ theme }) => theme.colors.decorative.light.normal};
-    }
+    background-color: #f5f4f4;
   }
 `
 
@@ -32,11 +26,7 @@ type Props = {
 }
 
 export const PanelButton = ({ onClick }: Props) => {
-  return (
-    <Button onClick={onClick}>
-      <GearsIcon />
-    </Button>
-  )
+  return <Button onClick={onClick}>⚙️</Button>
 }
 
 export default PanelButton
