@@ -19,6 +19,7 @@ const StyledButton = styled.button<{ isSelected?: boolean }>`
   }
   padding: 16px;
   min-width: 40px;
+  max-width: 200px;
   opacity: 0.5;
   display: flex;
   flex-direction: row;
@@ -41,7 +42,7 @@ export const Tab = ({ children, count, onClick, isSelected }: Props) => {
   return (
     <StyledButton isSelected={isSelected} onClick={onClick}>
       {children}
-      {count && (
+      {count !== undefined && (
         <div>
           <InlineBadge count={count} />
         </div>

@@ -18,6 +18,7 @@ const DefaultControls = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 0px 8px;
 `
 
 const Text = styled.span`
