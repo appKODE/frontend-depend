@@ -139,7 +139,7 @@ export const Pathfinder = ({
     StrRecord<TUrlHeaders | {}>
   >(endpointsHeadersDefault)
 
-  const [isOpen, setOpen] = useState(true)
+  const [isOpen, setOpen] = useState(false)
   const [isActive, setActive] = useState(active)
 
   useEffect(() => {
