@@ -1,7 +1,7 @@
 {
   "name": "@kode-frontend/pathfinder-web",
   "description": "Tool that allows to substitute the base URL for requests",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "license": "MIT",
   "author": {
     "name": "KODE",
