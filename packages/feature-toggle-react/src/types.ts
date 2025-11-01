@@ -1,4 +1,8 @@
-export type FeatureFlags = Record<string, boolean>
+export type FeatureFlagValue = boolean | string | number
+
+export type FeatureFlags = Record<string, FeatureFlagValue>
+
+// TODO: remove below
 
 export type FeatureToggleContext = {
   flags: FeatureFlags
