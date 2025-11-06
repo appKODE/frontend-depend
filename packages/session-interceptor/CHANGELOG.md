@@ -1,5 +1,11 @@
 # @kode-frontend/session-interceptor
 
+## 0.0.12
+
+### Patch Changes
+
+- [#75](https://github.com/appKODE/frontend-depend/pull/75) [`b88cf36`](https://github.com/appKODE/frontend-depend/commit/b88cf367b36fd92d3d597641673fc41ddfef8e23) Thanks [@olyamosunova](https://github.com/olyamosunova)! - added typing for AxiosError in session-interceptor
+
 ## 0.0.11
 
 ### Patch Changes
