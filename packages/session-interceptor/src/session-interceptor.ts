@@ -4,7 +4,7 @@ import { BusinessError, ErrorData, Tokens } from './types'
 import { Subscribers } from './utils/subscribers'
 import { TStorage } from './utils/types'
 
-type SessionInterceptorArg<T> = {
+type SessionInterceptorArg<T, K extends BusinessError = BusinessError> = {
   invalidAccessTokenErrors: ErrorData[]
   invalidRefreshTokenErrors: ErrorData[]
   storage: TStorage
@@ -12,14 +12,17 @@ type SessionInterceptorArg<T> = {
   onGotNewTokens?: (tokens: T) => void
   onInvalidRefreshResponse: () => void
   onRefreshError?: () => void
-  onUnhandledError?: (e: AxiosError) => void
+  onUnhandledError?: (e: AxiosError<K>) => void
   /** If specified then `invalidAccessTokenErrors` will be ignored */
   checkAccessTokenInvalid?: (response: AxiosResponse<any, any>) => boolean
   /** If specified then `invalidRefreshTokenErrors` will be ignored */
   checkRefreshTokenInvalid?: (response: AxiosResponse<any, any>) => boolean
 }
 
-export const startSessionInterceptor = <T extends Tokens>({
+export const startSessionInterceptor = <
+  T extends Tokens,
+  K extends BusinessError = BusinessError,
+>({
   invalidAccessTokenErrors,
   invalidRefreshTokenErrors,
   storage,
@@ -30,7 +33,7 @@ export const startSessionInterceptor = <T extends Tokens>({
   onUnhandledError,
   checkRefreshTokenInvalid,
   checkAccessTokenInvalid,
-}: SessionInterceptorArg<T>) => {
+}: SessionInterceptorArg<T, K>) => {
   const subscribers = new Subscribers(storage)
 
   subscribers.startInvokes()
@@ -41,8 +44,7 @@ export const startSessionInterceptor = <T extends Tokens>({
     }
 
     const getOnFailure =
-      (instance: AxiosInstance) =>
-      async (error?: AxiosError<BusinessError>) => {
+      (instance: AxiosInstance) => async (error?: AxiosError<K>) => {
         const response = error?.response
 
         if (!response) {
