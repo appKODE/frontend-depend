@@ -16,7 +16,6 @@
     "directory": "packages/pathfinder-web"
   },
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
-  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -27,8 +26,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "test": "tsup test --passWithNoTests",
-    "lint": "tsup lint",
+    "test": "jest",
     "release": "release-it",
     "prepare": "tsup",
     "size": "size-limit",
@@ -49,11 +47,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/mytslib.cjs.production.min.js",
+      "path": "dist/index.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/mytslib.esm.js",
+      "path": "dist/index.mjs",
       "limit": "10 KB"
     }
   ],
@@ -86,6 +84,7 @@
     "prettier": "2.6.2",
     "react-is": "^18.0.0",
     "release-it": "^14.14.2",
+    "rollup-plugin-postcss": "3.1.6",
     "size-limit": "^7.0.8",
     "tailwindcss": "^3.0.24",
     "ts-loader": "8.0.14",
@@ -97,7 +96,6 @@
   },
   "dependencies": {
     "fetch-intercept": "^2.4.0",
-    "rollup-plugin-postcss": "3.1.6",
     "styled-components": "^5.3.5",
     "url-pattern": "^1.0.3"
   },

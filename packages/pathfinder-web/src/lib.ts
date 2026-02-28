@@ -116,7 +116,10 @@ export const createPathFinder: PathfinderBuilder = ({
       })
       storage.setSpecs(storageSpec)
     } catch (e) {
-      console.log(e)
+      console.error('Failed to parse specs:', e)
+      throw new Error(
+        `Failed to parse specifications: ${e instanceof Error ? e.message : 'Unknown error'}`,
+      )
     }
   }
 

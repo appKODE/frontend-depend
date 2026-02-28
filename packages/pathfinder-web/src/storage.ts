@@ -18,7 +18,7 @@ import {
 export const ENDPOINTS_KEY = 'endpoints'
 export const GLOBAL_ENV_KEY = 'global'
 export const SPEC_KEY = 'spec'
-export const ENDPOINTS_HEADERS_KEY = 'edpoints-headers'
+export const ENDPOINTS_HEADERS_KEY = 'endpoints-headers'
 export const GLOBAL_HEADERS_KEY = 'global-headers'
 
 export const getStorage: GetStorageFn = adapter => {

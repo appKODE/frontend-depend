@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "target": "es5",
     "module": "commonjs",
     "jsx": "react",
@@ -13,6 +14,11 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "lib": ["es2015", "es2016", "dom"],
-    "types": ["node"]
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@kode-frontend/pathfinder-web": ["../src"]
+    }
   }
 }

@@ -23,7 +23,6 @@ import {
   DataStorage,
   EnvSpec,
   Header,
-  Schema,
   Spec,
   StrRecord,
   UrlSpec,
@@ -43,7 +42,7 @@ type PathfinderProviderProps = {
   children: JSX.Element
   storage: DataStorage
   resolver: DataResolver
-  defaultSpecs?: Schema[]
+  defaultSpecs?: unknown[]
   dataKey: string
   active?: boolean
   buttonPosition?: ButtonPosition

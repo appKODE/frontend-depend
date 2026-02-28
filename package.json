@@ -32,6 +32,9 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "dev": "turbo dev",
+    "dev:pathfinder": "turbo run dev --filter=@kode-frontend/pathfinder-web",
+    "dev:pathfinder-example": "turbo run dev --filter=@kode-frontend/pathfinder-web-example",
+    "dev:pathfinder-all": "turbo run dev --filter=@kode-frontend/pathfinder-web --filter=@kode-frontend/pathfinder-web-example --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
     "lint": "turbo lint",
     "lint:fix:packages": "npm-run-all --parallel lint:fix:packages:*",
@@ -47,6 +50,7 @@
   },
   "workspaces": [
     "packages/*",
+    "packages/*/example",
     "internal/*"
   ]
 }
