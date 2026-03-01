@@ -22,6 +22,16 @@ export const theme = {
       blue: { normal: '#6699CC', translucent: 'rgba(102, 153, 204, 0.5)' },
       red: { normal: '#E15A60', translucent: 'rgba(225, 90, 96, 0.5)' },
     },
+    panel: {
+      bg: '#141414',
+      surface: '#1f1f1f',
+      border: '#2e2e2e',
+      text: '#e0e0e0',
+      textMuted: '#888888',
+      accent: '#6699cc',
+      handleBg: 'rgba(255,255,255,0.12)',
+      handleHover: 'rgba(255,255,255,0.25)',
+    },
   },
 }
 

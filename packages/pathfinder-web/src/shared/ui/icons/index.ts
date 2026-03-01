@@ -6,3 +6,9 @@ export { SearchIcon } from './search-icon'
 export { ThinCloseIcon } from './thin-close-icon'
 export { ArrowDownIcon } from './arrow-down-icon'
 export { BoldCloseIcon } from './bold-close-icon'
+export {
+  PanelBottomIcon,
+  PanelTopIcon,
+  PanelLeftIcon,
+  PanelRightIcon,
+} from './panel-position-icons'

@@ -14,14 +14,15 @@ import { Header as THeader, StrRecord, UrlMethod } from '../../../../types'
 import { SpecPanel } from '../spec-panel'
 import { stringifyHeaders } from '../../../lib/stringify-headers'
 import { filterPath, getData } from './helpers'
+import { PanelPosition } from '../../../../app/pathfinder'
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.main.light.normal};
-  border-radius: 16px;
-  padding: 0 12px;
+  background-color: ${({ theme }) => theme.colors.panel.bg};
+  color: ${({ theme }) => theme.colors.panel.text};
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `
 
 export type Path = {
@@ -42,6 +43,8 @@ type Props = {
   onChangeDefaultHeaders: (headers: string, specId: string) => void
   onChangeEndpointHeaders: THeadersChangeHandler
   onResetOptions: () => void
+  position: PanelPosition
+  onChangePosition: (pos: PanelPosition) => void
 }
 
 export const Panel = ({
@@ -57,6 +60,8 @@ export const Panel = ({
   onChangeDefaultHeaders,
   onChangeEndpointHeaders,
   onResetOptions,
+  position,
+  onChangePosition,
 }: Props) => {
   const [defaultEnv, setDefaultValue] =
     useState<Record<string, string>>(defaultEnvId)
@@ -142,7 +147,12 @@ export const Panel = ({
 
   return (
     <Wrapper>
-      <Header onClose={onClose}>PathFinder</Header>
+      <Header
+        onClose={onClose}
+        position={position}
+        onChangePosition={onChangePosition}>
+        PathFinder
+      </Header>
       <SearchInput
         value={searchValue}
         methods={initMethods}
