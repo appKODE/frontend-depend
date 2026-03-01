@@ -14,6 +14,7 @@ import {
   UrlHeadersGetter,
   UrlHeadersSetter,
 } from './types'
+import { GLOBAL_ENV_MARKER } from './constants'
 
 export const ENDPOINTS_KEY = 'endpoints'
 export const GLOBAL_ENV_KEY = 'global'
@@ -49,9 +50,24 @@ export const getStorage: GetStorageFn = adapter => {
   const getEndpointEnv: UrlEnvGetter = (urlId, specId) => {
     const options = getEndpointsEnv()
     const globalEnv = getGlobalEnv()[specId]
-    if (options && options[specId] && options[specId][urlId]) {
-      return options[specId][urlId]
+
+    if (options?.[specId]?.[urlId]) {
+      const endpointEnv = options[specId][urlId]
+
+      // Если выбран маркер "Global"
+      if (endpointEnv === GLOBAL_ENV_MARKER) {
+        return globalEnv || null
+      }
+
+      // Пустая строка - "No override"
+      if (endpointEnv === '') {
+        return null
+      }
+
+      return endpointEnv
     }
+
+    // По умолчанию - использовать глобальный
     return globalEnv || null
   }
 
@@ -72,9 +88,13 @@ export const getStorage: GetStorageFn = adapter => {
   const setEndpointEnv: UrlEnvSetter = (urlId, specId, envId) => {
     const options = getEndpointsEnv()
     const specEndpointEnv = options[specId]
+
+    // Если envId undefined - значит выбран "Global", сохраняем маркер
+    const valueToSave = envId === undefined ? GLOBAL_ENV_MARKER : envId
+
     const res = {
       ...options,
-      [specId]: { ...specEndpointEnv, [urlId]: envId },
+      [specId]: { ...specEndpointEnv, [urlId]: valueToSave },
     }
     adapter.setItem(ENDPOINTS_KEY, JSON.stringify(res))
   }

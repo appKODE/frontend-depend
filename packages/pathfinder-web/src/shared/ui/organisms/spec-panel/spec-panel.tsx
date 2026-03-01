@@ -116,6 +116,7 @@ export const SpecPanel = ({
             onHeadersChange={(headers: string, endpointId: string) => {
               onChangeEndpointHeaders(headers, endpointId, specId)
             }}
+            globalEnvId={defaultEnv}
           />
         )}
     </>

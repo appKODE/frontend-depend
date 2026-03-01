@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { GLOBAL_ENV_MARKER } from '../../../../constants'
 
 type TOption = {
   label: string
@@ -12,6 +13,7 @@ type Props = {
   value: string
   options: TOption[]
   onChange: (id: string, value: string) => void
+  activeBaseUrl?: string
 }
 
 const Select = styled.select<{ $isActive: boolean }>`
@@ -45,13 +47,19 @@ const Description = styled.span`
   margin-top: 2px;
 `
 
-export const EnvSelect = ({ id, value, options, onChange }: Props) => {
+export const EnvSelect = ({
+  id,
+  value,
+  options,
+  onChange,
+  activeBaseUrl,
+}: Props) => {
   const selectedOption = options.find(opt => opt.value === value)
 
   return (
     <Container>
       <Select
-        $isActive={value !== ''}
+        $isActive={value !== '' && value !== GLOBAL_ENV_MARKER}
         value={value}
         onChange={e => onChange(id, e.target.value)}>
         {options.map(opt => (
@@ -60,8 +68,10 @@ export const EnvSelect = ({ id, value, options, onChange }: Props) => {
           </option>
         ))}
       </Select>
-      {selectedOption?.description && (
-        <Description>{selectedOption.description}</Description>
+      {(activeBaseUrl || selectedOption?.description) && (
+        <Description>
+          {activeBaseUrl || selectedOption?.description}
+        </Description>
       )}
     </Container>
   )

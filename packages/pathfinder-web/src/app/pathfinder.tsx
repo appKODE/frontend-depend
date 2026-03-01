@@ -32,6 +32,7 @@ import {
 import { createPathFinder } from '../lib'
 import { TUrlHeaders } from '../shared/ui/organisms/endpoints-list/types'
 import { getEndpointsHeaders } from '../shared/lib/helpers'
+import { GLOBAL_ENV_MARKER } from '../constants'
 
 export type PanelPosition = 'bottom' | 'top' | 'left' | 'right'
 
@@ -309,14 +310,24 @@ export const Pathfinder = ({
   const initialUrlValues: StrRecord<string> = {}
 
   spec?.forEach(item => {
+    const globalEnv = module.getGlobalEnv()[item.id]
+
     configs.push({
       specId: item.id,
       config: {
         urlList:
           item?.urls.map(url => {
             const newUrl = toPanelUrl(url)
-            const envId = module.getUrlEnv(newUrl.id, item.id)
-            initialUrlValues[newUrl.id] = envId || ''
+            const storedEnvId = module.getUrlEnv(newUrl.id, item.id)
+
+            // Если нет сохраненного значения или оно совпадает с глобальным,
+            // используем маркер GLOBAL
+            if (!storedEnvId || storedEnvId === globalEnv) {
+              initialUrlValues[newUrl.id] = GLOBAL_ENV_MARKER
+            } else {
+              initialUrlValues[newUrl.id] = storedEnvId
+            }
+
             return newUrl
           }) || [],
         envList: item?.envs.map(toPanelEnv) || [],

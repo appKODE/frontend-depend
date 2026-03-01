@@ -6,6 +6,7 @@ import { Method, ScrollWrapper } from '../../atoms'
 import { EnvSelect } from '../../molecules'
 import { TRadioOptions } from '../../atoms/radio-input/types'
 import { KeyValueField } from '../../molecules/key-value-field'
+import { GLOBAL_ENV_MARKER } from '../../../../constants'
 
 type Props = {
   environments: TRadioOptions[]
@@ -14,6 +15,7 @@ type Props = {
   headers: TUrlHeaders
   onBasePathChange: TBasePathChangeHandler
   onHeadersChange: (headers: string, endpointId: string) => void
+  globalEnvId?: string
 }
 
 const List = styled.div`
@@ -113,6 +115,33 @@ const ActionsRow = styled.div`
   flex-wrap: wrap;
 `
 
+const getActiveBaseUrl = (
+  selectedValue: string,
+  environments: TRadioOptions[],
+  globalEnvId: string | undefined,
+): string => {
+  // Если выбран конкретный env
+  if (
+    selectedValue &&
+    selectedValue !== '' &&
+    selectedValue !== GLOBAL_ENV_MARKER
+  ) {
+    const env = environments.find(e => e.value === selectedValue)
+    return env?.description || ''
+  }
+
+  // Если выбран Global или по умолчанию
+  if (selectedValue === GLOBAL_ENV_MARKER || !selectedValue) {
+    if (globalEnvId && globalEnvId !== '') {
+      const globalEnv = environments.find(e => e.value === globalEnvId)
+      return globalEnv?.description || ''
+    }
+  }
+
+  // Если "No override"
+  return ''
+}
+
 export const EndpointsList = ({
   environments,
   items,
@@ -120,6 +149,7 @@ export const EndpointsList = ({
   headers,
   onBasePathChange,
   onHeadersChange,
+  globalEnvId,
 }: Props) => {
   const [values, setValues] = useState(initialValues)
 
@@ -130,64 +160,84 @@ export const EndpointsList = ({
   return (
     <ScrollWrapper>
       <List>
-        {items.map(item => (
-          <Row key={item.id}>
-            <TopRow>
-              <MethodCell>
-                <Method method={item.method} />
-              </MethodCell>
-              <PathCell>
-                {item.name && <PathName>{item.name}</PathName>}
-                <PathTemplate>{item.template}</PathTemplate>
-                {item.tags && item.tags.length > 0 && (
-                  <TagsRow>
-                    {item.tags.map(tag => (
-                      <TagChip key={tag}>{tag}</TagChip>
-                    ))}
-                  </TagsRow>
-                )}
-                {headers[item.id] && headers[item.id].trim() && (
-                  <HeadersRow>
-                    {headers[item.id]
-                      .split('\n')
-                      .filter(line => line.trim())
-                      .map((line, idx) => (
-                        <HeaderItem key={idx}>{line}</HeaderItem>
+        {items.map(item => {
+          const currentValue = values[item.id] ?? GLOBAL_ENV_MARKER
+          const activeBaseUrl = getActiveBaseUrl(
+            currentValue,
+            environments,
+            globalEnvId,
+          )
+
+          return (
+            <Row key={item.id}>
+              <TopRow>
+                <MethodCell>
+                  <Method method={item.method} />
+                </MethodCell>
+                <PathCell>
+                  {item.name && <PathName>{item.name}</PathName>}
+                  <PathTemplate>{item.template}</PathTemplate>
+                  {item.tags && item.tags.length > 0 && (
+                    <TagsRow>
+                      {item.tags.map(tag => (
+                        <TagChip key={tag}>{tag}</TagChip>
                       ))}
-                  </HeadersRow>
-                )}
-              </PathCell>
-            </TopRow>
-            <ActionsRow>
-              <KeyValueField
-                title='Headers'
-                id={item.id}
-                placeholder='Enter each header on a new line. &#10;For example:&#10;Authorization: Bearer 123&#10;Prefer: code=200, dynamic=true'
-                onApply={value => {
-                  onHeadersChange(value, item.id)
-                }}
-                initialValue={headers[item.id]}
-                responses={item.responses}
-              />
-              <EnvSelect
-                id={item.id}
-                value={values[item.id] ?? ''}
-                onChange={(id, value) => {
-                  onBasePathChange(id, value || undefined)
-                  setValues(prev => ({ ...prev, [id]: value }))
-                }}
-                options={[
-                  ...environments,
-                  {
-                    label: 'No override',
-                    value: '',
-                    description: '',
-                  },
-                ]}
-              />
-            </ActionsRow>
-          </Row>
-        ))}
+                    </TagsRow>
+                  )}
+                  {headers[item.id] && headers[item.id].trim() && (
+                    <HeadersRow>
+                      {headers[item.id]
+                        .split('\n')
+                        .filter(line => line.trim())
+                        .map((line, idx) => (
+                          <HeaderItem key={idx}>{line}</HeaderItem>
+                        ))}
+                    </HeadersRow>
+                  )}
+                </PathCell>
+              </TopRow>
+              <ActionsRow>
+                <KeyValueField
+                  title='Headers'
+                  id={item.id}
+                  placeholder='Enter each header on a new line. &#10;For example:&#10;Authorization: Bearer 123&#10;Prefer: code=200, dynamic=true'
+                  onApply={value => {
+                    onHeadersChange(value, item.id)
+                  }}
+                  initialValue={headers[item.id]}
+                  responses={item.responses}
+                />
+                <EnvSelect
+                  id={item.id}
+                  value={currentValue}
+                  onChange={(id, value) => {
+                    onBasePathChange(
+                      id,
+                      value === GLOBAL_ENV_MARKER
+                        ? undefined
+                        : value || undefined,
+                    )
+                    setValues(prev => ({ ...prev, [id]: value }))
+                  }}
+                  options={[
+                    {
+                      label: 'Global',
+                      value: GLOBAL_ENV_MARKER,
+                      description: '',
+                    },
+                    ...environments,
+                    {
+                      label: 'No override',
+                      value: '',
+                      description: '',
+                    },
+                  ]}
+                  activeBaseUrl={activeBaseUrl}
+                />
+              </ActionsRow>
+            </Row>
+          )
+        })}
       </List>
     </ScrollWrapper>
   )
