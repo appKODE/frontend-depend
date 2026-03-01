@@ -69,11 +69,16 @@ export const Panel = ({
 }: Props) => {
   const [defaultEnv, setDefaultValue] =
     useState<Record<string, string>>(defaultEnvId)
-  const { methods: initMethods, paths: defaultPaths } = getData(configs)
+  const {
+    methods: initMethods,
+    paths: defaultPaths,
+    tags: initTags,
+  } = getData(configs)
   const [filteredMethods, setFilteredMethods] =
     useState<UrlMethod[]>(initMethods)
   const [selectedMethod, setSelectedMethod] = useState<UrlMethod | null>(null)
   const [searchValue, setSearchValue] = useState<string>('')
+  const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [filteredPaths, setFilteredPaths] = useState<Path[]>(defaultPaths)
   const [currSpec, setCurrSpec] = useState<string | null>(
     configs.at(0)?.specId || null,
@@ -87,9 +92,14 @@ export const Panel = ({
   }, [configs])
 
   useEffect(() => {
-    const newPaths = filterPath(defaultPaths, filteredMethods, searchValue)
+    const newPaths = filterPath(
+      defaultPaths,
+      filteredMethods,
+      searchValue,
+      selectedTag,
+    )
     setFilteredPaths(newPaths)
-  }, [searchValue, filteredMethods])
+  }, [searchValue, filteredMethods, selectedTag])
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscButton)
@@ -133,7 +143,12 @@ export const Panel = ({
   const onClearHandler = () => {
     setSearchValue('')
     setSelectedMethod(null)
+    setSelectedTag(null)
     setFilteredMethods(initMethods)
+  }
+
+  const onSelectTag = (tag: string | null) => {
+    setSelectedTag(tag)
   }
 
   const onSelectMethod = (method: UrlMethod | null) => {
@@ -173,8 +188,11 @@ export const Panel = ({
         value={searchValue}
         methods={initMethods}
         selectedMethod={selectedMethod}
+        tags={initTags}
+        selectedTag={selectedTag}
         onClearHandler={onClearHandler}
         onSelectMethod={onSelectMethod}
+        onSelectTag={onSelectTag}
         onHandleChange={onHandleChange}
       />
       <Tabs

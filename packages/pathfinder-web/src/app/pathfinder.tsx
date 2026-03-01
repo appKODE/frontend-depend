@@ -165,6 +165,7 @@ const toPanelUrl = (url: UrlSpec): TPanelUrl => ({
   template: url.template,
   name: url.name,
   responses: url.responses,
+  tags: url.tags,
 })
 
 const toPanelEnv = (env: EnvSpec): TPanelEnv => ({

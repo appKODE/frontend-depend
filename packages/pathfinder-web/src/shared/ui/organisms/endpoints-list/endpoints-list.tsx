@@ -67,6 +67,44 @@ const PathName = styled.span`
   margin-top: 2px;
 `
 
+const TagsRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+`
+
+const TagChip = styled.span`
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: ${({ theme }) => theme.colors.panel.surface};
+  color: ${({ theme }) => theme.colors.panel.textMuted};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+const HeadersRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+`
+
+const HeaderItem = styled.div`
+  font-size: 10px;
+  color: ${({ theme }) => theme.colors.panel.textMuted};
+  font-family: monospace;
+  padding: 2px 4px;
+  background-color: ${({ theme }) => theme.colors.panel.surface};
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
+
 const ActionsRow = styled.div`
   display: flex;
   align-items: center;
@@ -99,8 +137,25 @@ export const EndpointsList = ({
                 <Method method={item.method} />
               </MethodCell>
               <PathCell>
-                <PathTemplate>{item.template}</PathTemplate>
                 {item.name && <PathName>{item.name}</PathName>}
+                <PathTemplate>{item.template}</PathTemplate>
+                {item.tags && item.tags.length > 0 && (
+                  <TagsRow>
+                    {item.tags.map(tag => (
+                      <TagChip key={tag}>{tag}</TagChip>
+                    ))}
+                  </TagsRow>
+                )}
+                {headers[item.id] && headers[item.id].trim() && (
+                  <HeadersRow>
+                    {headers[item.id]
+                      .split('\n')
+                      .filter(line => line.trim())
+                      .map((line, idx) => (
+                        <HeaderItem key={idx}>{line}</HeaderItem>
+                      ))}
+                  </HeadersRow>
+                )}
               </PathCell>
             </TopRow>
             <ActionsRow>

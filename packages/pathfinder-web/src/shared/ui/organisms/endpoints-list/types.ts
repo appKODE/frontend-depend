@@ -6,6 +6,7 @@ export type TUrlItem = {
   template: string
   name: string
   responses: any
+  tags?: string[]
 }
 
 export type TBasePathChangeHandler = (urlId: string, envId?: string) => void

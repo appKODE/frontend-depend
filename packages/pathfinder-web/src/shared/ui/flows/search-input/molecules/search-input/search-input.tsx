@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { UrlMethod } from '../../../../../../types'
 import { BoldCloseIcon } from '../../../../icons'
-import { MethodSelect } from '../../atoms'
+import { MethodSelect, TagSelect } from '../../atoms'
 
 const Wrapper = styled.div`
   display: flex;
@@ -58,8 +58,11 @@ type Props = {
   value: string
   methods: UrlMethod[]
   selectedMethod: UrlMethod | null
+  tags?: string[]
+  selectedTag: string | null
   onClearHandler: () => void
   onSelectMethod: (method: UrlMethod | null) => void
+  onSelectTag: (tag: string | null) => void
   onHandleChange: (value: string) => void
 }
 
@@ -67,8 +70,11 @@ export const SearchInput = ({
   value,
   methods,
   selectedMethod,
+  tags,
+  selectedTag,
   onClearHandler,
   onSelectMethod,
+  onSelectTag,
   onHandleChange,
 }: Props) => {
   return (
@@ -79,6 +85,16 @@ export const SearchInput = ({
         onSelectMethod={onSelectMethod}
       />
       <Divider />
+      {tags && tags.length > 0 && (
+        <>
+          <TagSelect
+            tags={tags}
+            value={selectedTag}
+            onSelectTag={onSelectTag}
+          />
+          <Divider />
+        </>
+      )}
       <StyledInput
         onChange={e => onHandleChange(e.target.value)}
         value={value || ''}

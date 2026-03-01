@@ -270,7 +270,6 @@ export const KeyValueField = ({
     <Wrapper ref={wrapperRef}>
       <BackGround isVisible={isOpen} onClick={handleCloseMenu} />
       <Button onClick={handleOpen}>{title}</Button>
-      {activeCount > 0 && <CountBadge>{activeCount}</CountBadge>}
 
       {isOpen && (
         <DropArea>
