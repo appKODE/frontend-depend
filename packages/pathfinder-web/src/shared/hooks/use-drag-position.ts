@@ -12,7 +12,9 @@ const getInitialPosition = (): Position => {
     const stored = localStorage.getItem(BUTTON_POSITION_KEY)
     if (stored) {
       try {
-        return JSON.parse(stored) as Position
+        const pos = JSON.parse(stored) as Position
+        // Ensure button is visible
+        return ensureInBounds(pos)
       } catch {
         // ignore
       }
@@ -21,6 +23,32 @@ const getInitialPosition = (): Position => {
   return {
     x: window.innerWidth - BUTTON_SIZE - 9,
     y: window.innerHeight - BUTTON_SIZE - 9,
+  }
+}
+
+const ensureInBounds = (pos: Position): Position => {
+  const root = document.documentElement
+  const safeTop = parseInt(
+    getComputedStyle(root).getPropertyValue('--safe-area-inset-top') || '0',
+  )
+  const safeBottom = parseInt(
+    getComputedStyle(root).getPropertyValue('--safe-area-inset-bottom') || '0',
+  )
+  const safeLeft = parseInt(
+    getComputedStyle(root).getPropertyValue('--safe-area-inset-left') || '0',
+  )
+  const safeRight = parseInt(
+    getComputedStyle(root).getPropertyValue('--safe-area-inset-right') || '0',
+  )
+
+  const minX = safeLeft
+  const maxX = window.innerWidth - BUTTON_SIZE - safeRight
+  const minY = safeTop
+  const maxY = window.innerHeight - BUTTON_SIZE - safeBottom
+
+  return {
+    x: Math.max(minX, Math.min(maxX, pos.x)),
+    y: Math.max(minY, Math.min(maxY, pos.y)),
   }
 }
 
@@ -36,10 +64,36 @@ export const useDragPosition = () => {
       const startPointerX = e.clientX
       const startPointerY = e.clientY
 
-      const clamp = (x: number, y: number): Position => ({
-        x: Math.max(0, Math.min(window.innerWidth - BUTTON_SIZE, x)),
-        y: Math.max(0, Math.min(window.innerHeight - BUTTON_SIZE, y)),
-      })
+      const clamp = (x: number, y: number): Position => {
+        const root = document.documentElement
+        const safeTop = parseInt(
+          getComputedStyle(root).getPropertyValue('--safe-area-inset-top') ||
+            '0',
+        )
+        const safeBottom = parseInt(
+          getComputedStyle(root).getPropertyValue('--safe-area-inset-bottom') ||
+            '0',
+        )
+        const safeLeft = parseInt(
+          getComputedStyle(root).getPropertyValue('--safe-area-inset-left') ||
+            '0',
+        )
+        const safeRight = parseInt(
+          getComputedStyle(root).getPropertyValue('--safe-area-inset-right') ||
+            '0',
+        )
+
+        return {
+          x: Math.max(
+            safeLeft,
+            Math.min(window.innerWidth - BUTTON_SIZE - safeRight, x),
+          ),
+          y: Math.max(
+            safeTop,
+            Math.min(window.innerHeight - BUTTON_SIZE - safeBottom, y),
+          ),
+        }
+      }
 
       const onMove = (ev: PointerEvent) => {
         const dx = ev.clientX - startPointerX

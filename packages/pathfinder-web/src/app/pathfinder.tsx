@@ -232,6 +232,41 @@ export const Pathfinder = ({
   } = useDragPosition()
 
   useEffect(() => {
+    // Initialize safe-area-inset CSS variables for mobile support
+    const updateSafeAreaVars = () => {
+      const root = document.documentElement
+      const safeTop = parseInt(
+        window.getComputedStyle(root).getPropertyValue('safe-area-inset-top') ||
+          '0',
+      )
+      const safeBottom = parseInt(
+        window
+          .getComputedStyle(root)
+          .getPropertyValue('safe-area-inset-bottom') || '0',
+      )
+      const safeLeft = parseInt(
+        window
+          .getComputedStyle(root)
+          .getPropertyValue('safe-area-inset-left') || '0',
+      )
+      const safeRight = parseInt(
+        window
+          .getComputedStyle(root)
+          .getPropertyValue('safe-area-inset-right') || '0',
+      )
+
+      root.style.setProperty('--safe-area-inset-top', `${safeTop}px`)
+      root.style.setProperty('--safe-area-inset-bottom', `${safeBottom}px`)
+      root.style.setProperty('--safe-area-inset-left', `${safeLeft}px`)
+      root.style.setProperty('--safe-area-inset-right', `${safeRight}px`)
+    }
+
+    updateSafeAreaVars()
+    window.addEventListener('resize', updateSafeAreaVars)
+    return () => window.removeEventListener('resize', updateSafeAreaVars)
+  }, [])
+
+  useEffect(() => {
     addConsoleActivation(setActive)
   }, [setActive])
 
