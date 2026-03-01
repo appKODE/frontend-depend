@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Box, Row } from '../../atoms'
 import { TRadioOptions } from '../../atoms/radio-input/types'
-import { RadioGroup } from '../../molecules'
+import { EnvSelect } from '../../molecules'
 import { KeyValueField } from '../../molecules/key-value-field'
 import { EndpointsList } from '../endpoints-list'
 import {
@@ -49,10 +49,6 @@ type Props = {
   onChangeEndpointHeaders: THeadersChangeHandler
 }
 
-const RadioWrapper = styled.div`
-  max-width: 100px;
-`
-
 export const SpecPanel = ({
   specId,
   environments,
@@ -83,24 +79,21 @@ export const SpecPanel = ({
               initialValue={defaultHeaders}
             />
             <Box w={16} />
-            <RadioWrapper>
-              <RadioGroup
-                id={specId}
-                value={defaultEnv}
-                color={'red'}
-                onChange={(_, value) => {
-                  onChangeDefaultEnv(value || null, specId)
-                  setDefaultValue(value)
-                }}
-                items={[
-                  ...environments,
-                  {
-                    label: 'Default',
-                    value: '',
-                  },
-                ]}
-              />
-            </RadioWrapper>
+            <EnvSelect
+              id={specId}
+              value={defaultEnv ?? ''}
+              onChange={(_, value) => {
+                onChangeDefaultEnv(value || null, specId)
+                setDefaultValue(value)
+              }}
+              options={[
+                ...environments,
+                {
+                  label: 'Default',
+                  value: '',
+                },
+              ]}
+            />
 
             <Box w={16} />
             <Button active title='reset to default' onClick={resetOptions}>

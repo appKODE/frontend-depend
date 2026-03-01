@@ -24,12 +24,15 @@ export const filterPath = (
   methods: UrlMethod[],
   pathName: string,
 ) => {
-  return paths.map(paths => {
-    return {
-      specId: paths.specId,
-      paths: paths.paths.filter(
-        path => path.name.includes(pathName) && methods.includes(path.method),
-      ),
-    }
-  })
+  const query = pathName.toLowerCase()
+  return paths.map(p => ({
+    specId: p.specId,
+    paths: p.paths.filter(
+      path =>
+        methods.includes(path.method) &&
+        (query === '' ||
+          path.template.toLowerCase().includes(query) ||
+          path.name.toLowerCase().includes(query)),
+    ),
+  }))
 }

@@ -45,6 +45,8 @@ type Props = {
   onResetOptions: () => void
   position: PanelPosition
   onChangePosition: (pos: PanelPosition) => void
+  onRemoveSpec?: (specId: string) => void
+  defaultSpecIds?: Set<string>
 }
 
 export const Panel = ({
@@ -62,12 +64,15 @@ export const Panel = ({
   onResetOptions,
   position,
   onChangePosition,
+  onRemoveSpec,
+  defaultSpecIds,
 }: Props) => {
   const [defaultEnv, setDefaultValue] =
     useState<Record<string, string>>(defaultEnvId)
   const { methods: initMethods, paths: defaultPaths } = getData(configs)
   const [filteredMethods, setFilteredMethods] =
     useState<UrlMethod[]>(initMethods)
+  const [selectedMethod, setSelectedMethod] = useState<UrlMethod | null>(null)
   const [searchValue, setSearchValue] = useState<string>('')
   const [filteredPaths, setFilteredPaths] = useState<Path[]>(defaultPaths)
   const [currSpec, setCurrSpec] = useState<string | null>(
@@ -126,13 +131,24 @@ export const Panel = ({
   }, [onResetOptions])
 
   const onClearHandler = () => {
-    setFilteredPaths(defaultPaths)
     setSearchValue('')
+    setSelectedMethod(null)
+    setFilteredMethods(initMethods)
   }
 
-  const onSelectMethod = (selectedMethod: UrlMethod | null) => {
-    if (selectedMethod) {
-      setFilteredMethods([selectedMethod])
+  const onSelectMethod = (method: UrlMethod | null) => {
+    setSelectedMethod(method)
+    setFilteredMethods(method ? [method] : initMethods)
+  }
+
+  const handleRemoveSpec = (specId: string) => {
+    if (onRemoveSpec) {
+      onRemoveSpec(specId)
+      // If the removed spec was selected, switch to the first remaining spec
+      if (currSpec === specId) {
+        const remainingSpecs = configs.filter(c => c.specId !== specId)
+        setCurrSpec(remainingSpecs.at(0)?.specId || null)
+      }
     }
   }
 
@@ -156,11 +172,17 @@ export const Panel = ({
       <SearchInput
         value={searchValue}
         methods={initMethods}
+        selectedMethod={selectedMethod}
         onClearHandler={onClearHandler}
         onSelectMethod={onSelectMethod}
         onHandleChange={onHandleChange}
       />
-      <Tabs onLoadSpec={onLoadSpec} tabs={tabs} />
+      <Tabs
+        onLoadSpec={onLoadSpec}
+        tabs={tabs}
+        onRemoveSpec={handleRemoveSpec}
+        defaultSpecIds={defaultSpecIds}
+      />
       {specConfig && (
         <SpecPanel
           specId={specConfig.specId}

@@ -55,6 +55,18 @@
                       "page": 22,
                       "pageSize": 2
                     }
+                  },
+                  "happy": {
+                    "value": {
+                      "id": "2323-22",
+                      "firstName": "Happy",
+                      "lastName": "Path",
+                      "email": "ivan.petrov@example.com",
+                      "phone": "+7 999 123-45-67",
+                      "status": "active",
+                      "page": 22,
+                      "pageSize": 2
+                    }
                   }
                 }
               }

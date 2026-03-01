@@ -185,6 +185,7 @@ export const Pathfinder = ({
   }, [resolver, storage])
 
   const [spec, setSpec] = useState<Spec[] | null>(module.getSpecs())
+  const [defaultSpecIds, setDefaultSpecIds] = useState<Set<string>>(new Set())
   const [globalHeaders, setGlobalHeaders] = useState<StrRecord<Header[]>>(
     module.getGlobalHeaders(),
   )
@@ -270,6 +271,10 @@ export const Pathfinder = ({
   useEffect(() => {
     if (defaultSpecs) {
       loadSpec(defaultSpecs)
+      const specs = module.getSpecs()
+      if (specs) {
+        setDefaultSpecIds(new Set(specs.map(s => s.id)))
+      }
     }
   }, [])
 
@@ -284,6 +289,18 @@ export const Pathfinder = ({
   const handleOnResetOptions = () => {
     module.reset()
     setSpec(module.getSpecs())
+  }
+
+  const handleRemoveSpec = (specId: string) => {
+    // Don't allow removing default specs
+    if (defaultSpecIds.has(specId)) {
+      return
+    }
+    const updatedSpecs = spec?.filter(s => s.id !== specId) || []
+    setSpec(updatedSpecs)
+    const getLocalEndpointHeader = module.getEndpointHeaders
+    const endpoints = getEndpointsHeaders(getLocalEndpointHeader, updatedSpecs)
+    setEndpointsHeaders(endpoints)
   }
 
   const configs: TConfigs[] = []
@@ -354,6 +371,8 @@ export const Pathfinder = ({
                 onResetOptions={handleOnResetOptions}
                 position={panelPosition}
                 onChangePosition={handleChangePosition}
+                onRemoveSpec={handleRemoveSpec}
+                defaultSpecIds={defaultSpecIds}
               />
             </PanelShell>
           </ThemeProvider>

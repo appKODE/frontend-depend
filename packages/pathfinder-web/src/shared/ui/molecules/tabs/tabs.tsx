@@ -6,6 +6,8 @@ import { UploadSpec } from '../upload-spec'
 type Props = {
   tabs: ComponentProps<typeof Tab>[]
   onLoadSpec: (data: unknown[]) => void
+  onRemoveSpec?: (specId: string) => void
+  defaultSpecIds?: Set<string>
 }
 
 const Wrapper = styled.div`
@@ -16,12 +18,32 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `
 
-export const Tabs = ({ tabs, onLoadSpec }: Props) => {
+export const Tabs = ({
+  tabs,
+  onLoadSpec,
+  onRemoveSpec,
+  defaultSpecIds,
+}: Props) => {
   return (
     <Wrapper>
-      {tabs.map((tab, index) => (
-        <Tab {...tab} key={index} />
-      ))}
+      {tabs.map((tab, index) => {
+        const specId = tab.children as string
+        const isDefault = defaultSpecIds?.has(specId)
+        return (
+          <Tab
+            {...tab}
+            key={index}
+            onClose={
+              !isDefault && onRemoveSpec
+                ? (e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    onRemoveSpec(specId)
+                  }
+                : undefined
+            }
+          />
+        )
+      })}
       <UploadSpec onLoad={onLoadSpec} />
     </Wrapper>
   )

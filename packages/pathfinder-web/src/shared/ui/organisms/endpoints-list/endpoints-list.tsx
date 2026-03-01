@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { TBasePathChangeHandler, TUrlHeaders, TUrlItem } from './types'
 import { Method, ScrollWrapper } from '../../atoms'
-import { RadioGroup } from '../../molecules'
+import { EnvSelect } from '../../molecules'
 import { TRadioOptions } from '../../atoms/radio-input/types'
 import { KeyValueField } from '../../molecules/key-value-field'
 
@@ -114,15 +114,14 @@ export const EndpointsList = ({
                 initialValue={headers[item.id]}
                 responses={item.responses}
               />
-              <RadioGroup
-                compact
+              <EnvSelect
                 id={item.id}
-                value={values[item.id]}
+                value={values[item.id] ?? ''}
                 onChange={(id, value) => {
                   onBasePathChange(id, value || undefined)
                   setValues(prev => ({ ...prev, [id]: value }))
                 }}
-                items={[
+                options={[
                   ...environments,
                   {
                     label: 'Global',

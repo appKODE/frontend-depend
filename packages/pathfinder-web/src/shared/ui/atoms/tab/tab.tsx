@@ -7,6 +7,7 @@ type Props = {
   count?: number
   isSelected?: boolean
   onClick?: () => void
+  onClose?: (e: React.MouseEvent) => void
 }
 
 const StyledButton = styled.button<{ isSelected?: boolean }>`
@@ -38,7 +39,30 @@ const StyledButton = styled.button<{ isSelected?: boolean }>`
   cursor: pointer;
 `
 
-export const Tab = ({ children, count, onClick, isSelected }: Props) => {
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
+export const Tab = ({
+  children,
+  count,
+  onClick,
+  isSelected,
+  onClose,
+}: Props) => {
   return (
     <StyledButton isSelected={isSelected} onClick={onClick}>
       {children}
@@ -46,6 +70,11 @@ export const Tab = ({ children, count, onClick, isSelected }: Props) => {
         <div>
           <InlineBadge count={count} />
         </div>
+      )}
+      {onClose && (
+        <CloseButton onClick={onClose} title='Remove spec'>
+          x
+        </CloseButton>
       )}
     </StyledButton>
   )
