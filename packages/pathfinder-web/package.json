@@ -48,11 +48,11 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "10 KB"
+      "limit": "110 KB"
     },
     {
       "path": "dist/index.mjs",
-      "limit": "10 KB"
+      "limit": "105 KB"
     }
   ],
   "devDependencies": {
@@ -95,6 +95,7 @@
     "webpack-cli": "4.4.0"
   },
   "dependencies": {
+    "@stoplight/elements": "^9.0.16",
     "fetch-intercept": "^2.4.0",
     "styled-components": "^5.3.5",
     "url-pattern": "^1.0.3"

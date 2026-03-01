@@ -1,3 +1,13 @@
+// Polyfills for @stoplight/elements which expects global and process objects
+if (typeof window !== 'undefined') {
+  if (!(window as any).global) {
+    ;(window as any).global = window
+  }
+  if (!(window as any).process) {
+    ;(window as any).process = { env: {} }
+  }
+}
+
 import React, {
   Fragment,
   useCallback,
@@ -188,6 +198,7 @@ export const Pathfinder = ({
   }, [resolver, storage])
 
   const [spec, setSpec] = useState<Spec[] | null>(module.getSpecs())
+  const [rawSpecs, setRawSpecs] = useState<Map<string, unknown>>(new Map())
   const [defaultSpecIds, setDefaultSpecIds] = useState<Set<string>>(new Set())
   const [globalHeaders, setGlobalHeaders] = useState<StrRecord<Header[]>>(
     module.getGlobalHeaders(),
@@ -301,6 +312,18 @@ export const Pathfinder = ({
     module.setSpecs(data)
     const specs = module.getSpecs()
     setSpec(specs)
+
+    // Сохраняем raw спецификации для Preview
+    const rawSpecsMap = new Map<string, unknown>()
+    if (specs) {
+      specs.forEach((parsedSpec, index) => {
+        if (data[index]) {
+          rawSpecsMap.set(parsedSpec.id, data[index])
+        }
+      })
+    }
+    setRawSpecs(rawSpecsMap)
+
     const getLocalEndpointHeader = module.getEndpointHeaders
     const endpoints = getEndpointsHeaders(getLocalEndpointHeader, specs)
     setEndpointsHeaders(endpoints)
@@ -367,6 +390,7 @@ export const Pathfinder = ({
           }) || [],
         envList: item?.envs.map(toPanelEnv) || [],
       },
+      specDocument: rawSpecs.get(item.id) as object | undefined,
     })
   })
 

@@ -185,6 +185,12 @@ export const Panel = ({
         onChangePosition={onChangePosition}>
         PathFinder
       </Header>
+      <Tabs
+        onLoadSpec={onLoadSpec}
+        tabs={tabs}
+        onRemoveSpec={handleRemoveSpec}
+        defaultSpecIds={defaultSpecIds}
+      />
       <SearchInput
         value={searchValue}
         methods={initMethods}
@@ -196,15 +202,10 @@ export const Panel = ({
         onSelectTag={onSelectTag}
         onHandleChange={onHandleChange}
       />
-      <Tabs
-        onLoadSpec={onLoadSpec}
-        tabs={tabs}
-        onRemoveSpec={handleRemoveSpec}
-        defaultSpecIds={defaultSpecIds}
-      />
       {specConfig && (
         <SpecPanel
           specId={specConfig.specId}
+          specDocument={specConfig.specDocument}
           environments={
             environments.find(env => env.specId === specConfig.specId)
               ?.enviroments

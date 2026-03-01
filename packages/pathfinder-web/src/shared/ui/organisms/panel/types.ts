@@ -16,6 +16,7 @@ export type TConfig = {
 export type TConfigs = {
   specId: string
   config: TConfig
+  specDocument?: object
 }
 
 export type THeaders = {

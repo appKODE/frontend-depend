@@ -18,7 +18,7 @@ const StyledButton = styled.button<{ isSelected?: boolean }>`
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
   }
-  padding: 16px;
+  padding: 8px 12px;
   min-width: 40px;
   max-width: 200px;
   opacity: 0.5;
@@ -26,15 +26,23 @@ const StyledButton = styled.button<{ isSelected?: boolean }>`
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  ${({ isSelected }) =>
+  color: ${({ theme }) => theme.colors.panel.text};
+  background-color: transparent;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  white-space: nowrap;
+
+  ${({ isSelected, theme }) =>
     isSelected &&
     css`
       opacity: 1;
-      background-color: ${() => '#E5E5E9'};
+      background-color: ${theme.colors.panel.accent};
+      color: ${theme.colors.panel.bg};
     `}
 
   &:hover {
-    background-color: ${() => '#E5E5E9'};
+    opacity: 0.8;
+    background-color: ${({ theme }) => theme.colors.panel.accent};
   }
   cursor: pointer;
 `

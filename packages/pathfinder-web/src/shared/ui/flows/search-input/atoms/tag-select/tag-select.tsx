@@ -38,6 +38,7 @@ const StyledText = styled.p`
 
 const IconWrap = styled.div<{ isDropped: boolean }>`
   margin-left: 8px;
+  color: ${({ theme }) => theme.colors.panel.text};
   ${({ isDropped }) =>
     isDropped &&
     css`
@@ -114,7 +115,7 @@ export const TagSelect = ({ tags, value, onSelectTag }: Props) => {
         }}>
         <StyledText>{value ? value : 'Tag'}</StyledText>
         <IconWrap isDropped={isDropped}>
-          <ArrowDownIcon />
+          <ArrowDownIcon color='currentColor' />
         </IconWrap>
       </TagButton>
       {isDropped && (

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Button, Box, Row } from '../../atoms'
 import { TRadioOptions } from '../../atoms/radio-input/types'
-import { EnvSelect } from '../../molecules'
+import { EnvSelect, SpecTabs } from '../../molecules'
 import { KeyValueField } from '../../molecules/key-value-field'
 import { EndpointsList } from '../endpoints-list'
+import { SpecPreview } from '../spec-preview'
 import {
   THeadersChangeHandler,
   TUrlHeaders,
@@ -18,7 +19,7 @@ const DefaultControls = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 0px 8px;
+  margin: 8px 8px;
 `
 
 const Text = styled.span`
@@ -34,6 +35,7 @@ const RightControls = styled(Row)`
 
 type Props = {
   specId: string
+  specDocument?: object
   environments?: TRadioOptions[]
   defaultHeaders: string
   defaultEnv?: string
@@ -49,8 +51,16 @@ type Props = {
   onChangeEndpointHeaders: THeadersChangeHandler
 }
 
+const TabsContentWrapper = styled.div`
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+`
+
 export const SpecPanel = ({
   specId,
+  specDocument,
   environments,
   defaultHeaders,
   defaultEnv,
@@ -65,60 +75,77 @@ export const SpecPanel = ({
   onChangeUrlEnv,
   onChangeEndpointHeaders,
 }: Props) => {
+  const [activeTab, setActiveTab] = useState<'overrides' | 'preview'>(
+    'overrides',
+  )
+
+  // Reset to overrides tab when spec changes
+  useEffect(() => {
+    setActiveTab('overrides')
+  }, [specId])
+
   return (
     <>
-      {environments && environments.length > 0 && (
-        <DefaultControls>
-          <Text>Requests</Text>
-          <RightControls>
-            <KeyValueField
-              id={specId}
-              title='Global headers'
-              placeholder='Enter each header on a new line. &#10;For example:&#10;Authorization: Bearer 123&#10;Prefer: code=200, dynamic=true'
-              onApply={value => onChangeDefaultHeaders(value, specId)}
-              initialValue={defaultHeaders}
-            />
-            <Box w={16} />
-            <EnvSelect
-              id={specId}
-              value={defaultEnv ?? ''}
-              onChange={(_, value) => {
-                onChangeDefaultEnv(value || null, specId)
-                setDefaultValue(value)
-              }}
-              options={[
-                ...environments,
-                {
-                  label: 'No override',
-                  value: '',
-                  description: '',
-                },
-              ]}
-            />
+      <SpecTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-            <Box w={16} />
-            <Button active title='Reset all' onClick={resetOptions}>
-              Reset all
-            </Button>
-          </RightControls>
-        </DefaultControls>
+      {activeTab === 'overrides' && (
+        <TabsContentWrapper>
+          {environments && environments.length > 0 && (
+            <DefaultControls>
+              <Text>Requests</Text>
+              <RightControls>
+                <KeyValueField
+                  id={specId}
+                  title='Global headers'
+                  placeholder='Enter each header on a new line. &#10;For example:&#10;Authorization: Bearer 123&#10;Prefer: code=200, dynamic=true'
+                  onApply={value => onChangeDefaultHeaders(value, specId)}
+                  initialValue={defaultHeaders}
+                />
+                <Box w={16} />
+                <EnvSelect
+                  id={specId}
+                  value={defaultEnv ?? ''}
+                  onChange={(_, value) => {
+                    onChangeDefaultEnv(value || null, specId)
+                    setDefaultValue(value)
+                  }}
+                  options={[
+                    ...environments,
+                    {
+                      label: 'No override',
+                      value: '',
+                      description: '',
+                    },
+                  ]}
+                />
+
+                <Box w={16} />
+                <Button active title='Reset all' onClick={resetOptions}>
+                  Reset all
+                </Button>
+              </RightControls>
+            </DefaultControls>
+          )}
+          {urlHeaders &&
+            environments &&
+            filteredPaths &&
+            config.urlList.length > 0 && (
+              <EndpointsList
+                headers={urlHeaders}
+                environments={environments}
+                items={filteredPaths}
+                initialValues={urlEnvInitialValues}
+                onBasePathChange={onChangeUrlEnv}
+                onHeadersChange={(headers: string, endpointId: string) => {
+                  onChangeEndpointHeaders(headers, endpointId, specId)
+                }}
+                globalEnvId={defaultEnv}
+              />
+            )}
+        </TabsContentWrapper>
       )}
-      {urlHeaders &&
-        environments &&
-        filteredPaths &&
-        config.urlList.length > 0 && (
-          <EndpointsList
-            headers={urlHeaders}
-            environments={environments}
-            items={filteredPaths}
-            initialValues={urlEnvInitialValues}
-            onBasePathChange={onChangeUrlEnv}
-            onHeadersChange={(headers: string, endpointId: string) => {
-              onChangeEndpointHeaders(headers, endpointId, specId)
-            }}
-            globalEnvId={defaultEnv}
-          />
-        )}
+
+      {activeTab === 'preview' && <SpecPreview specDocument={specDocument} />}
     </>
   )
 }

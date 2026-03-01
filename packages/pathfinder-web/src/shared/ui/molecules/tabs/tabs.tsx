@@ -13,9 +13,11 @@ type Props = {
 const Wrapper = styled.div`
   display: flex;
   margin: 8px;
-  background-color: #f5f5f7;
+  background-color: ${({ theme }) => theme.colors.panel.surface};
   border-radius: 8px;
   flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
 `
 
 export const Tabs = ({
