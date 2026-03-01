@@ -97,8 +97,8 @@ export const SpecPanel = ({
             />
 
             <Box w={16} />
-            <Button active title='reset to default' onClick={resetOptions}>
-              reset to default
+            <Button active title='Reset all' onClick={resetOptions}>
+              Reset all
             </Button>
           </RightControls>
         </DefaultControls>
