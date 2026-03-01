@@ -171,6 +171,7 @@ const toPanelUrl = (url: UrlSpec): TPanelUrl => ({
 const toPanelEnv = (env: EnvSpec): TPanelEnv => ({
   id: env.id,
   name: env.name,
+  baseUrl: env.baseUrl,
 })
 
 export const Pathfinder = ({

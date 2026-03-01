@@ -179,8 +179,9 @@ export const EndpointsList = ({
                 options={[
                   ...environments,
                   {
-                    label: 'Global',
+                    label: 'No override',
                     value: '',
+                    description: '',
                   },
                 ]}
               />

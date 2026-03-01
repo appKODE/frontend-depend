@@ -89,8 +89,9 @@ export const SpecPanel = ({
               options={[
                 ...environments,
                 {
-                  label: 'Default',
+                  label: 'No override',
                   value: '',
+                  description: '',
                 },
               ]}
             />

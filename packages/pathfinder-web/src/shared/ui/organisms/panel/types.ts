@@ -3,6 +3,7 @@ import { TUrlHeaders, TUrlItem } from '../endpoints-list/types'
 export type TPanelEnv = {
   id: string
   name: string
+  baseUrl?: string
 }
 
 export type TPanelUrl = TUrlItem

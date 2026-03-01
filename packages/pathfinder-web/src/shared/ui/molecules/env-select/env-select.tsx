@@ -4,6 +4,7 @@ import styled from 'styled-components'
 type TOption = {
   label: string
   value: string
+  description?: string
 }
 
 type Props = {
@@ -32,15 +33,36 @@ const Select = styled.select<{ $isActive: boolean }>`
   }
 `
 
-export const EnvSelect = ({ id, value, options, onChange }: Props) => (
-  <Select
-    $isActive={value !== ''}
-    value={value}
-    onChange={e => onChange(id, e.target.value)}>
-    {options.map(opt => (
-      <option key={opt.value} value={opt.value}>
-        {opt.label}
-      </option>
-    ))}
-  </Select>
-)
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Description = styled.span`
+  font-size: 10px;
+  color: ${({ theme }) => theme.colors.panel.textMuted};
+  font-family: monospace;
+  margin-top: 2px;
+`
+
+export const EnvSelect = ({ id, value, options, onChange }: Props) => {
+  const selectedOption = options.find(opt => opt.value === value)
+
+  return (
+    <Container>
+      <Select
+        $isActive={value !== ''}
+        value={value}
+        onChange={e => onChange(id, e.target.value)}>
+        {options.map(opt => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </Select>
+      {selectedOption?.description && (
+        <Description>{selectedOption.description}</Description>
+      )}
+    </Container>
+  )
+}

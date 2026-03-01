@@ -7,11 +7,11 @@
   "servers": [
     {
       "url": "http://127.0.0.1:3100",
-      "description": "Local"
+      "description": "Local mock"
     },
     {
       "url": "https://jsonplaceholder.typicode.com",
-      "description": "JSONPlaceholder"
+      "description": "backend"
     }
   ],
   "paths": {

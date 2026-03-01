@@ -129,6 +129,7 @@ export const Panel = ({
           enviroments: config.config.envList.map(env => ({
             value: env.id,
             label: env.name,
+            description: env.baseUrl,
           })),
         }
       }),
