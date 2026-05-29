@@ -16,7 +16,7 @@ export const findSpec: FindSpecFn = (templates, method, url, basePath) => {
     // необходимо это для обработки кейсов, когда server в стоплайте указан с путем, например https://path.ru/api
     // в таком случае в спеке адреса будут описаны как /adress, а мы будем сравнивать с /api/adress и не сможем их сматчить
     const template = value
-      .replace(/{.*}/gm, match => `(/:${match.replace(/(\{|\})/gm, '')})`)
+      .replace(/\{[^}]+\}/g, match => `(/:${match.replace(/[{}]/g, '')})`)
       .replace(/\/\(\//gm, '(/')
 
     const pattern = new UrlPattern(`${template}(/)(?*)`, {
