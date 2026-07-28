@@ -9,10 +9,10 @@
   },
   "bugs": "https://github.com/appKODE/frontend-depend/issues",
   "dependencies": {
-    "conventional-changelog-conventionalcommits": "^9"
+    "conventional-changelog-conventionalcommits": "^10"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">=22.12.0"
   },
   "exports": {
     ".": "./config.js"
@@ -25,7 +25,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@commitlint/cli": "^19 || ^20"
+    "@commitlint/cli": "^19 || ^20 || ^21"
   },
   "publishConfig": {
     "access": "public",
