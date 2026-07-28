@@ -1,5 +1,12 @@
 # @kode-frontend/commitlint-config
 
+## 0.0.5
+
+### Patch Changes
+
+- [#82](https://github.com/appKODE/frontend-depend/pull/82) [`9b16e71`](https://github.com/appKODE/frontend-depend/commit/9b16e71f07f95d67976737861ee3304051bf86f4) Thanks [@xxtereshko](https://github.com/xxtereshko)! - Bump conventional-changelog-conventionalcommits to ^10, widen @commitlint/cli peer to ^19 || ^20 || ^21, bump engines.node to >=22.
+  12.0
+
 ## 0.0.4
 
 ### Patch Changes
