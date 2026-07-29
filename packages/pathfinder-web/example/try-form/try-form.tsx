@@ -1,55 +1,128 @@
 import * as React from 'react'
 import { useState } from 'react'
+import coreSpec from '../pathfinder/core.json'
 
-export const TryForm = () => {
-  const [value, setValue] = useState(
-    'http://127.0.0.1:3100/bo/backoffice/api/v1/customers/search/2323-22?page=22&pageSize=2',
-  )
+type Endpoint = {
+  method: string
+  url: string
+  summary: string
+}
 
-  const [result, setResult] = useState('')
+const BASE_URL = coreSpec.servers[0].url
 
-  const onSubmitFetchHandler = async () => {
-    const data = await fetch(value, {
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        Authorization: 'Bearer 12322',
-      },
-    })
+function buildEndpoints(): Endpoint[] {
+  const endpoints: Endpoint[] = []
 
-    const json = await data.json()
-
-    setResult(json)
+  for (const [path, item] of Object.entries(coreSpec.paths)) {
+    for (const [method, operation] of Object.entries(item)) {
+      const url = BASE_URL + path.replace(/\{[^}]+\}/g, '1')
+      endpoints.push({
+        method: method.toUpperCase(),
+        url,
+        summary: (operation as { summary: string }).summary,
+      })
+    }
   }
 
-  const onSubmitXMLHttpRequestHandler = async () => {
-    function reqListener() {
+  return endpoints
+}
+
+const ENDPOINTS = buildEndpoints()
+
+export const TryForm = () => {
+  const [result, setResult] = useState<unknown>(null)
+  const [activeUrl, setActiveUrl] = useState('')
+
+  const runFetch = async (method: string, url: string) => {
+    setActiveUrl(url)
+    setResult(null)
+    try {
+      const res = await fetch(url, { method })
+      const json = await res.json()
+      setResult(json)
+    } catch (e) {
+      setResult({ error: String(e) })
+    }
+  }
+
+  const runXHR = (method: string, url: string) => {
+    setActiveUrl(url)
+    setResult(null)
+    const req = new XMLHttpRequest()
+    req.onload = function () {
       try {
         setResult(JSON.parse(this.responseText))
-      } catch (e) {
-        console.error(onSubmitXMLHttpRequestHandler, e)
+      } catch {
+        setResult({ raw: this.responseText })
       }
     }
-
-    var oReq = new XMLHttpRequest()
-    oReq.onload = reqListener
-    oReq.open('get', value, true)
-    oReq.send()
+    req.onerror = () => setResult({ error: 'XHR error' })
+    req.open(method, url, true)
+    req.send()
   }
 
   return (
-    <>
-      <input
-        type='text'
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
-      <button onClick={onSubmitFetchHandler}>Submit Fetch</button>
+    <div style={{ fontFamily: 'sans-serif', padding: 16 }}>
+      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <thead>
+          <tr>
+            <th style={thStyle}>Method</th>
+            <th style={thStyle}>URL</th>
+            <th style={thStyle}>Summary</th>
+            <th style={thStyle}>Fetch</th>
+            <th style={thStyle}>XHR</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ENDPOINTS.map((ep, i) => (
+            <tr
+              key={i}
+              style={{
+                background: activeUrl === ep.url ? '#f0f4ff' : undefined,
+              }}>
+              <td style={tdStyle}>
+                <code>{ep.method}</code>
+              </td>
+              <td style={tdStyle}>
+                <code style={{ fontSize: 12 }}>{ep.url}</code>
+              </td>
+              <td style={tdStyle}>{ep.summary}</td>
+              <td style={tdStyle}>
+                <button onClick={() => runFetch(ep.method, ep.url)}>
+                  Fetch
+                </button>
+              </td>
+              <td style={tdStyle}>
+                <button onClick={() => runXHR(ep.method, ep.url)}>XHR</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <button onClick={onSubmitXMLHttpRequestHandler}>
-        Submit XMLHttpRequest
-      </button>
-
-      <pre>{JSON.stringify(result, null, '\t')}</pre>
-    </>
+      {result !== null && (
+        <pre
+          style={{
+            marginTop: 16,
+            padding: 12,
+            background: '#f5f5f5',
+            overflow: 'auto',
+            maxHeight: 300,
+          }}>
+          {JSON.stringify(result, null, 2)}
+        </pre>
+      )}
+    </div>
   )
+}
+
+const thStyle: React.CSSProperties = {
+  textAlign: 'left',
+  padding: '8px 12px',
+  borderBottom: '2px solid #ddd',
+}
+
+const tdStyle: React.CSSProperties = {
+  padding: '6px 12px',
+  borderBottom: '1px solid #eee',
 }

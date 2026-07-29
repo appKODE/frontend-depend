@@ -6,22 +6,46 @@ import { UploadSpec } from '../upload-spec'
 type Props = {
   tabs: ComponentProps<typeof Tab>[]
   onLoadSpec: (data: unknown[]) => void
+  onRemoveSpec?: (specId: string) => void
+  defaultSpecIds?: Set<string>
 }
 
 const Wrapper = styled.div`
   display: flex;
   margin: 8px;
-  background-color: #f5f5f7;
+  background-color: ${({ theme }) => theme.colors.panel.surface};
   border-radius: 8px;
   flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
 `
 
-export const Tabs = ({ tabs, onLoadSpec }: Props) => {
+export const Tabs = ({
+  tabs,
+  onLoadSpec,
+  onRemoveSpec,
+  defaultSpecIds,
+}: Props) => {
   return (
     <Wrapper>
-      {tabs.map((tab, index) => (
-        <Tab {...tab} key={index} />
-      ))}
+      {tabs.map((tab, index) => {
+        const specId = tab.children as string
+        const isDefault = defaultSpecIds?.has(specId)
+        return (
+          <Tab
+            {...tab}
+            key={index}
+            onClose={
+              !isDefault && onRemoveSpec
+                ? (e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    onRemoveSpec(specId)
+                  }
+                : undefined
+            }
+          />
+        )
+      })}
       <UploadSpec onLoad={onLoadSpec} />
     </Wrapper>
   )

@@ -15,10 +15,11 @@ const Wrapper = styled.label`
   transition: 0.3s ease;
   user-select: none;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.5;
+  color: ${({ theme }) => theme.colors.panel.text};
   :hover {
     opacity: 1;
-    background-color: ${() => '#E5E5E9'};
+    background-color: ${({ theme }) => theme.colors.panel.accent};
   }
 `
 
@@ -61,7 +62,7 @@ export const UploadSpec = ({ onLoad }: Props) => {
 
   return (
     <Wrapper htmlFor='upload-spec'>
-      <AddSpecIcon color='black' />
+      <AddSpecIcon color='currentColor' />
       <HiddenInput
         id='upload-spec'
         type='file'

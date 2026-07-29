@@ -116,12 +116,15 @@ export function useRequestInterception(
     XMLHttpRequest.prototype.open = function (
       method: string,
       url: string | URL,
+      async?: boolean,
+      user?: string,
+      password?: string,
     ) {
       const urlString = typeof url === 'string' ? url : url.toString()
       const specs = pathfinder.getSpecs()
 
       if (!specs) {
-        open.apply(this, arguments as any)
+        open.apply(this, [method, url, async ?? true, user, password])
         return
       }
       const origin = typeof url === 'string' ? new URL(url).origin : url.origin
@@ -129,7 +132,7 @@ export function useRequestInterception(
       const spec = specs.find(spec => spec.id === specId)
 
       if (!spec) {
-        open.apply(this, arguments as any)
+        open.apply(this, [method, url, async ?? true, user, password])
         return
       }
       const basePath = findBaseApi(specs, origin)
@@ -164,14 +167,12 @@ export function useRequestInterception(
           })
         : urlString
 
-      arguments[1] = newUrl
-
       const newHeaders = mergeGlobalAndEndpointHeaders({
         globalHeaders: globalHeaders[specId] || [],
         endpointHeaders,
       })
 
-      open.apply(this, arguments as any)
+      open.apply(this, [method, newUrl, async ?? true, user, password])
 
       Object.getOwnPropertyNames(newHeaders).forEach(header => {
         if (newHeaders[header]) {

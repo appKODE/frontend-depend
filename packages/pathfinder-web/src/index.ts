@@ -7,4 +7,4 @@ export { openApiResolver } from './lib'
 
 export { storage } from './features/storage'
 
-export { Schema } from './types'
+export type { Schema } from './types'

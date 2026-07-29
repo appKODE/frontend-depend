@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 import { TBasePathChangeHandler, TUrlHeaders, TUrlItem } from './types'
 import { Method, ScrollWrapper } from '../../atoms'
-import { RadioGroup } from '../../molecules'
+import { EnvSelect } from '../../molecules'
 import { TRadioOptions } from '../../atoms/radio-input/types'
 import { KeyValueField } from '../../molecules/key-value-field'
+import { GLOBAL_ENV_MARKER } from '../../../../constants'
 
 type Props = {
   environments: TRadioOptions[]
@@ -14,32 +15,132 @@ type Props = {
   headers: TUrlHeaders
   onBasePathChange: TBasePathChangeHandler
   onHeadersChange: (headers: string, endpointId: string) => void
+  globalEnvId?: string
 }
 
-const Table = styled.table`
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  border-collapse: collapse;
+`
 
-  tr {
-    transition: 0.2s linear;
+const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.panel.border};
+  transition: background 0.15s;
 
-    &:hover {
-      background: ${({ theme }) => theme.colors.decorative.light.normal};
+  &:hover {
+    background: ${({ theme }) => theme.colors.panel.surface};
+  }
+`
+
+const TopRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+`
+
+const MethodCell = styled.div`
+  flex-shrink: 0;
+  padding-top: 2px;
+`
+
+const PathCell = styled.div`
+  flex: 1;
+  min-width: 0;
+`
+
+const PathTemplate = styled.span`
+  display: block;
+  font-family: monospace;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.panel.text};
+  word-break: break-all;
+`
+
+const PathName = styled.span`
+  display: block;
+  font-size: 11px;
+  color: ${({ theme }) => theme.colors.panel.textMuted};
+  margin-top: 2px;
+`
+
+const TagsRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+`
+
+const TagChip = styled.span`
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: ${({ theme }) => theme.colors.panel.surface};
+  color: ${({ theme }) => theme.colors.panel.textMuted};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+const HeadersRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+`
+
+const HeaderItem = styled.div`
+  font-size: 10px;
+  color: ${({ theme }) => theme.colors.panel.textMuted};
+  font-family: monospace;
+  padding: 2px 4px;
+  background-color: ${({ theme }) => theme.colors.panel.surface};
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
+
+const ActionsRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+`
+
+const getActiveBaseUrl = (
+  selectedValue: string,
+  environments: TRadioOptions[],
+  globalEnvId: string | undefined,
+): string => {
+  // Если выбран конкретный env
+  if (
+    selectedValue &&
+    selectedValue !== '' &&
+    selectedValue !== GLOBAL_ENV_MARKER
+  ) {
+    const env = environments.find(e => e.value === selectedValue)
+    return env?.description || ''
+  }
+
+  // Если выбран Global или по умолчанию
+  if (selectedValue === GLOBAL_ENV_MARKER || !selectedValue) {
+    if (globalEnvId && globalEnvId !== '') {
+      const globalEnv = environments.find(e => e.value === globalEnvId)
+      return globalEnv?.description || ''
     }
   }
 
-  tr td {
-    padding: 8px;
-    border: 1px solid
-      ${({ theme }) => theme.colors.decorative.medium.translucent};
-  }
-`
-
-const EndpointName = styled.span`
-  display: block;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.decorative.medium.normal};
-`
+  // Если "No override"
+  return ''
+}
 
 export const EndpointsList = ({
   environments,
@@ -48,26 +149,54 @@ export const EndpointsList = ({
   headers,
   onBasePathChange,
   onHeadersChange,
+  globalEnvId,
 }: Props) => {
   const [values, setValues] = useState(initialValues)
 
   useEffect(() => {
     setValues(initialValues)
   }, [initialValues])
+
   return (
     <ScrollWrapper>
-      <Table>
-        <tbody>
-          {items.map(item => (
-            <tr key={item.id}>
-              <td>
-                <Method method={item.method} />
-              </td>
-              <td>
-                {item.template}
-                <EndpointName>{item.name}</EndpointName>
-              </td>
-              <td>
+      <List>
+        {items.map(item => {
+          const currentValue = values[item.id] ?? GLOBAL_ENV_MARKER
+          const activeBaseUrl = getActiveBaseUrl(
+            currentValue,
+            environments,
+            globalEnvId,
+          )
+
+          return (
+            <Row key={item.id}>
+              <TopRow>
+                <MethodCell>
+                  <Method method={item.method} />
+                </MethodCell>
+                <PathCell>
+                  {item.name && <PathName>{item.name}</PathName>}
+                  <PathTemplate>{item.template}</PathTemplate>
+                  {item.tags && item.tags.length > 0 && (
+                    <TagsRow>
+                      {item.tags.map(tag => (
+                        <TagChip key={tag}>{tag}</TagChip>
+                      ))}
+                    </TagsRow>
+                  )}
+                  {headers[item.id] && headers[item.id].trim() && (
+                    <HeadersRow>
+                      {headers[item.id]
+                        .split('\n')
+                        .filter(line => line.trim())
+                        .map((line, idx) => (
+                          <HeaderItem key={idx}>{line}</HeaderItem>
+                        ))}
+                    </HeadersRow>
+                  )}
+                </PathCell>
+              </TopRow>
+              <ActionsRow>
                 <KeyValueField
                   title='Headers'
                   id={item.id}
@@ -78,28 +207,38 @@ export const EndpointsList = ({
                   initialValue={headers[item.id]}
                   responses={item.responses}
                 />
-              </td>
-              <td>
-                <RadioGroup
+                <EnvSelect
                   id={item.id}
-                  value={values[item.id]}
+                  value={currentValue}
                   onChange={(id, value) => {
-                    onBasePathChange(id, value || undefined)
+                    onBasePathChange(
+                      id,
+                      value === GLOBAL_ENV_MARKER
+                        ? undefined
+                        : value || undefined,
+                    )
                     setValues(prev => ({ ...prev, [id]: value }))
                   }}
-                  items={[
-                    ...environments,
+                  options={[
                     {
                       label: 'Global',
+                      value: GLOBAL_ENV_MARKER,
+                      description: '',
+                    },
+                    ...environments,
+                    {
+                      label: 'No override',
                       value: '',
+                      description: '',
                     },
                   ]}
+                  activeBaseUrl={activeBaseUrl}
                 />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+              </ActionsRow>
+            </Row>
+          )
+        })}
+      </List>
     </ScrollWrapper>
   )
 }

@@ -1,30 +1,25 @@
 {
-  "name": "example",
+  "name": "@kode-frontend/pathfinder-web-example",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "yarn link @kode-frontend/pathfinder-web && parcel index.html",
-    "build": "parcel build index.html"
+    "dev": "concurrently \"vite\" \"prism mock ./pathfinder/core.json --port 3100\"",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@kode-frontend/pathfinder-web": "^0.2.0",
-    "react-app-polyfill": "^1.0.0"
-  },
-  "alias": {
-    "react": "../node_modules/react",
-    "react-dom": "../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
+    "@kode-frontend/pathfinder-web": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.8.4",
-    "parcel": "^1.12.3",
-    "postcss-modules": "^4.3.1",
-    "typescript": "^3.4.5"
-  },
-  "resolutions": {
-    "@babel/preset-env": "7.13.8"
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@stoplight/prism-cli": "^5.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "concurrently": "^9.0.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0"
   }
 }
