@@ -1,16 +1,17 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.div<{ $height?: string }>`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: start;
   width: 100%;
-  height: 100%;
-  max-height: ${({ $height }) => ($height ? $height : '75vh')};
+  flex: 1;
+  min-height: 0;
   padding: 8px;
-  overflow: scroll;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: ${({ theme }) => theme.colors.decorative.medium.translucent}
     transparent;
@@ -29,9 +30,8 @@ const Wrapper = styled.div<{ $height?: string }>`
 
 type Props = {
   children: ReactNode
-  height?: string
 }
 
-export const ScrollWrapper = ({ children, height }: Props) => {
-  return <Wrapper $height={height}>{children}</Wrapper>
+export const ScrollWrapper = ({ children }: Props) => {
+  return <Wrapper>{children}</Wrapper>
 }

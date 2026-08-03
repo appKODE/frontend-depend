@@ -1,3 +1,243 @@
 {
-  "todo": "openapi 3.0.0 specification from stoplight"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Core API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:3100",
+      "description": "Local mock"
+    },
+    {
+      "url": "https://jsonplaceholder.typicode.com",
+      "description": "backend"
+    }
+  ],
+  "paths": {
+    "/bo/backoffice/api/v1/customers/search/{id}": {
+      "get": {
+        "operationId": "getCustomerById",
+        "summary": "Get customer by ID",
+        "tags": ["Customers"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "id": "2323-22",
+                      "firstName": "Ivan",
+                      "lastName": "Petrov",
+                      "email": "ivan.petrov@example.com",
+                      "phone": "+7 999 123-45-67",
+                      "status": "active",
+                      "page": 22,
+                      "pageSize": 2
+                    }
+                  },
+                  "happy": {
+                    "value": {
+                      "id": "2323-22",
+                      "firstName": "Happy",
+                      "lastName": "Path",
+                      "email": "ivan.petrov@example.com",
+                      "phone": "+7 999 123-45-67",
+                      "status": "active",
+                      "page": 22,
+                      "pageSize": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "error": "Customer not found",
+                      "code": 404
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bo/backoffice/api/v1/customers": {
+      "get": {
+        "operationId": "getCustomers",
+        "summary": "List customers",
+        "tags": ["Customers"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "items": [
+                        {
+                          "id": "1111-11",
+                          "firstName": "Ivan",
+                          "lastName": "Petrov",
+                          "email": "ivan.petrov@example.com",
+                          "status": "active"
+                        },
+                        {
+                          "id": "2222-22",
+                          "firstName": "Maria",
+                          "lastName": "Sidorova",
+                          "email": "maria.sidorova@example.com",
+                          "status": "inactive"
+                        }
+                      ],
+                      "total": 2,
+                      "page": 1,
+                      "pageSize": 20
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCustomer",
+        "summary": "Create customer",
+        "tags": ["Customers"],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "id": "3333-33",
+                      "firstName": "Alexey",
+                      "lastName": "Novikov",
+                      "email": "alexey.novikov@example.com",
+                      "status": "active"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "error": "Validation failed",
+                      "details": ["email is required", "firstName is required"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "operationId": "getPost",
+        "summary": "Get post by ID",
+        "tags": ["Posts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "id": 1,
+                      "userId": 1,
+                      "title": "sunt aut facere repellat provident",
+                      "body": "quia et suscipit suscipit recusandae consequuntur"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "operationId": "getPosts",
+        "summary": "List posts",
+        "tags": ["Posts"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": [
+                      {
+                        "id": 1,
+                        "userId": 1,
+                        "title": "sunt aut facere repellat provident",
+                        "body": "quia et suscipit suscipit recusandae consequuntur"
+                      },
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "title": "qui est esse",
+                        "body": "est rerum tempore vitae sequi sint nihil"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

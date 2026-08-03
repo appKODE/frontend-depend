@@ -21,9 +21,11 @@ type TRadiogroupProps = {
   color?: TDigitalColors
 }
 
-const Item = styled.div`
+type TItemProps = { $compact?: boolean }
+
+const Item = styled.div<TItemProps>`
   display: flex;
-  width: 100%;
+  width: ${({ $compact }) => ($compact ? 'auto' : '100%')};
   justify-content: space-between;
   flex-direction: row;
 `
@@ -35,10 +37,11 @@ export const RadioGroup = ({
   color,
   slot,
   onChange,
-}: TRadiogroupProps) => (
+  compact,
+}: TRadiogroupProps & { compact?: boolean }) => (
   <Wrapper>
     {items.map((item, index) => (
-      <Item key={index}>
+      <Item key={index} $compact={compact}>
         <RadioInput
           id={id}
           value={item.value}

@@ -14,14 +14,15 @@ import { Header as THeader, StrRecord, UrlMethod } from '../../../../types'
 import { SpecPanel } from '../spec-panel'
 import { stringifyHeaders } from '../../../lib/stringify-headers'
 import { filterPath, getData } from './helpers'
+import { PanelPosition } from '../../../../app/pathfinder'
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.main.light.normal};
-  border-radius: 16px;
-  padding: 0 12px;
+  background-color: ${({ theme }) => theme.colors.panel.bg};
+  color: ${({ theme }) => theme.colors.panel.text};
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `
 
 export type Path = {
@@ -42,6 +43,10 @@ type Props = {
   onChangeDefaultHeaders: (headers: string, specId: string) => void
   onChangeEndpointHeaders: THeadersChangeHandler
   onResetOptions: () => void
+  position: PanelPosition
+  onChangePosition: (pos: PanelPosition) => void
+  onRemoveSpec?: (specId: string) => void
+  defaultSpecIds?: Set<string>
 }
 
 export const Panel = ({
@@ -57,13 +62,23 @@ export const Panel = ({
   onChangeDefaultHeaders,
   onChangeEndpointHeaders,
   onResetOptions,
+  position,
+  onChangePosition,
+  onRemoveSpec,
+  defaultSpecIds,
 }: Props) => {
   const [defaultEnv, setDefaultValue] =
     useState<Record<string, string>>(defaultEnvId)
-  const { methods: initMethods, paths: defaultPaths } = getData(configs)
+  const {
+    methods: initMethods,
+    paths: defaultPaths,
+    tags: initTags,
+  } = getData(configs)
   const [filteredMethods, setFilteredMethods] =
     useState<UrlMethod[]>(initMethods)
+  const [selectedMethod, setSelectedMethod] = useState<UrlMethod | null>(null)
   const [searchValue, setSearchValue] = useState<string>('')
+  const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [filteredPaths, setFilteredPaths] = useState<Path[]>(defaultPaths)
   const [currSpec, setCurrSpec] = useState<string | null>(
     configs.at(0)?.specId || null,
@@ -77,9 +92,14 @@ export const Panel = ({
   }, [configs])
 
   useEffect(() => {
-    const newPaths = filterPath(defaultPaths, filteredMethods, searchValue)
+    const newPaths = filterPath(
+      defaultPaths,
+      filteredMethods,
+      searchValue,
+      selectedTag,
+    )
     setFilteredPaths(newPaths)
-  }, [searchValue, filteredMethods])
+  }, [searchValue, filteredMethods, selectedTag])
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscButton)
@@ -109,6 +129,7 @@ export const Panel = ({
           enviroments: config.config.envList.map(env => ({
             value: env.id,
             label: env.name,
+            description: env.baseUrl,
           })),
         }
       }),
@@ -121,13 +142,29 @@ export const Panel = ({
   }, [onResetOptions])
 
   const onClearHandler = () => {
-    setFilteredPaths(defaultPaths)
     setSearchValue('')
+    setSelectedMethod(null)
+    setSelectedTag(null)
+    setFilteredMethods(initMethods)
   }
 
-  const onSelectMethod = (selectedMethod: UrlMethod | null) => {
-    if (selectedMethod) {
-      setFilteredMethods([selectedMethod])
+  const onSelectTag = (tag: string | null) => {
+    setSelectedTag(tag)
+  }
+
+  const onSelectMethod = (method: UrlMethod | null) => {
+    setSelectedMethod(method)
+    setFilteredMethods(method ? [method] : initMethods)
+  }
+
+  const handleRemoveSpec = (specId: string) => {
+    if (onRemoveSpec) {
+      onRemoveSpec(specId)
+      // If the removed spec was selected, switch to the first remaining spec
+      if (currSpec === specId) {
+        const remainingSpecs = configs.filter(c => c.specId !== specId)
+        setCurrSpec(remainingSpecs.at(0)?.specId || null)
+      }
     }
   }
 
@@ -142,15 +179,29 @@ export const Panel = ({
 
   return (
     <Wrapper>
-      <Header onClose={onClose}>PathFinder</Header>
+      <Header
+        onClose={onClose}
+        position={position}
+        onChangePosition={onChangePosition}>
+        PathFinder
+      </Header>
       <SearchInput
         value={searchValue}
         methods={initMethods}
+        selectedMethod={selectedMethod}
+        tags={initTags}
+        selectedTag={selectedTag}
         onClearHandler={onClearHandler}
         onSelectMethod={onSelectMethod}
+        onSelectTag={onSelectTag}
         onHandleChange={onHandleChange}
       />
-      <Tabs onLoadSpec={onLoadSpec} tabs={tabs} />
+      <Tabs
+        onLoadSpec={onLoadSpec}
+        tabs={tabs}
+        onRemoveSpec={handleRemoveSpec}
+        defaultSpecIds={defaultSpecIds}
+      />
       {specConfig && (
         <SpecPanel
           specId={specConfig.specId}

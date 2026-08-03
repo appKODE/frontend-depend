@@ -241,7 +241,7 @@ export interface PathItem extends PathItemOperations {
 }
 
 type OperationExample = {
-  [name: string]: any
+  [name: string]: unknown
 }
 
 type OperationResponseContent = {
